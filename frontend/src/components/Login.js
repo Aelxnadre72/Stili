@@ -1,25 +1,39 @@
 import React, { useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import Axios from 'axios';
 import './Login.css';
 
 export default function Login() {
     const [phoneNumber, setPhoneNumber] = useState("");
     const [password, setPassword] = useState("");
+    const [text, setText] = useState("");
 
-    function validate() {
+    function validate () {
         return (
-            phoneNumber.length === 8 
-            && 
-            (password.length > 0 && password.length <= 10)
-        );
+            phoneNumber === "12345678" 
+            && password === "hund123"
+        )
     }
+
+    const changeText = (textinput) => setText(textinput);
 
     function handleSubmit(event) {
         event.preventDefault();
+        /*Axios.post('URL', {
+            'phoneNumber' : phoneNumber,
+            'password' : password,
+        },
+        { headers: {
+            "Authorization": `AUTHORIZATION_KEY`,
+            "Content-Type": 'application/json'
+        }
+        }
+        )
+        .then(res => console.log(res))
+        .catch(error => console.err(error))*/
     }
 
-    
     return (
         <div className="Login">
         <Form onSubmit={handleSubmit}>
@@ -42,7 +56,13 @@ export default function Login() {
                 onChange={(p) => setPassword(p.target.value)}
             />
             </Form.Group>
-            <Button block size="lg" type="submit" disabled={!validate()} className="Button">
+            <p className="errormsg">{text}</p>
+            <Button block size="lg" type="submit" className="Button" onClick={
+
+                validate() 
+                ? () => changeText("Suksess")
+                : () => changeText("Incorrect phone number/password, please try again.")}>
+
             Login
             </Button>
         </Form>

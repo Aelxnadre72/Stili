@@ -10,17 +10,31 @@
     }
 
     .Button {
-      margin-top: 25px;
       margin-left: 235px;
     }
     
     .phonelabel {
-      margin-left: -210px;
       margin-bottom: 10px;
+      display:flex;
     }
 
     .passwordlabel {
-      margin-left: -250px;
       margin-top: 10px;
+      display: flex;
     }
+
+    .logintext {
+      margin-left: -235px;
+      margin-top: 20px;
+    }
+
+    .errormsg {
+      margin-top: 20px;
+      color: red;
+      font-size: 12px;
+    }
+
+      /*
+        Hardkodet marginer for å få til funksjonalitet
+      */
   }
