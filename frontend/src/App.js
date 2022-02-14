@@ -1,6 +1,29 @@
 import logo from './logo.svg';
 import './App.css';
 
+const userItems = [
+  {
+    id: 1,
+    title: "Nature walk in the park",
+    description: "Visit the park with my friends",
+    completed: true
+  },
+
+  {
+    id: 2,
+    title: "Visit",
+    description: "Got to my aunt's place",
+    completed: true
+  },
+
+  {
+    id: 3,
+    title: "Write",
+    description: "Do an article about anthropology",
+    completed: true
+  },
+];
+
 function App() {
   return (
     <div className="App">
