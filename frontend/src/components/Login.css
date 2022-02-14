@@ -1,0 +1,40 @@
+@media all and (min-width: 480px) {
+    .Login {
+      padding: 300px 0;
+
+    }
+  
+    .Login form {
+      margin: 0 auto;
+      max-width: 320px;
+    }
+
+    .Button {
+      margin-left: 235px;
+    }
+    
+    .phonelabel {
+      margin-bottom: 10px;
+      display:flex;
+    }
+
+    .passwordlabel {
+      margin-top: 10px;
+      display: flex;
+    }
+
+    .logintext {
+      margin-left: -235px;
+      margin-top: 20px;
+    }
+
+    .errormsg {
+      margin-top: 20px;
+      color: red;
+      font-size: 12px;
+    }
+
+      /*
+        Hardkodet marginer for å få til funksjonalitet
+      */
+  }
