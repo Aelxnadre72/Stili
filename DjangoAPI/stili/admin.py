@@ -5,4 +5,4 @@ from .models import User
 class UserAdmin(admin.ModelAdmin):
     list = ('firstName', 'description', 'completed')
 
-    admin.site.register(User, UserAdmin)
+    admin.site.register(User)
