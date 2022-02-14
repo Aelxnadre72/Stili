@@ -2,21 +2,19 @@ import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Axios from "axios";
-import "./Login.css";
+import "./Register.css";
 
 export default function Login() {
+  const [name, setName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
+  const [age, setAge] = useState("");
+  const [experience, setExperience] = useState("");
+  const [location, setLocation] = useState("");
   const [password, setPassword] = useState("");
   const [text, setText] = useState("");
-  const [data, setData] = useState([]);
 
   function validate() {
-    Axios.get("user.json").then((res) => {
-      if (data.length === 0) {
-        setData(res.data.data[0]);
-      }
-    });
-    return phoneNumber === data.phoneNumber && password === data.password;
+    return 0;
   }
 
   function handleSubmit(event) {
@@ -38,8 +36,18 @@ export default function Login() {
   const changeText = (textinput) => setText(textinput);
 
   return (
-    <div className="Login">
+    <div className="Register">
       <Form onSubmit={handleSubmit}>
+        <Form.Group size="lg" controlId="name">
+          <Form.Label className="name">Name</Form.Label>
+          <Form.Control
+            autoFocus
+            type="name"
+            placeholder="Name"
+            value={name}
+            onChange={(n) => setName(n.target.value)}
+          />
+        </Form.Group>
         <Form.Group size="lg" controlId="phoneNumber">
           <Form.Label className="phoneNumber">Phone Number</Form.Label>
           <Form.Control
@@ -47,7 +55,35 @@ export default function Login() {
             type="phoneNumber"
             placeholder="Phone Number"
             value={phoneNumber}
-            onChange={(n) => setPhoneNumber(n.target.value)}
+            onChange={(p) => setPhoneNumber(p.target.value)}
+          />
+          <Form.Group size="lg" controlId="age">
+            <Form.Label className="age">Age</Form.Label>
+            <Form.Control
+              autoFocus
+              type="age"
+              placeholder="Age"
+              value={age}
+              onChange={(a) => setAge(a.target.value)}
+            />
+          </Form.Group>
+        </Form.Group>
+        <Form.Group size="lg" controlId="experience">
+          <Form.Label className="experience">Experience</Form.Label>
+          <Form.Control
+            type="experience"
+            placeholder="Experience"
+            value={experience}
+            onChange={(e) => setExperience(e.target.value)}
+          />
+        </Form.Group>
+        <Form.Group size="lg" controlId="location">
+          <Form.Label className="location">Location</Form.Label>
+          <Form.Control
+            type="location"
+            placeholder="Location"
+            value={location}
+            onChange={(l) => setLocation(l.target.value)}
           />
         </Form.Group>
         <Form.Group size="lg" controlId="password">
@@ -68,13 +104,10 @@ export default function Login() {
           onClick={
             validate()
               ? () => changeText("Success! Redirecting...")
-              : () =>
-                  changeText(
-                    "Incorrect phone number/password, please try again."
-                  )
+              : () => changeText("Make sure all the fields are filled in.")
           }
         >
-          Login
+          Register
         </Button>
       </Form>
     </div>

@@ -1,27 +1,22 @@
 @media all and (min-width: 480px) {
-    .Login {
+    .Register {
       padding: 300px 0;
 
     }
   
-    .Login form {
+    .Register form {
       margin: 0 auto;
       max-width: 320px;
     }
 
     .Button {
-      margin-left: 235px;
-    }
-    
-    .phoneNumber {
-      margin-bottom: 10px;
-      display:flex;
+      margin-left: 215px;
     }
 
-    .password {
-      margin-top: 10px;
-      display: flex;
-    }
+    .Register .name, .phoneNumber, .password, .age, .experience, .location, .password {
+        margin-top: 10px;
+        display:flex;
+      }
 
     .errormsg {
       margin-top: 20px;
