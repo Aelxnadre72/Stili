@@ -3,6 +3,7 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Axios from "axios";
 import "./Login.css";
+import { Link } from "react-router-dom";
 
 export default function Login() {
   const [phoneNumber, setPhoneNumber] = useState("");
@@ -48,6 +49,7 @@ export default function Login() {
     </div>
     <div className="Login">
       <h5>Login</h5>
+      <p>Don't have an account? <Link to="/register"><a>Click here</a></Link> to sign up!</p>
         <Form onSubmit={handleSubmit}>
           <Form.Group size="lg" controlId="phoneNumber">
             <Form.Control

@@ -29,27 +29,32 @@
     
   }
 
-  
+  div{height: auto;}
+
   .Login {
     padding: 3vw 3vw;
     overflow: hidden;
   }
-
-  
-    div{height: auto;}
-
-    h5{
-			font-size: 6vmax;
-			line-height: 0;		
-		}
   
     .Login form {
-      margin: 0 auto;
-      max-width: 320px;
+      margin: 5vw 4vw;
+      width: 25vw;
     }
 
     .Button {
-      margin-left: 235px;
+      margin: 3vw auto;
+      margin-left: 18vw;
+      background-color: #62b337;
+      border-color: #81a86c;
+      box-shadow: 0 0 8px 2px #090b6f85;
+      border-radius: 50px;
+      font-size: 20px;
+    }
+
+    .Button:hover {
+      background-color: #62b337;
+      border-color: #81a86c;
+      font-size: 22px;
     }
     
     .phoneNumber {

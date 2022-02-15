@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import "./Register.css";
+import { Link } from "react-router-dom";
 
 export default function Register() {
   const [name, setName] = useState("");
@@ -44,7 +45,7 @@ export default function Register() {
     </div>
     <div className="Register">
     <h5>Register</h5>
-    <p>Already have an account? <a href="Login.js">Click here</a> to log in!</p>
+    <p>Already have an account? <Link to="/"><a>Click here</a></Link> to log in!</p>
       <Form onSubmit={handleSubmit}>
         <Form.Group size="lg" controlId="name">
           <Form.Control
