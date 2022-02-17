@@ -45,7 +45,7 @@ export default function Register() {
     </div>
     <div className="Register">
     <h5>Register</h5>
-    <p>Already have an account? <Link to="/"><a>Click here</a></Link> to log in!</p>
+    <p>Already have an account? <Link to="/"><p>Click here</p></Link> to log in!</p>
       <Form onSubmit={handleSubmit}>
         <Form.Group size="lg" controlId="name">
           <Form.Control
