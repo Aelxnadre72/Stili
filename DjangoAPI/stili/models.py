@@ -10,7 +10,6 @@ class User(models.Model):
         MEDIOCRE = '2', _('Mediocre')
         VETERAN = '3', _('Veteran')
 
-
     firstName = models.CharField(max_length=100, blank = False)
     surname = models.CharField(max_length=100, blank = False)
     phoneNumber = models.TextField(primary_key=True)
@@ -18,6 +17,7 @@ class User(models.Model):
     experience = models.IntegerField(choices=Experience.choices, blank = False)
     location = models.TextField(blank = False)
     password = models.TextField(blank = False)
+    isAdmin = models.BooleanField(default=False)
 
     def __str__(self):
         return self.firstName
