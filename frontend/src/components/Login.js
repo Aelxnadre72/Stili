@@ -66,7 +66,6 @@ export default function Login() {
               value={password}
               onChange={(p) => setPassword(p.target.value)} />
           </Form.Group>
-          <p className="errormsg">{text}</p>
           <Button
             block
             size="lg"
@@ -80,6 +79,7 @@ export default function Login() {
           >
             Login
           </Button>
+          <p className="errormsg">{text}</p>
         </Form>
       </div></>
       </div>
