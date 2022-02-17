@@ -39,12 +39,12 @@ export default function Login() {
   const changeText = (textinput) => setText(textinput);
 
   return (
-    <div class="box-form">
-    <><div class="left">
-      <div class="overlay">
+    <div className="box-form">
+    <><div className="left">
+      <div className="overlay">
         <h1>Stili.</h1>
-        <p class="promo">Ekte turglede!</p>
-        <p class="promo2"> Finn turer som passer for deg, og knytt vennskap for livet!</p>
+        <p className="promo">Ekte turglede!</p>
+        <p className="promo2"> Finn turer som passer for deg, og knytt vennskap for livet!</p>
       </div>
       </div>
       <div className="Login">
