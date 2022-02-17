@@ -7,3 +7,7 @@ from .models import User
 class UserView(viewsets.ModelViewSet):
     serializer_class = UserSerializer
     queryset = User.objects.all()
+
+def front(request):
+    context = {}
+    return render(request, "index.html", context)
