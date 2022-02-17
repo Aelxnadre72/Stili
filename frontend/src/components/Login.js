@@ -49,7 +49,7 @@ export default function Login() {
     </div>
     <div className="Login">
       <h5>Login</h5>
-      <p>Don't have an account? <Link to="/register"><p>Click here</p></Link> to sign up!</p>
+      <p>Don't have an account? <Link to="/register">Click here</Link> to sign up!</p>
         <Form onSubmit={handleSubmit}>
           <Form.Group size="lg" controlId="phoneNumber">
             <Form.Control
