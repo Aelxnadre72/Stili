@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/static/css/main.ea2a88ad.css",
-    "main.js": "/static/js/main.fa6389da.js",
+    "main.js": "/static/js/main.a3c4bd60.js",
     "static/media/Mountain-Hiking.jpg": "/static/media/Mountain-Hiking.3b3b1b749aa8846205ea.jpg",
     "index.html": "/index.html",
     "main.ea2a88ad.css.map": "/static/css/main.ea2a88ad.css.map",
-    "main.fa6389da.js.map": "/static/js/main.fa6389da.js.map"
+    "main.a3c4bd60.js.map": "/static/js/main.a3c4bd60.js.map"
   },
   "entrypoints": [
     "static/css/main.ea2a88ad.css",
-    "static/js/main.fa6389da.js"
+    "static/js/main.a3c4bd60.js"
   ]
 }
