@@ -20,13 +20,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6daa7fd1-7169-4854-ab26-b55362044e46" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/DjangoAPI/DjangoAPI/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/DjangoAPI/DjangoAPI/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/public/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/public/manifest.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/public/robots.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DjangoAPI/DjangoAPI/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/DjangoAPI/DjangoAPI/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DjangoAPI/stili/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/DjangoAPI/stili/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,6 +62,7 @@
       <updated>1644238619804</updated>
       <workItem from="1644238621731" duration="784000" />
       <workItem from="1645097277413" duration="634000" />
+      <workItem from="1645102377981" duration="1032000" />
     </task>
     <servers />
   </component>

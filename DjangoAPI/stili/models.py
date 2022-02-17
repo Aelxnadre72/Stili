@@ -10,7 +10,6 @@ class User(models.Model):
         MEDIOCRE = '2', _('Mediocre')
         VETERAN = '3', _('Veteran')
 
-
     firstName = models.CharField(max_length=100, blank = False)
     surname = models.CharField(max_length=100, blank = False)
     phoneNumber = models.TextField(primary_key=True)

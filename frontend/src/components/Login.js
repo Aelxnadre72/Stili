@@ -10,6 +10,7 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const [text, setText] = useState("");
   const [data, setData] = useState([]);
+  const [users , setNewUsers] = useState(null);
 
   function validate() {
     Axios.get("user.json").then((res) => {
@@ -20,21 +21,20 @@ export default function Login() {
     return phoneNumber === data.phoneNumber && password === data.password;
   }
 
-  function handleSubmit(event) {
-    event.preventDefault();
-    /*Axios.post('URL', {
-            'phoneNumber' : phoneNumber,
-            'password' : password,
-        },
-        { headers: {
-            "Authorization": `AUTHORIZATION_KEY`,
-            "Content-Type": 'application/json'
-        }
-        }
-        )
-        .then(res => console.log(res))
-        .catch(error => console.err(error))*/
-  }
+  function getUsers() {
+    Axios({
+        method: "GET",
+        url:"/users/",
+      }).then((response)=>{
+        const data = response.data
+        setNewUsers(data)
+      }).catch((error) => {
+        if (error.response) {
+          console.log(error.response);
+          console.log(error.response.status);
+          console.log(error.response.headers);
+          }
+      })}
 
   const changeText = (textinput) => setText(textinput);
 
@@ -50,7 +50,7 @@ export default function Login() {
       <div className="Login">
         <h5>Login</h5>
         <p>Don't have an account? <Link to="/register">Click here</Link> to sign up!</p>
-          <Form onSubmit={handleSubmit}>
+          <Form>
             <Form.Group size="lg" controlId="phoneNumber">
               <Form.Control
                 autoFocus
@@ -69,7 +69,7 @@ export default function Login() {
             <Button
               block
               size="lg"
-              type="submit"
+              type="button"
               className="Button"
               onClick={validate()
                 ? () => changeText("Success! Redirecting...")
