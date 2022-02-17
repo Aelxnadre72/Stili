@@ -3,109 +3,144 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import "./Register.css";
 import { Link } from "react-router-dom";
+import Axios from "axios";
 
 export default function Register() {
-  const [name, setName] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [surname, setsurname] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [age, setAge] = useState("");
   const [experience, setExperience] = useState("");
   const [location, setLocation] = useState("");
   const [password, setPassword] = useState("");
   const [text, setText] = useState("");
+  const [formUser, setFormUser] = useState({
+    firstName: "",
+    surname: "",
+    phoneNumber: "",
+    age: "",
+    experience: "",
+    location: "",
+    password: ""
+  });
 
-  function validate() {
-    return 0;
-  }
 
-  function handleSubmit(event) {
-    event.preventDefault();
-    /*Axios.post('URL', {
-            'phoneNumber' : phoneNumber,
-            'password' : password,
-        },
-        { headers: {
-            "Authorization": `AUTHORIZATION_KEY`,
-            "Content-Type": 'application/json'
-        }
-        }
-        )
-        .then(res => console.log(res))
-        .catch(error => console.err(error))*/
-  }
+function validate() {
+  return 0;
+}
 
-  const changeText = (textinput) => setText(textinput);
+function createUser(event) {
+  Axios({
+    method: "POST",
+    url: "/users/",
+    data: {
+      firstName: firstName,
+      surname: surname,
+      phoneNumber: phoneNumber,
+      age: age,
+      experience: experience,
+      location: location,
+      password: password
+    }
+  })
+    .then((response) => {
+      console.log(response)
+    })
 
-  return (
-    <div class="box-form">
+  setFormUser(({
+    firstName: "",
+    surname: "",
+    phoneNumber: "",
+    age: "",
+    experience: "",
+    location: "",
+    password: ""
+  }))
+
+  event.preventDefault()
+};
+
+const changeText = (textinput) => setText(textinput);
+
+return (
+  <div class="box-form">
     <><div class="left">
       <div class="overlay">
         <h1>Stili.</h1>
         <p class="joinFun">Registrer deg nå og bli med på morroa!</p>
       </div>
     </div>
-    <div className="Register">
-    <h5>Register</h5>
-    <p>Already have an account? <Link to="/">Click here</Link> to log in!</p>
-      <Form onSubmit={handleSubmit}>
-        <Form.Group size="lg" controlId="name">
-          <Form.Control
-            autoFocus
-            type="name"
-            placeholder="Name"
-            value={name}
-            onChange={(n) => setName(n.target.value)} />
-        </Form.Group>
-        <Form.Group size="lg" controlId="phoneNumber">
-          <Form.Control
-            autoFocus
-            type="phoneNumber"
-            placeholder="Phone Number"
-            value={phoneNumber}
-            onChange={(p) => setPhoneNumber(p.target.value)} />
-          <Form.Group size="lg" controlId="age">
+      <div className="Register">
+        <h5>Register</h5>
+        <p>Already have an account? <Link to="/">Click here</Link> to log in!</p>
+        <Form>
+          <Form.Group size="lg" controlId="firstName">
             <Form.Control
               autoFocus
-              type="age"
-              placeholder="Age"
-              value={age}
-              onChange={(a) => setAge(a.target.value)} />
+              type="firstName"
+              placeholder="First name"
+              value={firstName}
+              onChange={(n) => setFirstName(n.target.value)} />
           </Form.Group>
-        </Form.Group>
-        <Form.Group size="lg" controlId="experience">
-          <Form.Control
-            type="experience"
-            placeholder="Experience"
-            value={experience}
-            onChange={(e) => setExperience(e.target.value)} />
-        </Form.Group>
-        <Form.Group size="lg" controlId="location">
-          <Form.Control
-            type="location"
-            placeholder="Location"
-            value={location}
-            onChange={(l) => setLocation(l.target.value)} />
-        </Form.Group>
-        <Form.Group size="lg" controlId="password">
-          <Form.Control
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={(p) => setPassword(p.target.value)} />
-        </Form.Group>
-        <p className="errormsg">{text}</p>
-        <Button
-          block
-          size="lg"
-          type="submit"
-          className="Button"
-          onClick={validate()
-            ? () => changeText("Success! Redirecting...")
-            : () => changeText("Make sure all the fields are filled in.")}
-        >
-          Register
-        </Button>
-      </Form>
-    </div></>
-    </div>
-  );
+          <Form.Group size="lg" controlId="surname">
+            <Form.Control
+              autoFocus
+              type="surname"
+              placeholder="Surname"
+              value={surname}
+              onChange={(n) => setsurname(n.target.value)} />
+          </Form.Group>
+          <Form.Group size="lg" controlId="phoneNumber">
+            <Form.Control
+              autoFocus
+              type="phoneNumber"
+              placeholder="Phone Number"
+              value={phoneNumber}
+              onChange={(p) => setPhoneNumber(p.target.value)} />
+            <Form.Group size="lg" controlId="age">
+              <Form.Control
+                autoFocus
+                type="age"
+                placeholder="Age"
+                value={age}
+                onChange={(a) => setAge(a.target.value)} />
+            </Form.Group>
+          </Form.Group>
+          <Form.Group size="lg" controlId="experience">
+            <Form.Control
+              type="experience"
+              placeholder="Experience"
+              value={experience}
+              onChange={(e) => setExperience(e.target.value)} />
+          </Form.Group>
+          <Form.Group size="lg" controlId="location">
+            <Form.Control
+              type="location"
+              placeholder="Location"
+              value={location}
+              onChange={(l) => setLocation(l.target.value)} />
+          </Form.Group>
+          <Form.Group size="lg" controlId="password">
+            <Form.Control
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={(p) => setPassword(p.target.value)} />
+          </Form.Group>
+          <p className="errormsg">{text}</p>
+          <Button
+            block
+            size="lg"
+            type="submit"
+            className="Button"
+            onClick={validate()
+              ? () => createUser()
+              : () => changeText("Make sure all the fields are filled in.")}
+          >
+            Register
+          </Button>
+        </Form>
+      </div></>
+  </div>
+);
 }

@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from .serializer import UserSerializer
-from rest_framework import viewsets, status
-from rest_framework.decorators import api_view
+from rest_framework import viewsets, status, permissions
+from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
 from .models import User
 
@@ -15,6 +15,7 @@ def front(request):
     return render(request, "index.html", context)
 
 @api_view(['GET', 'POST'])
+@permission_classes((permissions.AllowAny,))
 def user(request):
     if request.method == 'GET':
         user = User.objects.all()
