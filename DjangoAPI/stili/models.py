@@ -18,6 +18,7 @@ class User(models.Model):
     experience = models.IntegerField(choices=Experience.choices, blank = False)
     location = models.TextField(blank = False)
     password = models.TextField(blank = False)
+    isAdmin = models.BooleanField(default=False)
 
     def __str__(self):
         return self.firstName
