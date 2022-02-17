@@ -66,12 +66,12 @@ export default function Register() {
   const changeText = (textinput) => setText(textinput);
 
   return (
-    <div classname="box-form">
+    <div className="box-form">
       <>
-        <div classname="left">
-          <div classname="overlay">
+        <div className="left">
+          <div className="overlay">
             <h1>Stili.</h1>
-            <p classname="joinFun">Registrer deg nå og bli med på morroa!</p>
+            <p className="joinFun">Registrer deg nå og bli med på morroa!</p>
           </div>
         </div>
         <div className="Register">
