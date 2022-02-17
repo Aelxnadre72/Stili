@@ -50,7 +50,7 @@ export default function Login() {
       <div className="Login">
         <h5>Login</h5>
         <p>Don't have an account? <Link to="/register">Click here</Link> to sign up!</p>
-          <Form onSubmit={handleSubmit}>
+          <Form>
             <Form.Group size="lg" controlId="phoneNumber">
               <Form.Control
                 autoFocus
