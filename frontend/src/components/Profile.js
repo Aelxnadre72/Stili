@@ -1,24 +1,28 @@
 import React, { useState } from "react";
-
+import picture from "../../src/PicPlaceholder.png";
 import "./Profile.css";
 
 
 export default function Profile(){
-    const [count, setCount] = useState(0);
-    const initialCount = 0;
-    
+    const [profilePic, setProfilePic] = useState("");
+    const [username, setUsername] = useState("");
+    const [phoneNumber, setPhoneNumber] = useState("");
+    const [age, setAge] = useState("");
+    const [hikingExperience, setHikingExperience] = useState("");
+    const [location, setLocation] = useState("");
+
+    function handleSubmit(event) {
+        event.preventDefault();
+    }
+
     return(
-                
         <div className="Profile">
-            
-            
-            
-            <>
-                Count: {count}
-                <button onClick={() => setCount(initialCount)}>Reset</button>
-                <button onClick={() => setCount(prevCount => prevCount - 1)}>-</button>
-                <button onClick={() => setCount(prevCount => prevCount + 1)}>+</button>
-            </>
+            <img className="ProfilePic" id="ProfilePic" src={picture}></img>
+            <p className="username">username</p>
+            <p className="phoneNumber">phoneNumber</p>
+            <p className="age">age</p>
+            <p className="hikingExperience">hikingExperience</p>
+            <p className="location">location</p>
         </div>
-    )
+    );
 }
