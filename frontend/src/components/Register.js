@@ -26,7 +26,11 @@ export default function Register() {
 
 
 function validate() {
-  return 0;
+  return (firstName.length < 101
+         &&
+         surname.length < 101
+         &&
+         phoneNumber.length == 8);
 }
 
 function createUser(event) {
@@ -58,7 +62,7 @@ function createUser(event) {
   }))
 
   event.preventDefault()
-};
+}
 
 const changeText = (textinput) => setText(textinput);
 
