@@ -24,20 +24,16 @@ export default function Register() {
     password: "",
   });
 
-  function validate(event) {
-    if (
+  function validate() {
+    return (
       firstName.length < 101 &&
       surname.length < 101 &&
-      phoneNumber.length == 8
-    ) {
-      return true;
-    }
-
-    event.preventDefault();
-    return false;
+      phoneNumber.length === 8
+      );
   }
 
   function createUser(event) {
+    setText("");
     Axios({
       method: "POST",
       url: "/users/",
@@ -70,12 +66,12 @@ export default function Register() {
   const changeText = (textinput) => setText(textinput);
 
   return (
-    <div class="box-form">
+    <div classname="box-form">
       <>
-        <div class="left">
-          <div class="overlay">
+        <div classname="left">
+          <div classname="overlay">
             <h1>Stili.</h1>
-            <p class="joinFun">Registrer deg nå og bli med på morroa!</p>
+            <p classname="joinFun">Registrer deg nå og bli med på morroa!</p>
           </div>
         </div>
         <div className="Register">
@@ -148,7 +144,7 @@ export default function Register() {
             <Button
               block
               size="lg"
-              type="submit"
+              type="button"
               className="Button"
               onClick={
                 validate()
