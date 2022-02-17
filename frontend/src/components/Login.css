@@ -2,11 +2,11 @@
   body {
     font-family: 'Open Sans', sans-serif;
 	  color:  #333333;
-    background-image: linear-gradient( 135deg, #b2edff 10%, #205a14 100%);
+    background-image: linear-gradient( 135deg, #f5fcff 10%, #2597b9 100%);
   }
   
   .box-form {
-    margin: 2vh auto;
+    margin: 2vh auto; 
     width: 96%;
     height: 52.5vw;	
     background: #FFFFFF;
@@ -110,6 +110,13 @@
       font-family: 'Open Sans', sans-serif;
       color: white;
       font-size: 2vmax;
+      margin-top: 1vh;
+    }
+
+    .promo2 {
+      font-family: 'Open Sans', sans-serif;
+      color: white;
+      font-size: 1.2vmax;
       margin-top: 1vh;
     }
 
