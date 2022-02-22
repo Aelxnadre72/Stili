@@ -55,8 +55,8 @@
       font-size: 22px;
     }
 
-    .Register #name, #phoneNumber, #password, #age, #experience, #location, #password {
-      margin-top: 2vw;
+    .Register #firstName, #surname, #phoneNumber, #password, #age, #experience, #location, #password {
+      margin-top: 1.5vw;
       display:flex;
       border: none;
       border-radius: 0;
