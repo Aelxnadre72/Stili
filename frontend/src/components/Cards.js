@@ -8,7 +8,6 @@ import bymarka from './bymarka.jpeg';
 export default function Cards(props) {
   return (
     <div className="cards">
-      <h1>{props.text}</h1>
       <div className="card_container">
         <div className="card_wrapper">
           <ul className="card_items">
