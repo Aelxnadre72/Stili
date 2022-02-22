@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./Navbar.css";
 import avatar from './img_avatar.png';
+import logout from './logout.png';
 
 export default function Navbar(props) {
   const [click, setClick] = useState(false);
@@ -37,9 +38,6 @@ export default function Navbar(props) {
         data-aos-offset={props.offset}
       >
         <nav className="navbar">
-          <Link to="/" className="navbar-logo" onClick={closeMobileMenu}>
-            Stili.
-          </Link>
           <ul
             className={click ? "navbar-hamburger active" : "navbar-hamburger"}
           >
@@ -86,8 +84,7 @@ export default function Navbar(props) {
               </Link>
             </li>
           </ul>
-          <li className="logout">Logg ut</li>
-          
+          <li className="logout"><img src={logout} alt="Logout" class="logoutIcon"></img>Logg ut</li> 
         </nav>
       </div>
     </div>
