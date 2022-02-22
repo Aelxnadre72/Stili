@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { Button } from "./Button";
 import "./Navbar.css";
+import avatar from './img_avatar.png';
 
 export default function Navbar(props) {
   const [click, setClick] = useState(false);
@@ -38,14 +38,15 @@ export default function Navbar(props) {
       >
         <nav className="navbar">
           <Link to="/" className="navbar-logo" onClick={closeMobileMenu}>
-            Hafskjold
+            Stili.
           </Link>
           <ul
             className={click ? "navbar-hamburger active" : "navbar-hamburger"}
           >
+            <img src={avatar} alt="Avatar" class="avatar"></img>
             <li className="navbar-item">
               <Link to="/" className="navbar-links" onClick={closeMobileMenu}>
-                Hjem
+                Min profil
               </Link>
             </li>
             <li className="navbar-item">
@@ -54,7 +55,7 @@ export default function Navbar(props) {
                 className="navbar-links"
                 onClick={closeMobileMenu}
               >
-                Salater
+                Utforsk
               </Link>
             </li>
             <li className="navbar-item">
@@ -63,7 +64,7 @@ export default function Navbar(props) {
                 className="navbar-links"
                 onClick={closeMobileMenu}
               >
-                Oppskrifter
+                Mine turer
               </Link>
             </li>
             <li className="navbar-item">
@@ -72,35 +73,21 @@ export default function Navbar(props) {
                 className="navbar-links"
                 onClick={closeMobileMenu}
               >
-                Om Oss
+                Settinger
               </Link>
             </li>
             <li className="navbar-item">
               <Link
                 to="/contact"
-                className="navbar-links-mobile"
+                className="navbar-links"
                 onClick={closeMobileMenu}
               >
                 Kontakt
               </Link>
             </li>
           </ul>
-          {button && <Button button="btn--outline">Kontakt</Button>}
-          <div className="hamburger-icon">
-            <button
-              onClick={handleClick}
-              className={
-                click
-                  ? "hamburger hamburger--spring is-active"
-                  : "hamburger hamburger--spring"
-              }
-              type="button"
-            >
-              <span className="hamburger-box">
-                <span className="hamburger-inner"></span>
-              </span>
-            </button>
-          </div>
+          <li className="logout">Logg ut</li>
+          
         </nav>
       </div>
     </div>

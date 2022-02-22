@@ -20,7 +20,7 @@ export default function Cards(props) {
             <Card
               name="card-body"
               wrapper="card_picture_wrapper"
-              src="images/gorgonzola.jpg"
+              src=""
               text="Pastaoppskrifter"
               label="Pasta"
               path="/pasta"
@@ -28,26 +28,10 @@ export default function Cards(props) {
             <Card
               name="card-body"
               wrapper="card_picture_wrapper-meat"
-              src="images/taco.jpg"
+              src=""
               text="Kjøttoppskrifter"
               label="Kjøtt"
               path="/meat"
-            />
-            <Card
-              name="card-body"
-              wrapper="card_picture_wrapper-rice"
-              src="images/rice.jpg"
-              text="Risoppskrifter"
-              label="Ris"
-              path="/"
-            />
-            <Card
-              name="card-body"
-              wrapper="card_picture_wrapper-fish"
-              src="images/salmon.jpg"
-              text="Fiskeoppskrifter"
-              label="Fisk"
-              path="/fish"
             />
           </ul>
         </div>

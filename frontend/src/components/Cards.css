@@ -1,5 +1,5 @@
 .card-body {
-    background-color: white;
+    background-color: transparent;
   }
   
   .cards {
@@ -17,15 +17,15 @@
     background: transparent;
     flex-flow: column;
     align-items: center;
-    max-width: 1120px;
-    width: 90%;
+    width: 50%;
     margin: 0 auto;
   }
   
   .card_wrapper {
     position: relative;
-    margin: 50px 0 45px;
-    background-color: white;
+    margin: 4vh 2vw;
+    margin-left: 30%;
+    background-color: transparent;
   }
   
   .card_items {
