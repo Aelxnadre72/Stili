@@ -84,7 +84,11 @@ export default function Navbar(props) {
               </Link>
             </li>
           </ul>
+          <Link
+          to="/"
+          >
           <li className="logout"><img src={logout} alt="Logout" class="logoutIcon"></img>Logg ut</li> 
+          </Link>
         </nav>
       </div>
     </div>
