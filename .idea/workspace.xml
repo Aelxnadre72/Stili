@@ -19,7 +19,11 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6daa7fd1-7169-4854-ab26-b55362044e46" name="Default Changelist" comment="" />
+    <list default="true" id="6daa7fd1-7169-4854-ab26-b55362044e46" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DjangoAPI/DjangoAPI/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/DjangoAPI/DjangoAPI/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DjangoAPI/stili/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/DjangoAPI/stili/views.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -43,6 +47,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -56,6 +61,8 @@
       <option name="presentableId" value="Default" />
       <updated>1644238619804</updated>
       <workItem from="1644238621731" duration="784000" />
+      <workItem from="1645097277413" duration="634000" />
+      <workItem from="1645102377981" duration="1032000" />
     </task>
     <servers />
   </component>
