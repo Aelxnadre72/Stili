@@ -18,6 +18,7 @@ export default function Cards(props) {
               text="Campusrunden"
               label="Lett"
               path="/pizza"
+              size="18/20"
             />
             <Card
               name="card-body"
@@ -26,6 +27,7 @@ export default function Cards(props) {
               text="Gaustatoppen"
               label="Vanskelig"
               path="/pasta"
+              size="30/30"
             />
             <Card
               name="card-body"
@@ -34,6 +36,7 @@ export default function Cards(props) {
               text="Bymarka"
               label="Middels"
               path="/meat"
+              size="0/10"
             />
           </ul>
         </div>
@@ -48,6 +51,7 @@ export default function Cards(props) {
               text="Bymarka"
               label="Middels"
               path="/meat"
+              size="7/20"
             />
             <Card
               name="card-body"
@@ -56,6 +60,7 @@ export default function Cards(props) {
               text="Campusrunden"
               label="Lett"
               path="/pizza"
+              size="20/30"
             />
             <Card
               name="card-body"
@@ -64,6 +69,7 @@ export default function Cards(props) {
               text="Gaustatoppen"
               label="Vanskelig"
               path="/pasta"
+              size="40/40"
             />
           </ul>
         </div>
