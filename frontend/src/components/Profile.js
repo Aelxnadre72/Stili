@@ -16,65 +16,49 @@ export default function Profile(){
         experience: "Some",
         location: "Trondheim",
     };
+
+
     
   
 
     return(
-        <div className="Box-form">
-            <>
-                <div className="overlay">
-                    <h1>Stili.Profili</h1>
-                </div>
-                <Image id="Profilbilde" src={picture}>
-                </Image>
-                <div className = "Profile">
-                    <h5>{user.userName}</h5>
-                    <Form>
-                        <Form.Group size="lg" controlId="firstName">
-                            <Form.Control
-                            autoFocus
-                            value={"Firstname:" + " " + user.firstName}
-                            disabled
-                            />
-                        </Form.Group>
-                        <Form.Group size="lg" controlId="surName">
-                            <Form.Control
-                            autoFocus
-                            value={"Surname:" + " " + user.surname}
-                            disabled
-                            />
-                        </Form.Group>
-                        <Form.Group size="lg" controlId="phoneNumber">
-                            <Form.Control
-                            autoFocus
-                            value={"Phonenumber:" + " " + user.phoneNumber}
-                            disabled
-                            />
-                        </Form.Group>
-                        <Form.Group size="lg" controlId="age">
-                            <Form.Control
-                            autoFocus
-                            value={"Age:" + " " + user.age}
-                            disabled
-                            />
-                        </Form.Group>
-                        <Form.Group size="lg" controlId="experience">
-                            <Form.Control
-                            autoFocus
-                            value={"Experience:" + " " + user.experience}
-                            disabled
-                            />
-                        </Form.Group>
-                        <Form.Group size="lg" controlId="location">
-                            <Form.Control
-                            autoFocus
-                            value={"Location:" + " " + user.location}
-                            disabled
-                            />
-                        </Form.Group>
-                    </Form>
-                </div>
-            </>
+        <div className="ProfilePage">
+            <Image className="ProfilePic" src={picture}>
+            </Image>
+            <div className = "Profil">
+                <h3 className="Username">{user.userName}</h3>
+                <Form className="Forms">
+                    <Form.Group size="lg" controlId="firstName">
+                        <Form.Control
+                        value={"Firstname:" + " " + user.firstName}
+                        disabled
+                        />
+                        <Form.Control
+                        value={"Surname:" + " " + user.surname}
+                        disabled
+                        />
+                        <Form.Control
+                        value={"Phonenumber:" + " " + user.phoneNumber}
+                        disabled
+                        />
+                        <Form.Control
+                        autoFocus
+                        value={"Age:" + " " + user.age}
+                        disabled
+                        />
+                        <Form.Control
+                        autoFocus
+                        value={"Experience:" + " " + user.experience}
+                        disabled
+                        />
+                        <Form.Control
+                        autoFocus
+                        value={"Location:" + " " + user.location}
+                        disabled
+                        />
+                    </Form.Group>
+                </Form>
+            </div>
         </div>
     );
 }

@@ -1,45 +1,25 @@
-@media all and (min-width: 480px){
-    body {
-        font-family: 'Open Sans', sans-serif;
-          color:  #333333;
-      }
-
-      .box-form {
-        margin: 0;
-        width: 100%;
-        height: 100vh;	
-        background: #FFFFFF;
-        overflow: hidden;
-        
-        display: flex;
-        flex: 1 1 100%;
-        align-items: stretch;
-        justify-content: space-between;
-    
-        @media (max-width: cover) {
-        flex-flow:wrap;
-        text-align: center;
-        align-content: center;
-        align-items: center;
-    }
-        
-}
-
-    .overlay {
-        margin: 3vw auto;
-        padding: 10px;
+    .ProfilePage {
+        margin: 2% 10% 0% 10%;
         width: 60%;
-        height: 60%;
-        background: #3333331c;
-        overflow: hidden;
-        box-sizing: border-box;
-    }
-
-    .Profile {
-        width: 50%;
-        margin: 3vw auto;
-    }
-
-    
-  
+        height: 50%;	
+        background: grey;
+        border-radius: 5px;
 }
+    .ProfilePic{
+        position: relative;
+        left: -20%;
+    }
+    .Username {
+        position: relative;
+        left: -20%;
+        top: 4px;
+    }
+
+    .Profil{
+        width: 100%;
+    }
+    .Forms{
+        width: 60%;
+        position: relative;
+        left: 15%;
+    }
