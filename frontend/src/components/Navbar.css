@@ -44,6 +44,7 @@
   margin: 0 auto;
 }
 
+
 .navbar-links:hover {
   color: white;
   text-decoration: none;
@@ -56,9 +57,14 @@
   text-decoration: none;
   margin: 0 auto;
 }
-.logout:hover {
+.logout-link:hover {
   color: white;
   text-decoration: none;
+}
+
+.logout-link {
+  text-decoration: none;
+  color:rgb(43, 41, 41);
 }
 
 .logoutIcon {
