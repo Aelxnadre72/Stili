@@ -11,6 +11,7 @@ export default function Card(props) {
           </figure>
           <div className="card_info">
             <h5 className="card_text">{props.text}</h5>
+            <h3 className="card_text">{props.size}</h3>
           </div>
         </Link>
       </li>
