@@ -13,15 +13,16 @@ export default function Login() {
   const [users , setNewUsers] = useState(null);
 
   function validate() {
+
     Axios.get("user.json").then((res) => {
       if (data.length === 0) {
         setData(res.data.data[0]);
       }
     });
-    return phoneNumber === data.phoneNumber && password === data.password;
+    return true;
   }
 
-  function getUsers() {
+  function getUsers(event) {
     Axios({
         method: "GET",
         url:"/users/",
@@ -34,7 +35,11 @@ export default function Login() {
           console.log(error.response.status);
           console.log(error.response.headers);
           }
-      })}
+      })
+
+      event.preventDefault();
+      setText(users);
+    }
 
   const changeText = (textinput) => setText(textinput);
 
@@ -72,10 +77,9 @@ export default function Login() {
               type="button"
               className="Button"
               onClick={validate()
-                ? () => changeText("Success! Redirecting...")
-                : () => changeText(
-                  "Incorrect phone number/password, please try again."
-                )}
+                ? () => getUsers()
+                : () => changeText(users)
+              }
             >
               Login
             </Button>
