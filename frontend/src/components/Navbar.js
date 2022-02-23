@@ -1,34 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import "./Navbar.css";
 import avatar from './img_avatar.png';
 import logout from './logout.png';
 
 export default function Navbar(props) {
-  const [click, setClick] = useState(false);
-  const [button, setButton] = useState(true);
-
-  function handleClick() {
-    setClick(!click);
-  }
-
-  function closeMobileMenu() {
-    setClick(false);
-  }
-
-  function showButton() {
-    if (window.innerWidth <= 979) {
-      setButton(false);
-    } else {
-      setButton(true);
-    }
-  }
-
-  useEffect(() => {
-    showButton();
-  }, []);
-
-  window.addEventListener("resize", showButton);
 
   return (
     <div className="navbar-container">
@@ -39,11 +15,10 @@ export default function Navbar(props) {
       >
         <nav className="navbar">
           <ul
-            className={click ? "navbar-hamburger active" : "navbar-hamburger"}
           >
             <img src={avatar} alt="Avatar" class="avatar"></img>
             <li className="navbar-item">
-              <Link to="/" className="navbar-links" onClick={closeMobileMenu}>
+              <Link to="/" className="navbar-links">
                 Min profil
               </Link>
             </li>
@@ -51,7 +26,6 @@ export default function Navbar(props) {
               <Link
                 to="/salads"
                 className="navbar-links"
-                onClick={closeMobileMenu}
               >
                 Utforsk
               </Link>
@@ -60,7 +34,6 @@ export default function Navbar(props) {
               <Link
                 to="/recipes"
                 className="navbar-links"
-                onClick={closeMobileMenu}
               >
                 Mine turer
               </Link>
@@ -69,7 +42,6 @@ export default function Navbar(props) {
               <Link
                 to="/about"
                 className="navbar-links"
-                onClick={closeMobileMenu}
               >
                 Settinger
               </Link>
@@ -78,7 +50,6 @@ export default function Navbar(props) {
               <Link
                 to="/contact"
                 className="navbar-links"
-                onClick={closeMobileMenu}
               >
                 Kontakt
               </Link>
