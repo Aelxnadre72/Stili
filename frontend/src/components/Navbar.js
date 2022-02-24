@@ -43,7 +43,7 @@ export default function Navbar(props) {
                 to="/about"
                 className="navbar-links"
               >
-                Settinger
+                Innstillinger
               </Link>
             </li>
             <li className="navbar-item">
