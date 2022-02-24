@@ -1,4 +1,5 @@
 from random import choices
+from tkinter import CASCADE
 from django.db import models
 from django.utils.translation import gettext as _
 
@@ -23,6 +24,8 @@ class User(models.Model):
         return self.firstName
 
 class Event(models.Model):
+
+    organizer = models.ForeignKey(User, blank=True, null=True, on_delete=models.CASCADE)
 
     DIFFICULTY = (
         ('1', 'Lett'),
