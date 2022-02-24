@@ -30,12 +30,20 @@ class Event(models.Model):
         ('3', 'Demanding'),
         ('4', 'Very Demanding')
     )
+
+    AREA = (
+        ('1', 'Trondheim'),
+        ('2', 'Oslo'),
+        ('3', 'Stavanger'),
+        ('4', 'Bergen')
+    )
     
     eventID = models.CharField(max_length=1, primary_key=True)
     eventName = models.CharField(max_length=100, blank = False)
     eventDate = models.DateTimeField()
     eventDifficulty = models.CharField(max_length=1, choices=DIFFICULTY)
     eventDescription = models.TextField()
+    eventArea = models.CharField(max_length=1, choices=AREA)
     eventLocation = models.CharField(max_length=100)
     hours = models.IntegerField()
     
