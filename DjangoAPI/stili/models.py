@@ -43,7 +43,7 @@ class Event(models.Model):
     eventDate = models.DateTimeField()
     eventDifficulty = models.CharField(max_length=1, choices=DIFFICULTY)
     eventDescription = models.TextField()
-    eventArea = models.CharField(max_length=1, choices=AREA)
+    eventArea = models.CharField(max_length=1, choices=AREA, default='1', blank=False)
     eventLocation = models.CharField(max_length=100)
     hours = models.IntegerField()
     
