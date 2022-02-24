@@ -39,3 +39,18 @@ def events(request):
     context = {}
     return render(request, "index.html", context)
 
+@api_view(['GET', 'POST'])
+@permission_classes((permissions.AllowAny,))
+def event(request):
+    if request.method == 'GET':
+        user = Event.objects.all()
+        serializer = EventSerializer(user, many=True)
+        return Response(serializer.data)
+
+    elif request.method == 'POST':
+        serializer = EventSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(status=status.HTTP_201_CREATED)
+
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
