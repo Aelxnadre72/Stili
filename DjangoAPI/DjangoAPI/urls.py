@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
 from stili import views
-from stili.views import front, user
+from stili.views import front, user, events
 
 router = routers.DefaultRouter()
 router.register(r'users', views.UserView, 'stili')
@@ -27,4 +27,5 @@ urlpatterns = [
     path('api/', include(router.urls)),
     path('', front, name="front"),
     path('users/', user, name="user"),
+    path('events/', events, name="events")
 ]

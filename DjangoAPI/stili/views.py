@@ -1,9 +1,9 @@
 from django.shortcuts import render
-from .serializer import UserSerializer
+from .serializer import EventSerializer, UserSerializer
 from rest_framework import viewsets, status, permissions
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
-from .models import User
+from .models import User, Event
 
 # Create your views here.
 class UserView(viewsets.ModelViewSet):
@@ -29,3 +29,13 @@ def user(request):
             return Response(status=status.HTTP_201_CREATED)
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class EventView(viewsets.ModelViewSet):
+    seralizer_class = EventSerializer
+    queryset = Event.objects.all
+
+def events(request):
+    context = {}
+    return render(request, "index.html", context)
+
