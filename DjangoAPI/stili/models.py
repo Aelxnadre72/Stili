@@ -25,9 +25,9 @@ class User(models.Model):
 class Event(models.Model):
 
     DIFFICULTY = (
-        ('1', 'Easy')
-        ('2', 'Medium')
-        ('3', 'Demanding')
+        ('1', 'Easy'),
+        ('2', 'Medium'),
+        ('3', 'Demanding'),
         ('4', 'Very Demanding')
     )
     
