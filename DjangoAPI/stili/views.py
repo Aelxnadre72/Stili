@@ -1,9 +1,9 @@
 from django.shortcuts import render
-from .serializer import UserSerializer
+from .serializer import EventSerializer, UserSerializer
 from rest_framework import viewsets, status, permissions
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
-from .models import User
+from .models import User, Event
 
 # Create your views here.
 class UserView(viewsets.ModelViewSet):
@@ -24,6 +24,31 @@ def user(request):
 
     elif request.method == 'POST':
         serializer = UserSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(status=status.HTTP_201_CREATED)
+
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class EventView(viewsets.ModelViewSet):
+    seralizer_class = EventSerializer
+    queryset = Event.objects.all
+
+def events(request):
+    context = {}
+    return render(request, "index.html", context)
+
+@api_view(['GET', 'POST'])
+@permission_classes((permissions.AllowAny,))
+def event(request):
+    if request.method == 'GET':
+        user = Event.objects.all()
+        serializer = EventSerializer(event, many=True)
+        return Response(serializer.data)
+
+    elif request.method == 'POST':
+        serializer = EventSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(status=status.HTTP_201_CREATED)
