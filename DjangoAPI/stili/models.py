@@ -25,10 +25,9 @@ class User(models.Model):
 class Event(models.Model):
 
     DIFFICULTY = (
-        ('1', 'Easy'),
-        ('2', 'Medium'),
-        ('3', 'Demanding'),
-        ('4', 'Very Demanding')
+        ('1', 'Lett'),
+        ('2', 'Middels'),
+        ('3', 'Vankselig')
     )
 
     AREA = (
