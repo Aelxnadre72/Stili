@@ -44,7 +44,7 @@ def events(request):
 def event(request):
     if request.method == 'GET':
         user = Event.objects.all()
-        serializer = EventSerializer(user, many=True)
+        serializer = EventSerializer(event, many=True)
         return Response(serializer.data)
 
     elif request.method == 'POST':
