@@ -47,5 +47,6 @@ class Event(models.Model):
     eventDescription = models.TextField()
     eventArea = models.CharField(max_length=1, choices=AREA, default='1', blank=False)
     eventLocation = models.CharField(max_length=100)
+    eventSize = models.IntegerField(blank = False, default=0)
     hours = models.IntegerField()
     
