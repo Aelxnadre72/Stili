@@ -1,4 +1,5 @@
 from random import choices
+from tkinter import CASCADE
 from django.db import models
 from django.utils.translation import gettext as _
 
@@ -21,3 +22,31 @@ class User(models.Model):
 
     def __str__(self):
         return self.firstName
+
+class Event(models.Model):
+
+    organizer = models.ForeignKey(User, blank=True, null=True, on_delete=models.CASCADE)
+
+    DIFFICULTY = (
+        ('1', 'Lett'),
+        ('2', 'Middels'),
+        ('3', 'Vankselig')
+    )
+
+    AREA = (
+        ('1', 'Trondheim'),
+        ('2', 'Oslo'),
+        ('3', 'Stavanger'),
+        ('4', 'Bergen')
+    )
+    
+    eventID = models.CharField(max_length=1, primary_key=True)
+    eventName = models.CharField(max_length=100, blank = False)
+    eventDate = models.DateTimeField()
+    eventDifficulty = models.CharField(max_length=1, choices=DIFFICULTY)
+    eventDescription = models.TextField()
+    eventArea = models.CharField(max_length=1, choices=AREA, default='1', blank=False)
+    eventLocation = models.CharField(max_length=100)
+    eventSize = models.IntegerField(blank = False, default=0)
+    hours = models.IntegerField()
+    
