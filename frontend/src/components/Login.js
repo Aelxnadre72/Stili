@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Axios from "axios";
@@ -10,36 +10,52 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const [text, setText] = useState("");
   const [data, setData] = useState([]);
-  const [users , setNewUsers] = useState(null);
+  const [user, setUser] = useState(null);
 
   function validate() {
-
-    Axios.get("user.json").then((res) => {
-      if (data.length === 0) {
-        setData(res.data.data[0]);
-      }
-    });
-    return true;
+    return true; //validate the format of the phone number
   }
 
-  function getUsers(event) {
-    Axios({
-        method: "GET",
-        url:"/users/",
-      }).then((response)=>{
-        const data = response.data
-        setNewUsers(data)
-      }).catch((error) => {
-        if (error.response) {
-          console.log(error.response);
-          console.log(error.response.status);
-          console.log(error.response.headers);
-          }
-      })
+  async function validateUser() {
+    getUser().then(response => {
+      if (typeof response.find(o => o.phoneNumber === phoneNumber) === "undefined") {
+        changeText("The phone number is not connected to an account.")
+        return;
+      }
+      else {
+        setUser(response.find(o => o.phoneNumber === phoneNumber));
+        return;
+      }
+    });
+  }
 
-      event.preventDefault();
-      setText(users);
+  useEffect(() => {
+    if(user != null) {
+      if(user.password === password) {
+        changeText("Logged in succesfully."); //oppfølging til kommentaren nederst: kan også bare videresende til neste siden herifra.
+      }
+      else {
+        setUser(null);
+        changeText("Incorrect phone number or password.")
+      }
     }
+  });
+
+  async function getUser() {
+    try {
+    const response = await Axios({
+      method: "GET",
+      url:"/users/",
+      responseType:"json"
+      })
+    return response.data;
+    }
+    catch(error){
+      console.log(error.response);
+      console.log(error.response.status);
+      console.log(error.response.headers);
+    }
+  }
 
   const changeText = (textinput) => setText(textinput);
 
@@ -74,11 +90,11 @@ export default function Login() {
             <Button
               block
               size="lg"
-              type="button"
-              className="Button"
+              type="button" // endre til en submit button som sender deg videre til neste side. prevent default dersom tlf nummer ikke finnes, videresendes ellers.
+              className="Button" // - videresende user elelr tlf nummer også om det er mulig for å vite hvem som er logget inn.
               onClick={validate()
-                ? () => getUsers()
-                : () => changeText(users)
+                ? () => {validateUser();}
+                : () => {changeText("The phone number has to consist of 8 numbers.")}
               }
             >
               Login
