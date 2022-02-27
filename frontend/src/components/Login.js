@@ -1,40 +1,61 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Axios from "axios";
 import "./Login.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Login() {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [password, setPassword] = useState("");
   const [text, setText] = useState("");
-  const [data, setData] = useState([]);
-  const [users , setNewUsers] = useState(null);
+  let navigate = useNavigate();
+
+  useEffect(() => {
+    if (localStorage.getItem("id") != null) {
+      navigate('/home');
+    }
+  })
 
   function validate() {
-    Axios.get("user.json").then((res) => {
-      if (data.length === 0) {
-        setData(res.data.data[0]);
-      }
-    });
-    return phoneNumber === data.phoneNumber && password === data.password;
+    return (phoneNumber.length === 8 && !isNaN(phoneNumber));
   }
 
-  function getUsers() {
-    Axios({
-        method: "GET",
-        url:"/users/",
-      }).then((response)=>{
-        const data = response.data
-        setNewUsers(data)
-      }).catch((error) => {
-        if (error.response) {
-          console.log(error.response);
-          console.log(error.response.status);
-          console.log(error.response.headers);
-          }
-      })}
+  function validateUser() {
+    getUser().then(response => {
+      const currentUser = response.find(o => o.phoneNumber === phoneNumber);
+      if (typeof currentUser === "undefined") {
+        changeText("The phone number is not connected to an account.")
+        return;
+      }
+      else {
+        if(currentUser.password === password) {
+          changeText("Logged in succesfully.");
+          localStorage.setItem("id", currentUser.phoneNumber);
+          navigate('/home');
+        }
+        else {
+          changeText("Incorrect phone number or password.")
+        }
+      }
+    });
+  }
+
+  async function getUser() {
+    try {
+    const response = await Axios({
+      method: "GET",
+      url:"/users/",
+      responseType:"json"
+      })
+    return response.data;
+    }
+    catch(error){
+      console.log(error.response);
+      console.log(error.response.status);
+      console.log(error.response.headers);
+    }
+  }
 
   const changeText = (textinput) => setText(textinput);
 
@@ -72,10 +93,9 @@ export default function Login() {
               type="button"
               className="Button"
               onClick={validate()
-                ? () => changeText("Success! Redirecting...")
-                : () => changeText(
-                  "Incorrect phone number/password, please try again."
-                )}
+                ? () => {validateUser();}
+                : () => {changeText("The phone number has to consist of 8 numbers.")}
+              }
             >
               Login
             </Button>
