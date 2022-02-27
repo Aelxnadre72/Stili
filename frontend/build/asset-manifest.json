@@ -1,38 +1,16 @@
 {
   "files": {
-<<<<<<< HEAD
-    "main.css": "/static/css/main.a419793f.css",
-    "main.js": "/static/js/main.701192d5.js",
+    "main.css": "/static/css/main.40785e4b.css",
+    "main.js": "/static/js/main.4db43685.js",
     "static/media/Campusrunden.jpg": "/static/media/Campusrunden.647359810e7c4b83f55a.jpg",
-=======
-    "main.css": "/static/css/main.dbb06ce9.css",
-<<<<<<< HEAD
-    "main.js": "/static/js/main.930fbc22.js",
-    "static/media/Mountain-Hiking.jpg": "/static/media/Mountain-Hiking.3b3b1b749aa8846205ea.jpg",
-    "index.html": "/index.html",
-    "main.dbb06ce9.css.map": "/static/css/main.dbb06ce9.css.map",
-    "main.930fbc22.js.map": "/static/js/main.930fbc22.js.map"
-  },
-  "entrypoints": [
-    "static/css/main.dbb06ce9.css",
-    "static/js/main.930fbc22.js"
-=======
-    "main.js": "/static/js/main.802166ea.js",
->>>>>>> 7f650a24fa852ed3ed9da3cbd4dd445ae99c17bf
     "static/media/Mountain-Hiking.jpg": "/static/media/Mountain-Hiking.3b3b1b749aa8846205ea.jpg",
     "static/media/logout.png": "/static/media/logout.973c2d8b03e5c88e4723.png",
     "index.html": "/index.html",
-    "main.a419793f.css.map": "/static/css/main.a419793f.css.map",
-    "main.701192d5.js.map": "/static/js/main.701192d5.js.map"
+    "main.40785e4b.css.map": "/static/css/main.40785e4b.css.map",
+    "main.4db43685.js.map": "/static/js/main.4db43685.js.map"
   },
   "entrypoints": [
-<<<<<<< HEAD
-    "static/css/main.a419793f.css",
-    "static/js/main.701192d5.js"
-=======
-    "static/css/main.dbb06ce9.css",
-    "static/js/main.802166ea.js"
->>>>>>> 95af4048171836d9bb9b6cd822a5758b84cfe8e2
->>>>>>> 7f650a24fa852ed3ed9da3cbd4dd445ae99c17bf
+    "static/css/main.40785e4b.css",
+    "static/js/main.4db43685.js"
   ]
 }
