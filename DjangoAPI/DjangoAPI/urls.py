@@ -21,6 +21,7 @@ from stili.views import front, user, event, event_delete
 
 router = routers.DefaultRouter()
 router.register(r'users', views.UserView, 'stili')
+router.register(r'events', views.EventView, 'stili')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
