@@ -50,6 +50,19 @@
   text-decoration: none;
 }
 
+.navbar-linksGuest {
+  display: block;
+  color: rgb(13, 82, 187);
+  padding: 20px 16px;
+  text-decoration: none;
+  margin: 0 auto;
+}
+
+#navbar-linksGuest:hover {
+  color: rgb(13, 59, 187);
+  text-decoration: none;
+}
+
 .logout {
   display: block;
   color: rgb(43, 41, 41);
