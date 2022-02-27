@@ -3,43 +3,43 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Axios from "axios";
 import "./Login.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Login() {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [password, setPassword] = useState("");
   const [text, setText] = useState("");
-  const [data, setData] = useState([]);
-  const [user, setUser] = useState(null);
+  let navigate = useNavigate();
+
+  useEffect(() => {
+    if (localStorage.getItem("id") != null) {
+      navigate('/home');
+    }
+  })
 
   function validate() {
-    return true; //validate the format of the phone number
+    return (phoneNumber.length === 8 && !isNaN(phoneNumber));
   }
 
-  async function validateUser() {
+  function validateUser() {
     getUser().then(response => {
-      if (typeof response.find(o => o.phoneNumber === phoneNumber) === "undefined") {
+      const currentUser = response.find(o => o.phoneNumber === phoneNumber);
+      if (typeof currentUser === "undefined") {
         changeText("The phone number is not connected to an account.")
         return;
       }
       else {
-        setUser(response.find(o => o.phoneNumber === phoneNumber));
-        return;
+        if(currentUser.password === password) {
+          changeText("Logged in succesfully.");
+          localStorage.setItem("id", currentUser.phoneNumber);
+          navigate('/home');
+        }
+        else {
+          changeText("Incorrect phone number or password.")
+        }
       }
     });
   }
-
-  useEffect(() => {
-    if(user != null) {
-      if(user.password === password) {
-        changeText("Logged in succesfully."); //oppfølging til kommentaren nederst: kan også bare videresende til neste siden herifra.
-      }
-      else {
-        setUser(null);
-        changeText("Incorrect phone number or password.")
-      }
-    }
-  });
 
   async function getUser() {
     try {
@@ -90,8 +90,8 @@ export default function Login() {
             <Button
               block
               size="lg"
-              type="button" // endre til en submit button som sender deg videre til neste side. prevent default dersom tlf nummer ikke finnes, videresendes ellers.
-              className="Button" // - videresende user elelr tlf nummer også om det er mulig for å vite hvem som er logget inn.
+              type="button"
+              className="Button"
               onClick={validate()
                 ? () => {validateUser();}
                 : () => {changeText("The phone number has to consist of 8 numbers.")}

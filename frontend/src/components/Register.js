@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import "./Register.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Axios from "axios";
 
 export default function Register() {
@@ -23,6 +23,13 @@ export default function Register() {
     location: "",
     password: "",
   });
+  let navigate = useNavigate();
+
+  useEffect(() => {
+    if (localStorage.getItem("id") != null) {
+      navigate('/home');
+    }
+  })
 
   function validate() {
     return (
