@@ -1,0 +1,40 @@
+
+.top-navbar {
+    height: 6vw;
+    position: fixed;
+    margin: 0;
+    margin-left: 12%;
+    width: 88%;
+    padding: 0;
+    overflow: hidden;
+    background-color: #ffffff;
+    z-index: 9999;
+}
+
+.top-ul {
+    list-style-type: none;
+  }
+  
+  .top-navbar-item {
+    float: left;
+  }
+  
+  .top-navbar-links {
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+
+  .stili-topnav {
+      color: #fa6352;
+      font-family: 'Open Sans', sans-serif;
+      text-decoration: none;
+      list-style-type: none;
+      text-align: right;
+      margin-right: 3vw;
+      margin-top: 1vw;
+      font-size: 3vw;
+  }
+  

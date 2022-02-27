@@ -3,7 +3,7 @@ import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Login from "./components/Login";
 import Register from "./components/Register";
-import Profile from "./components/Profile";
+import Home from "./components/pages/Home";
 
 export default function App() {
   return (
@@ -12,7 +12,7 @@ export default function App() {
         <Routes>
           <Route path="/" exact element={<Login/>} />
           <Route path="/register" element={<Register/>} />
-          <Route path="/Profile" element={<Profile/>} />
+          <Route path="/home" element={<Home/>} />
         </Routes>
       </Router>
     </div>
