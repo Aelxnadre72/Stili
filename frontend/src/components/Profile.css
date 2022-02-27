@@ -8,6 +8,7 @@
     .ProfilePic{
         position: relative;
         left: -20%;
+        border-radius: 50%;
     }
     .Username {
         position: relative;
@@ -17,9 +18,20 @@
 
     .Profil{
         width: 100%;
+        background: pink;
     }
     .Forms{
         width: 60%;
         position: relative;
         left: 15%;
+    }
+
+    .example-text-box {
+        width: 50%;
+        position: relative;
+        left: 25%;
+        background: red;
+        border: black 2px solid;
+        border-radius: 3px;
+        padding-left: 1px;
     }
