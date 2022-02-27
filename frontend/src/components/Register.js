@@ -41,7 +41,9 @@ export default function Register() {
 
   function createUser(event) {
     getUser().then(response => {
-      if(typeof response.find(o => o.phoneNumber === phoneNumber) === "undefined") {
+      const currentUser = response.find(o => o.phoneNumber === phoneNumber);
+      console.log(currentUser);
+      if(typeof currentUser === "undefined") {
         Axios({
           method: "POST",
           url: "/users/",
@@ -57,31 +59,13 @@ export default function Register() {
         }).then((response) => {
           console.log(response);
         });
-        localStorage.setItem("id", currentUser.phoneNumber);
+        localStorage.setItem("id", phoneNumber);
         navigate('/home');
       }
       else {
         changeText("The phone number is already in use.")
       }
     });
-
-
-
-    async function getUser() {
-      try {
-      const response = await Axios({
-        method: "GET",
-        url:"/users/",
-        responseType:"json"
-        })
-      return response.data;
-      }
-      catch(error){
-        console.log(error.response);
-        console.log(error.response.status);
-        console.log(error.response.headers);
-      }
-    }
 
     setFormUser({
       firstName: "",
@@ -92,8 +76,22 @@ export default function Register() {
       location: "",
       password: "",
     });
+  }
 
-    event.preventDefault();
+  async function getUser() {
+    try {
+    const response = await Axios({
+      method: "GET",
+      url:"/users/",
+      responseType:"json"
+      })
+    return response.data;
+    }
+    catch(error){
+      console.log(error.response);
+      console.log(error.response.status);
+      console.log(error.response.headers);
+    }
   }
 
   const changeText = (textinput) => setText(textinput);
