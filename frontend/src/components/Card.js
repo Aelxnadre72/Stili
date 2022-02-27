@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 export default function Card(props) {
   return (
     <div className={props.name}>
-      <li className="card" hidden={props.visible}>
+      <li className="card">
         <Link className="card_link" to={props.path}>
           <figure className={props.wrapper} data-category={props.label}>
             <img src={props.src} alt="test" className="card_image"></img>

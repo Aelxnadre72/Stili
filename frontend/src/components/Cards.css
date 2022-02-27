@@ -81,15 +81,15 @@
     box-sizing: border-box;
   }
   
-  /* Pizza */
-  .card_picture_wrapper-pizza {
+  /* 1 */
+  .card_picture_wrapper-1 {
     position: relative;
     width: 100%;
     padding-top: 70%;
     overflow: hidden;
   }
   
-  .card_picture_wrapper-pizza::after {
+  .card_picture_wrapper-1::after {
     content: attr(data-category);
     position: absolute;
     bottom: 0;
@@ -104,15 +104,15 @@
     box-sizing: border-box;
   }
   
-  /* Fish */
-  .card_picture_wrapper-fish {
+  /* 2 */
+  .card_picture_wrapper-2 {
     position: relative;
     width: 100%;
     padding-top: 70%;
     overflow: hidden;
   }
   
-  .card_picture_wrapper-fish::after {
+  .card_picture_wrapper-2::after {
     content: attr(data-category);
     position: absolute;
     bottom: 0;
@@ -122,19 +122,19 @@
     font-size: 12px;
     font-weight: 700;
     color: white;
-    background-color: navy;
+    background-color: rgb(196, 135, 22);
     box-sizing: border-box;
   }
   
-  /* Rice */
-  .card_picture_wrapper-rice {
+  /* 3 */
+  .card_picture_wrapper-3 {
     position: relative;
     width: 100%;
     padding-top: 70%;
     overflow: hidden;
   }
   
-  .card_picture_wrapper-rice::after {
+  .card_picture_wrapper-3::after {
     content: attr(data-category);
     position: absolute;
     bottom: 0;
@@ -144,30 +144,7 @@
     font-size: 12px;
     font-weight: 700;
     color: white;
-    background-color: gold;
-    box-sizing: border-box;
-  }
-  
-  /* Meat */
-  .card_picture_wrapper-meat {
-    position: relative;
-    width: 100%;
-    padding-top: 70%;
-    overflow: hidden;
-  }
-  
-  .card_picture_wrapper-meat::after {
-    content: attr(data-category);
-    position: absolute;
-    bottom: 0;
-    margin-left: 5vw;
-    padding: 6px 8px;
-    width: 5vw;
-    max-width: calc((100%) - 60px);
-    font-size: 12px;
-    font-weight: 700;
-    color: white;
-    background-color: orange;
+    background-color: rgb(207, 33, 27);
     box-sizing: border-box;
   }
   
