@@ -40,22 +40,48 @@ export default function Register() {
   }
 
   function createUser(event) {
-    setText("");
-    Axios({
-      method: "POST",
-      url: "/users/",
-      data: {
-        firstName: firstName,
-        surname: surname,
-        phoneNumber: phoneNumber,
-        age: age,
-        experience: experience,
-        location: location,
-        password: password,
-      },
-    }).then((response) => {
-      console.log(response);
+    getUser().then(response => {
+      if(typeof response.find(o => o.phoneNumber === phoneNumber) === "undefined") {
+        Axios({
+          method: "POST",
+          url: "/users/",
+          data: {
+            firstName: firstName,
+            surname: surname,
+            phoneNumber: phoneNumber,
+            age: age,
+            experience: experience,
+            location: location,
+            password: password,
+          },
+        }).then((response) => {
+          console.log(response);
+        });
+        localStorage.setItem("id", currentUser.phoneNumber);
+        navigate('/home');
+      }
+      else {
+        changeText("The phone number is already in use.")
+      }
     });
+
+
+
+    async function getUser() {
+      try {
+      const response = await Axios({
+        method: "GET",
+        url:"/users/",
+        responseType:"json"
+        })
+      return response.data;
+      }
+      catch(error){
+        console.log(error.response);
+        console.log(error.response.status);
+        console.log(error.response.headers);
+      }
+    }
 
     setFormUser({
       firstName: "",
