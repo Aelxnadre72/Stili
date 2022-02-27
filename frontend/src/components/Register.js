@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import "./Register.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Axios from "axios";
 
 export default function Register() {
@@ -23,6 +23,13 @@ export default function Register() {
     location: "",
     password: "",
   });
+  let navigate = useNavigate();
+
+  useEffect(() => {
+    if (localStorage.getItem("id") != null) {
+      navigate('/home');
+    }
+  })
 
   function validate() {
     return (
@@ -33,21 +40,31 @@ export default function Register() {
   }
 
   function createUser(event) {
-    setText("");
-    Axios({
-      method: "POST",
-      url: "/users/",
-      data: {
-        firstName: firstName,
-        surname: surname,
-        phoneNumber: phoneNumber,
-        age: age,
-        experience: experience,
-        location: location,
-        password: password,
-      },
-    }).then((response) => {
-      console.log(response);
+    getUser().then(response => {
+      const currentUser = response.find(o => o.phoneNumber === phoneNumber);
+      console.log(currentUser);
+      if(typeof currentUser === "undefined") {
+        Axios({
+          method: "POST",
+          url: "/users/",
+          data: {
+            firstName: firstName,
+            surname: surname,
+            phoneNumber: phoneNumber,
+            age: age,
+            experience: experience,
+            location: location,
+            password: password,
+          },
+        }).then((response) => {
+          console.log(response);
+        });
+        localStorage.setItem("id", phoneNumber);
+        navigate('/home');
+      }
+      else {
+        changeText("The phone number is already in use.")
+      }
     });
 
     setFormUser({
@@ -59,8 +76,22 @@ export default function Register() {
       location: "",
       password: "",
     });
+  }
 
-    event.preventDefault();
+  async function getUser() {
+    try {
+    const response = await Axios({
+      method: "GET",
+      url:"/users/",
+      responseType:"json"
+      })
+    return response.data;
+    }
+    catch(error){
+      console.log(error.response);
+      console.log(error.response.status);
+      console.log(error.response.headers);
+    }
   }
 
   const changeText = (textinput) => setText(textinput);

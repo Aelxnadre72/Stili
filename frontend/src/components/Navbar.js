@@ -6,61 +6,100 @@ import logout from './logout.png';
 
 export default function Navbar(props) {
 
-  return (
-    <div className="navbar-container">
+  function logOut() {
+    localStorage.clear();
+  }
+
+  if (localStorage.getItem("id") != null) {
+    return (
+      <div className="navbar-container">
+        <div
+          data-aos={props.fade}
+          data-aos-duration={props.duration}
+          data-aos-offset={props.offset}
+        >
+          <nav className="navbar">
+            <ul
+            >
+              <img src={avatar} alt="Avatar" class="avatar"></img>
+              <li className="navbar-item">
+                <Link to="/" className="navbar-links">
+                  Min profil
+                </Link>
+              </li>
+              <li className="navbar-item">
+                <Link
+                  to="/salads"
+                  className="navbar-links"
+                >
+                  Utforsk
+                </Link>
+              </li>
+              <li className="navbar-item">
+                <Link
+                  to="/recipes"
+                  className="navbar-links"
+                >
+                  Mine turer
+                </Link>
+              </li>
+              <li className="navbar-item">
+                <Link
+                  to="/about"
+                  className="navbar-links"
+                >
+                  Innstillinger
+                </Link>
+              </li>
+              <li className="navbar-item">
+                <Link
+                  to="/contact"
+                  className="navbar-links"
+                >
+                  Kontakt
+                </Link>
+              </li>
+            </ul>
+            
+            <li className="logout"><Link
+            to="/" className="logout-link"
+            ><span onClick={logOut}><img src={logout} alt="Logout" class="logoutIcon"></img>Logg ut</span></Link></li> 
+          </nav>
+        </div>
+      </div>
+    );
+  }
+  
+  else {
+    return(
+      <div className="navbar-container">
       <div
         data-aos={props.fade}
         data-aos-duration={props.duration}
         data-aos-offset={props.offset}
       >
         <nav className="navbar">
-          <ul
-          >
-            <img src={avatar} alt="Avatar" class="avatar"></img>
+          <ul>
             <li className="navbar-item">
-              <Link to="/" className="navbar-links">
-                Min profil
+              <Link to="/" className="navbar-linksGuest">
+                Log in here!
               </Link>
+            </li>
+            <li>
+              <p style={{color: "black", margin: 0}}>OR</p>
             </li>
             <li className="navbar-item">
               <Link
-                to="/salads"
-                className="navbar-links"
+                to="/register"
+                className="navbar-linksGuest"
               >
-                Utforsk
-              </Link>
-            </li>
-            <li className="navbar-item">
-              <Link
-                to="/recipes"
-                className="navbar-links"
-              >
-                Mine turer
-              </Link>
-            </li>
-            <li className="navbar-item">
-              <Link
-                to="/about"
-                className="navbar-links"
-              >
-                Innstillinger
-              </Link>
-            </li>
-            <li className="navbar-item">
-              <Link
-                to="/contact"
-                className="navbar-links"
-              >
-                Kontakt
+                Sign up here!
               </Link>
             </li>
           </ul>
-          
-          <li className="logout"><Link
-          to="/" className="logout-link"
-          ><img src={logout} alt="Logout" class="logoutIcon"></img>Logg ut</Link></li> 
         </nav>
       </div>
     </div>
-  );
+    );
+  }
 }

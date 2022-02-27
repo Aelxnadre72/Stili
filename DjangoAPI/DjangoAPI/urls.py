@@ -27,6 +27,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
     path('', front, name="front"),
+    path('register/', front, name="register"),
+    path('home/', front, name="home"),
     path('users/', user, name="user"),
     path('events/', event, name="event"),
     path('events/<int:pk>/', event_delete, name='delete')
