@@ -116,8 +116,9 @@
     content: attr(data-category);
     position: absolute;
     bottom: 0;
-    margin-left: 10px;
+    margin-left: 5vw;
     padding: 6px 8px;
+    width: 5vw;
     max-width: calc((100%) - 60px);
     font-size: 12px;
     font-weight: 700;
@@ -138,8 +139,9 @@
     content: attr(data-category);
     position: absolute;
     bottom: 0;
-    margin-left: 10px;
+    margin-left: 5vw;
     padding: 6px 8px;
+    width: 5vw;
     max-width: calc((100%) - 60px);
     font-size: 12px;
     font-weight: 700;

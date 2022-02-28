@@ -65,7 +65,7 @@ export default function Cards() {
                         text={a.eventName}
                         label={a.eventDifficulty}
                         path=""
-                        size={a.eventSize}
+                        size={"0/" + a.eventSize}
                       />
                     </div>
                   );
