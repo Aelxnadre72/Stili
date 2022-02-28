@@ -4,57 +4,37 @@ import Image from 'react-bootstrap/Image';
 import picture from "../../src/PicPlaceholder.png";
 import "./Profile.css";
 
-
-
 export default function Profile(){
-    const [phoneNumber, setPhoneNumber] = useState("");
-    const [users, setNewUsers] = useState([]);
+  const [firstName, setFirstName] = useState("");
+  const [surname, setsurname] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [age, setAge] = useState("");
+  const [experience, setExperience] = useState("");
+  const [location, setLocation] = useState("");
+  const [user, setUser] = useState([]);
 
+    function fetchUserData() {
+        getUser().then(response => {
+            const currentUser = response.find(o => o.phoneNumber === localStorage.getItem("id"));
+            return currentUser;
+        });
+    }
 
-    function getUsers() {
-        console.log(phoneNumber);
-
-        async function getData() {
-          try {
-          const response = await Axios({
+    async function getUser() {
+        try {
+        const response = await Axios({
             method: "GET",
             url:"/users/",
             responseType:"json"
-            })
-          return response.data;
-          }
-          catch(error){
+        })
+        return response.data;
+        }
+        catch(error){
             console.log(error.response);
             console.log(error.response.status);
             console.log(error.response.headers);
-          }
         }
-    
-        getData().then(response => {
-          setNewUsers(response.find(o => o.phoneNumber === "12345678"));
-        });
     }
-    function TextBoxContent(){
-        const exJSON = [
-            {
-                name: "Anders",
-                age: 20,
-                location: "Trondheim"
-            }
-        ];
-        const parseJsonIntoConsoleStr = (item, index) => {
-            return (
-            <p key={index}>
-                {item.name} <br/>
-                {item.age} <br/>
-                {item.location}
-            </p>
-            );
-        };
-        return exJSON.map(parseJsonIntoConsoleStr);
-    }
-
-
 
     return(
         <div className="ProfilePage">
@@ -63,9 +43,8 @@ export default function Profile(){
             <h3>Textbox example</h3>
             <div className="example-text-box">
                 <p>
-                testing stuffs <br/>
+                {fetchUserData().phoneNumber}<br/>
                 </p>
-                <TextBoxContent />
             </div>
         </div>
     );

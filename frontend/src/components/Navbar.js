@@ -23,7 +23,7 @@ export default function Navbar(props) {
             >
               <img src={avatar} alt="Avatar" class="avatar"></img>
               <li className="navbar-item">
-                <Link to="/" className="navbar-links">
+                <Link to="/profile" className="navbar-links">
                   Min profil
                 </Link>
               </li>
