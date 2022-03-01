@@ -3,6 +3,7 @@ import Image from 'react-bootstrap/Image';
 import picture from "../../src/PicPlaceholder.png";
 import Navbar from "./Navbar";
 import TopNavbar from "./TopNavbar";
+import "./ProfileInfo.css";
 
 export default function ProfileInfo(props) {
 
@@ -16,14 +17,14 @@ export default function ProfileInfo(props) {
                          <div className="ProfilePage">
                               <Image className="ProfilePic" src={picture}>
                               </Image>
-                              <h3>Textbox example <b>with editing rights</b></h3>
+                              <h3><b>MyProfile</b></h3>
                               <div className="example-text-box">
-                              <p>{props.user.firstName}</p>
-                              <p>{props.user.surname}</p>
-                              <p>{props.user.age}</p>
-                              <p>{props.user.experience}</p>
-                              <p>{props.user.location}</p>
-                              <p>{props.user.phoneNumber}</p>
+                              <p>Firstname: {props.user.firstName}</p>
+                              <p>Surname: {props.user.surname}</p>
+                              <p>Age: {props.user.age}</p>
+                              <p>Experience: {props.user.experience}</p>
+                              <p>Location: {props.user.location}</p>
+                              <p>Phonenumber: {props.user.phoneNumber}</p>
                               <p>{props.user.isAdmin}</p>
                               </div>
                          </div>

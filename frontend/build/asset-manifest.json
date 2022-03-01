@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/static/css/main.a0b31e6d.css",
-    "main.js": "/static/js/main.576afd3d.js",
+    "main.css": "/static/css/main.33666e52.css",
+    "main.js": "/static/js/main.89391e67.js",
     "static/media/Campusrunden.jpg": "/static/media/Campusrunden.647359810e7c4b83f55a.jpg",
     "static/media/Mountain-Hiking.jpg": "/static/media/Mountain-Hiking.3b3b1b749aa8846205ea.jpg",
     "static/media/bymarka.jpeg": "/static/media/bymarka.9662dbd45274d3ab4ace.jpeg",
     "static/media/logout.png": "/static/media/logout.973c2d8b03e5c88e4723.png",
     "index.html": "/index.html",
-    "main.a0b31e6d.css.map": "/static/css/main.a0b31e6d.css.map",
-    "main.576afd3d.js.map": "/static/js/main.576afd3d.js.map"
+    "main.33666e52.css.map": "/static/css/main.33666e52.css.map",
+    "main.89391e67.js.map": "/static/js/main.89391e67.js.map"
   },
   "entrypoints": [
-    "static/css/main.a0b31e6d.css",
-    "static/js/main.576afd3d.js"
+    "static/css/main.33666e52.css",
+    "static/js/main.89391e67.js"
   ]
 }
