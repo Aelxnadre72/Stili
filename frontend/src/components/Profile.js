@@ -1,24 +1,17 @@
 import React, { useState, useEffect } from "react";
 import Axios from 'axios';
 import { useNavigate, useLocation } from "react-router-dom";
-import "./Profile.css";
 import ProfileInfo from "./ProfileInfo";
 
 export default function Profile(){
-  const [firstName, setFirstName] = useState("");
-  const [surname, setsurname] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [age, setAge] = useState("");
-  const [experience, setExperience] = useState("");
-  const [location, setLocation] = useState("");
   const [user, setUser] = useState(null);
   let navigate = useNavigate();
   let loc = useLocation()
   const [canEdit, setCanEdit] = useState(false);
 
     useEffect(() => {
-        if (localStorage.getItem("id") == null || isNaN(loc.state)) { // can not see profiles if not logged in or from link
-            navigate('/home');
+        if (localStorage.getItem("id") == null || loc.state === null) { // can not see profiles if not logged in or from link
+            navigate('/Home');
             }
             const profileID = loc.state; // the <link> from the previous page has to send the phonenumber to this page, sends 1 if it is the "my profile" link in Navbar.js
             var profileNumber = "";
