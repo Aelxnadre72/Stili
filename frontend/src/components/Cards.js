@@ -36,13 +36,14 @@ export default function Cards() {
       </div>
       <div className="cards">
         <div className="card_container">
-        <TextField
+        <div className="search">
+            <TextField
           id="outlined-basic"
           variant="outlined"
-          fullWidth
+          size="small"
           label="Search"
           onChange={(e) => setQ(e.target.value)}
-        />
+        /></div>
           <div className="card_wrapper">
             <ul className="card_items">
               {data

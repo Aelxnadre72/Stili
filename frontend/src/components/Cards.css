@@ -5,6 +5,8 @@
   
   .cards {
     padding: 4rem;
+    position: relative;
+    left: 8%;
     background-color: white;
   }
   
@@ -22,16 +24,25 @@
     width: 50%;
     margin: 0 auto;
   }
+
+  .search {
+    position: relative;
+    left: -27.1vw;
+  }
+
+  .search #outlined-basic{
+    width: 12vw;
+  }
   
   .card_wrapper {
     position: relative;
     margin: 4vh 2vw;
-    margin-left: 30%;
     background-color: transparent;
   }
   
   .card_items {
    margin: 0 auto;
+   z-index: 1;
   }
   
   .card {
@@ -40,7 +51,6 @@
     margin: 0 1.5vw;
     border-radius: 10px;
     width: 20vw;
-
   }
   
   .card_link {
