@@ -29,6 +29,7 @@ urlpatterns = [
     path('', front, name="front"),
     path('register/', front, name="register"),
     path('home/', front, name="home"),
+    path('profile/', front, name="profile"),
     path('users/', user, name="user"),
     path('events/', event, name="event"),
     path('events/<int:pk>/', event_delete, name='delete')

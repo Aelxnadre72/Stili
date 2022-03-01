@@ -23,7 +23,9 @@ export default function Navbar(props) {
             >
               <img src={avatar} alt="Avatar" class="avatar"></img>
               <li className="navbar-item">
-                <Link to="/" className="navbar-links">
+                <Link to="/profile"
+                  state={"1"} // 1 for my own profile, otherwise a phone number from database connected to the profilepic that is clicked on
+                  className="navbar-links">
                   Min profil
                 </Link>
               </li>
