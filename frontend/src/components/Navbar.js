@@ -26,7 +26,7 @@ export default function Navbar(props) {
                 <Link to="/profile"
                   state={"1"} // 1 for my own profile, otherwise a phone number from database connected to the profilepic that is clicked on
                   className="navbar-links">
-                  Min profil
+                  My profile
                 </Link>
               </li>
               <li className="navbar-item">
@@ -34,7 +34,7 @@ export default function Navbar(props) {
                   to="/salads"
                   className="navbar-links"
                 >
-                  Utforsk
+                  Explore
                 </Link>
               </li>
               <li className="navbar-item">
@@ -42,7 +42,7 @@ export default function Navbar(props) {
                   to="/recipes"
                   className="navbar-links"
                 >
-                  Mine turer
+                  My trips
                 </Link>
               </li>
               <li className="navbar-item">
@@ -50,7 +50,7 @@ export default function Navbar(props) {
                   to="/about"
                   className="navbar-links"
                 >
-                  Innstillinger
+                  Settings
                 </Link>
               </li>
               <li className="navbar-item">
@@ -58,14 +58,14 @@ export default function Navbar(props) {
                   to="/contact"
                   className="navbar-links"
                 >
-                  Kontakt
+                  Contact us
                 </Link>
               </li>
             </ul>
             
             <li className="logout"><Link
             to="/" className="logout-link"
-            ><span onClick={logOut}><img src={logout} alt="Logout" class="logoutIcon"></img>Logg ut</span></Link></li> 
+            ><span onClick={logOut}><img src={logout} alt="Logout" class="logoutIcon"></img>Log out</span></Link></li> 
           </nav>
         </div>
       </div>
