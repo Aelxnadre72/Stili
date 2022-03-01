@@ -22,7 +22,7 @@ export default function ProfileInfo(props) {
                               <p>Firstname: {props.user.firstName}</p>
                               <p>Surname: {props.user.surname}</p>
                               <p>Age: {props.user.age}</p>
-                              <p>Experience: {props.user.experience}</p>
+                              <p>Experience level: {props.user.experience}</p>
                               <p>Location: {props.user.location}</p>
                               <p>Phonenumber: {props.user.phoneNumber}</p>
                               <p>{props.user.isAdmin}</p>

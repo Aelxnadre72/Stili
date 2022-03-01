@@ -35,7 +35,12 @@ export default function Register() {
     return (
       firstName.length < 101 &&
       surname.length < 101 &&
-      phoneNumber.length === 8
+      phoneNumber.length === 8 &&
+      !isNaN(phoneNumber) &&
+      !isNaN(age) &&
+      (experience === "1" ||
+      experience === "2" ||
+      experience === "3")
       );
   }
 
@@ -150,7 +155,7 @@ export default function Register() {
             <Form.Group size="lg" controlId="experience">
               <Form.Control
                 type="experience"
-                placeholder="Experience"
+                placeholder="Experience level (1-3)"
                 value={experience}
                 onChange={(e) => setExperience(e.target.value)}
               />
@@ -180,7 +185,7 @@ export default function Register() {
               onClick={
                 validate()
                   ? () => createUser()
-                  : () => changeText("Make sure all the fields are filled in.")
+                  : () => changeText("Make sure all the fields are filled in correctly.")
               }
             >
               Register

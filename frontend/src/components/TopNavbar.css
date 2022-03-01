@@ -38,6 +38,11 @@
       font-size: 3vw;
   }
 
+  .stili-topnav a {
+    color: inherit;
+    text-decoration: inherit;
+  }
+
   .search {
     width: 30%;
   }
