@@ -1,11 +1,7 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import "./TopNavbar.css";
 
-
-
-export default function TopNavbar(props) {
-
+export default function TopNavbar() {
     return (
         <nav className="top-navbar">
             <li className="stili-topnav">Stili.</li> 
