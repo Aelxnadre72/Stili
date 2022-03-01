@@ -7,9 +7,9 @@ import TopNavbar from "../TopNavbar";
 export default function Home() {
   return (
     <div>
-      <TopNavbar />
+      <TopNavbar/>
       <Navbar fade="fade-in" duration="1000" offset="200" />
-      <Cards />
+      <Cards/>
     </div>
   );
 }

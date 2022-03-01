@@ -5,6 +5,8 @@
   
   .cards {
     padding: 4rem;
+    position: relative;
+    left: 8%;
     background-color: white;
   }
   
@@ -15,22 +17,32 @@
   
   .card_container {
     display: flex;
+    padding-top: 60px;
     background: transparent;
     flex-flow: column;
     align-items: center;
     width: 50%;
     margin: 0 auto;
   }
+
+  .search {
+    position: relative;
+    left: -27.1vw;
+  }
+
+  .search #outlined-basic{
+    width: 12vw;
+  }
   
   .card_wrapper {
     position: relative;
     margin: 4vh 2vw;
-    margin-left: 30%;
     background-color: transparent;
   }
   
   .card_items {
    margin: 0 auto;
+   z-index: 1;
   }
   
   .card {
@@ -39,7 +51,6 @@
     margin: 0 1.5vw;
     border-radius: 10px;
     width: 20vw;
-
   }
   
   .card_link {
@@ -81,15 +92,15 @@
     box-sizing: border-box;
   }
   
-  /* Pizza */
-  .card_picture_wrapper-pizza {
+  /* 1 */
+  .card_picture_wrapper-1 {
     position: relative;
     width: 100%;
     padding-top: 70%;
     overflow: hidden;
   }
   
-  .card_picture_wrapper-pizza::after {
+  .card_picture_wrapper-1::after {
     content: attr(data-category);
     position: absolute;
     bottom: 0;
@@ -104,59 +115,15 @@
     box-sizing: border-box;
   }
   
-  /* Fish */
-  .card_picture_wrapper-fish {
+  /* 2 */
+  .card_picture_wrapper-2 {
     position: relative;
     width: 100%;
     padding-top: 70%;
     overflow: hidden;
   }
   
-  .card_picture_wrapper-fish::after {
-    content: attr(data-category);
-    position: absolute;
-    bottom: 0;
-    margin-left: 10px;
-    padding: 6px 8px;
-    max-width: calc((100%) - 60px);
-    font-size: 12px;
-    font-weight: 700;
-    color: white;
-    background-color: navy;
-    box-sizing: border-box;
-  }
-  
-  /* Rice */
-  .card_picture_wrapper-rice {
-    position: relative;
-    width: 100%;
-    padding-top: 70%;
-    overflow: hidden;
-  }
-  
-  .card_picture_wrapper-rice::after {
-    content: attr(data-category);
-    position: absolute;
-    bottom: 0;
-    margin-left: 10px;
-    padding: 6px 8px;
-    max-width: calc((100%) - 60px);
-    font-size: 12px;
-    font-weight: 700;
-    color: white;
-    background-color: gold;
-    box-sizing: border-box;
-  }
-  
-  /* Meat */
-  .card_picture_wrapper-meat {
-    position: relative;
-    width: 100%;
-    padding-top: 70%;
-    overflow: hidden;
-  }
-  
-  .card_picture_wrapper-meat::after {
+  .card_picture_wrapper-2::after {
     content: attr(data-category);
     position: absolute;
     bottom: 0;
@@ -167,7 +134,30 @@
     font-size: 12px;
     font-weight: 700;
     color: white;
-    background-color: orange;
+    background-color: rgb(196, 135, 22);
+    box-sizing: border-box;
+  }
+  
+  /* 3 */
+  .card_picture_wrapper-3 {
+    position: relative;
+    width: 100%;
+    padding-top: 70%;
+    overflow: hidden;
+  }
+  
+  .card_picture_wrapper-3::after {
+    content: attr(data-category);
+    position: absolute;
+    bottom: 0;
+    margin-left: 5vw;
+    padding: 6px 8px;
+    width: 5vw;
+    max-width: calc((100%) - 60px);
+    font-size: 12px;
+    font-weight: 700;
+    color: white;
+    background-color: rgb(207, 33, 27);
     box-sizing: border-box;
   }
   
@@ -201,6 +191,7 @@
     line-height: 24px;
     background: transparent;
   }
+
   
   @media only screen and (min-width: 1200px) {
     .content__blog__container {
