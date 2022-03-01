@@ -23,7 +23,6 @@ export default function ProfileInfo(props) {
                               <p>{props.user.age}</p>
                               <p>{props.user.experience}</p>
                               <p>{props.user.location}</p>
-                              <p>{props.user.password}</p>
                               <p>{props.user.phoneNumber}</p>
                               <p>{props.user.isAdmin}</p>
                               </div>
@@ -47,7 +46,6 @@ export default function ProfileInfo(props) {
                          <p>{props.user.age}</p>
                          <p>{props.user.experience}</p>
                          <p>{props.user.location}</p>
-                         <p>{props.user.password}</p>
                          <p>{props.user.phoneNumber}</p>
                          <p>{props.user.isAdmin}</p>
                          </div>

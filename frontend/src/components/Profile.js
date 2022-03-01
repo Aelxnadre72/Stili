@@ -5,12 +5,6 @@ import "./Profile.css";
 import ProfileInfo from "./ProfileInfo";
 
 export default function Profile(){
-  const [firstName, setFirstName] = useState("");
-  const [surname, setsurname] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [age, setAge] = useState("");
-  const [experience, setExperience] = useState("");
-  const [location, setLocation] = useState("");
   const [user, setUser] = useState(null);
   let navigate = useNavigate();
   let loc = useLocation()
