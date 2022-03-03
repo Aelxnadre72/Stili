@@ -35,6 +35,12 @@ export default function Register() {
     return (
       firstName.length < 101 &&
       surname.length < 101 &&
+      location.length < 101 &&
+      password.length < 101 &&
+      firstName.length != 0 &&
+      surname.length != 0 &&
+      location.length != 0 &&
+      password.length != 0 &&
       phoneNumber.length === 8 &&
       !isNaN(phoneNumber) &&
       !isNaN(age) &&
