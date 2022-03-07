@@ -67,6 +67,42 @@ export default function Login() {
         <p className="promo">Ekte turglede!</p>
         <p className="promo2"> Finn turer som passer for deg, og knytt vennskap for livet!</p>
       </div>
+    </div>
+    <div className="Login">
+      <h5>Login</h5>
+      <p>Don't have an account? <Link to="/register">Click here</Link> to sign up!</p>
+        <Form onSubmit={handleSubmit}>
+          <Form.Group size="lg" controlId="phoneNumber">
+            <Form.Control
+              autoFocus
+              type="phoneNumber"
+              placeholder="Phone Number"
+              value={phoneNumber}
+              onChange={(n) => setPhoneNumber(n.target.value)} />
+          </Form.Group>
+          <Form.Group size="lg" controlId="password">
+            <Form.Control
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={(p) => setPassword(p.target.value)} />
+          </Form.Group>
+          <Button
+            block
+            size="lg"
+            type="submit"
+            className="Button"
+            onClick={validate()
+              ? () => changeText("Success! Redirecting...")
+              : () => changeText(
+                "Incorrect phone number/password, please try again."
+              )}
+          >
+            Login
+          </Button>
+          <p className="errormsg">{text}</p>
+        </Form>
+      </div></>
       </div>
       <div className="Login">
         <h5>Login</h5>
