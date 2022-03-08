@@ -1,4 +1,6 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
+import Button from "react-bootstrap/Button";
 import Image from 'react-bootstrap/Image';
 import picture from "../../src/PicPlaceholder.png";
 import Navbar from "./Navbar";
@@ -6,6 +8,12 @@ import TopNavbar from "./TopNavbar";
 import "./ProfileInfo.css";
 
 export default function ProfileInfo(props) {
+
+     let navigate = useNavigate(); 
+     const routeChange = () =>{ 
+       let path = "/profile"; 
+       navigate(path);
+     }
 
      if(props.user != null){
           if(props.canEdit) { //render fields and buttons so user can edit instead of plain text if canEdit is true.
@@ -27,6 +35,14 @@ export default function ProfileInfo(props) {
                               <p>Phonenumber: {props.user.phoneNumber}</p>
                               <p>{props.user.isAdmin}</p>
                               </div>
+                              <Button
+                                   block
+                                   type="button"
+                                   className="EditButton"
+                                   onClick={routeChange}
+                                   >
+                                   Edit profile
+                              </Button>
                          </div>
                          </>
                     </div>
