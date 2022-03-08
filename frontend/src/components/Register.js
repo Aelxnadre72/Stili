@@ -4,6 +4,7 @@ import Button from "react-bootstrap/Button";
 import "./Register.css";
 import { Link, useNavigate } from "react-router-dom";
 import Axios from "axios";
+import Dropdown from "react-bootstrap/Dropdown";
 
 export default function Register() {
   const [firstName, setFirstName] = useState("");
@@ -159,12 +160,11 @@ export default function Register() {
               </Form.Group>
             </Form.Group>
             <Form.Group size="lg" controlId="experience">
-              <Form.Control
-                type="experience"
-                placeholder="Experience level (1-3)"
-                value={experience}
-                onChange={(e) => setExperience(e.target.value)}
-              />
+            <Form.Select aria-label="Default select example">
+              <option value="1">Easy</option>
+              <option value="2">Mediocre</option>
+              <option value="3">Veteran</option>
+            </Form.Select>
             </Form.Group>
             <Form.Group size="lg" controlId="location">
               <Form.Control
