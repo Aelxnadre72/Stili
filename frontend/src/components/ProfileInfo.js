@@ -41,7 +41,7 @@ export default function ProfileInfo(props) {
                                    className="EditButton"
                                    onClick={routeChange}
                                    >
-                                   Edit profile
+                                   Save changes
                               </Button>
                          </div>
                          </>
