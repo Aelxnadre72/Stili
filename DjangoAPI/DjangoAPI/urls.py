@@ -34,6 +34,6 @@ urlpatterns = [
     path('users/', user, name="user"),
     path('events/', event, name="event"),
     path('events/<int:pk>/', event_delete, name='delete'),
-    path('commercial_register/', front, name="CommercialRegister"),
-    path('commercial_users/', commercialUser, name='commercialUsers')
+    path('commercialRegister/', front, name="commercialRegister"),
+    path('commercialUsers/', commercialUser, name='commercialUser')
 ]

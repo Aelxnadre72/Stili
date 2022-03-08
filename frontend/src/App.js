@@ -5,6 +5,7 @@ import Login from "./components/Login";
 import Register from "./components/Register";
 import Home from "./components/pages/Home";
 import Profile from "./components/Profile";
+import CommercialRegister from "./components/CommercialRegister";
 
 export default function App() {
   return (
@@ -15,6 +16,7 @@ export default function App() {
           <Route path="/register" element={<Register/>} />
           <Route path="/home" element={<Home/>} />
           <Route path="/profile" element={<Profile/>} />
+          <Route path="/commercialRegister" element={<CommercialRegister/>} />
         </Routes>
       </Router>
     </div>

@@ -39,13 +39,13 @@ export default function Register() {
   }
 
   function createCommercialUser(event) {
-    getUser().then(response => {
+    getCommercialUser().then(response => {
       const currentUser = response.find(o => o.orgNumber === orgNumber);
       console.log(currentUser);
       if(typeof currentUser === "undefined") {
         Axios({
           method: "POST",
-          url: "/commercial_user/",
+          url: "/commercialUsers/",
           data: {
             orgName: orgName,
             orgNumber: orgNumber,
@@ -75,7 +75,7 @@ export default function Register() {
     try {
     const response = await Axios({
       method: "GET",
-      url:"/commercial_users/",
+      url:"/commercialUsers/",
       responseType:"json"
       })
     return response.data;
@@ -146,7 +146,7 @@ export default function Register() {
               className="Button"
               onClick={
                 validate()
-                  ? () => createUser()
+                  ? () => createCommercialUser()
                   : () => changeText("Make sure all the fields are filled in correctly.")
               }
             >
