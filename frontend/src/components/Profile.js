@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Axios from 'axios';
 import { useNavigate, useLocation } from "react-router-dom";
 import ProfileInfo from "./ProfileInfo";
+import "./Profile.css";
 
 export default function Profile(){
   const [user, setUser] = useState(null);

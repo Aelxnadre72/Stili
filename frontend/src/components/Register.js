@@ -10,7 +10,7 @@ export default function Register() {
   const [surname, setsurname] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [age, setAge] = useState("");
-  const [experience, setExperience] = useState("");
+  const [experience, setExperience] = useState("1");
   const [location, setLocation] = useState("");
   const [password, setPassword] = useState("");
   const [text, setText] = useState("");
@@ -160,6 +160,7 @@ export default function Register() {
             </Form.Group>
             <Form.Group size="lg" controlId="experience">
             <Form.Select aria-label="Default select example"
+              value={experience}
               onChange={(e) => setExperience(e.target.value)}>
               <option value="1">Easy</option>
               <option value="2">Mediocre</option>
@@ -184,7 +185,6 @@ export default function Register() {
             </Form.Group>
             <p className="errormsg">{text}</p>
             <Button
-              block
               size="lg"
               type="button"
               className="Button"
