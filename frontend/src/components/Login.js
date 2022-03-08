@@ -70,7 +70,7 @@ export default function Login() {
       </div>
       <div className="Login">
         <h5>Login</h5>
-        <p><Link to="/home">Don't</Link> have an account? <Link to="/register">Click here</Link> to sign up!</p>
+        <p><Link to="/home">Don't</Link> have an account? <Link to="/register">Click here</Link> to sign up! Are you a commecial organization <Link to="/commercial_register">click here</Link></p>
           <Form>
             <Form.Group size="lg" controlId="phoneNumber">
               <Form.Control

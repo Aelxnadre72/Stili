@@ -17,11 +17,12 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
 from stili import views
-from stili.views import front, user, event, event_delete
+from stili.views import front, user, event, event_delete, commercialUser
 
 router = routers.DefaultRouter()
 router.register(r'users', views.UserView, 'users')
 router.register(r'events', views.EventView, 'events')
+router.register(r'commercialUsers', views.CommercialUserView, 'commercialUsers')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -32,5 +33,7 @@ urlpatterns = [
     path('profile/', front, name="profile"),
     path('users/', user, name="user"),
     path('events/', event, name="event"),
-    path('events/<int:pk>/', event_delete, name='delete')
+    path('events/<int:pk>/', event_delete, name='delete'),
+    path('commercial_register/', front, name="CommercialRegister"),
+    path('commercial_users/', commercialUser, name='commercialUsers')
 ]
