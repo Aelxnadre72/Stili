@@ -37,7 +37,7 @@
   }
   
     .Login form {
-      margin: 8vw 6.5vw;
+      margin: 5.5vw 6.5vw;
       width: 20vw;
     }
 
@@ -126,6 +126,10 @@
       font-size: 14px; 
       color: #B0B3B9;
       text-align: center;
+    }
+
+    .information {
+      margin-top: 6vw;
     }
 
       /*

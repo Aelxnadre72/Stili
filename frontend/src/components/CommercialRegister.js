@@ -35,6 +35,10 @@ export default function Register() {
       password.length != 0 &&
       orgNumber.length === 9 &&
       !isNaN(orgNumber)
+      (location === "1" ||
+      location === "2" ||
+      location === "3" ||
+      location === "4")
       );
   }
 
@@ -100,10 +104,10 @@ export default function Register() {
         </div>
         <div className="Register">
           <h5>Register</h5>
-          <p><Link to="/register">Click here</Link> to sign up!</p>
-          <p><Link to="">Click here</Link> to log in</p>
-          <p>Are you a commecial organization? <Link to="/commercialogin">Click here</Link> to log in</p>
-          <p>Don't have an account? <Link to="/home">Click here</Link></p>
+          <div className="information">
+            <p>Already have an account? <Link to="">Click here</Link> to log in</p>
+            <p>Not a commecial organization? Click to <Link to="/login">log in</Link> or <Link to="/register">register</Link>.</p>
+          </div>
           <Form>
             <Form.Group size="lg" controlId="orgName">
               <Form.Control
@@ -124,12 +128,13 @@ export default function Register() {
               />
             </Form.Group>
             <Form.Group size="lg" controlId="location">
-              <Form.Control
-                type="location"
-                placeholder="Location"
-                value={location}
-                onChange={(l) => setLocation(l.target.value)}
-              />
+            <Form.Select aria-label="Default select example"  value={location}
+            onChange={(l) => setLocation(l.target.value)}>
+              <option value="1">Trondheim</option>
+              <option value="2">Oslo</option>
+              <option value="3">Stavanger</option>
+              <option value="4">Bergen</option>
+            </Form.Select>
             </Form.Group>
             <Form.Group size="lg" controlId="password">
               <Form.Control

@@ -119,10 +119,8 @@ export default function Register() {
         </div>
         <div className="Register">
           <h5>Register</h5>
-          <p>Are you a commecial organization? <Link to="/commercialRegister">Click here</Link> to register</p>
           <p><Link to="">Click here</Link> to log in</p>
-          <p>Are you a commecial organization? <Link to="/commercialogin">Click here</Link> to log in</p>
-          <p>Don't have an account? <Link to="/home">Click here</Link></p>
+          <p>Commecial organization? Click to <Link to="/commercialogin">log in</Link> or <Link to="/commercialRegister">register</Link>.</p>
           <Form>
             <Form.Group size="lg" controlId="firstName">
               <Form.Control

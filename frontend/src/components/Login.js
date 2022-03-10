@@ -70,10 +70,10 @@ export default function Login() {
       </div>
       <div className="Login">
         <h5>Login</h5>
-        <p><Link to="/register">Click here</Link> to sign up!</p>
-        <p>Are you a commecial organization? <Link to="/commercialogin">Click here</Link> to log in</p>
-        <p>Are you a commecial organization? <Link to="/commercialRegister">Click here</Link> to register</p>
-        <p>Don't have an account? <Link to="/home">Click here</Link></p>
+        <div className="information">
+          <p>Don't have an account? <Link to="/register">Click here</Link> to sign up!</p>
+          <p>Are you a commecial organization? Click to <Link to="/commercialogin">log in</Link> or <Link to="/commercialRegister">register</Link>.</p>
+        </div>
           <Form>
             <Form.Group size="lg" controlId="phoneNumber">
               <Form.Control
