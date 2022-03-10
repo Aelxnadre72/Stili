@@ -100,15 +100,16 @@ export default function Register() {
         </div>
         <div className="Register">
           <h5>Register</h5>
-          <p>
-            Already have an account? <Link to="/">Click here</Link> to log in!
-          </p>
+          <p><Link to="/register">Click here</Link> to sign up!</p>
+          <p><Link to="">Click here</Link> to log in</p>
+          <p>Are you a commecial organization? <Link to="/commercialogin">Click here</Link> to log in</p>
+          <p>Don't have an account? <Link to="/home">Click here</Link></p>
           <Form>
             <Form.Group size="lg" controlId="orgName">
               <Form.Control
                 autoFocus
                 type="orgName"
-                placeholder="Organization name"
+                placeholder="Organization Name"
                 value={orgName}
                 onChange={(n) => setOrgName(n.target.value)}
               />
