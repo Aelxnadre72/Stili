@@ -47,6 +47,10 @@ export default function Register() {
       (experience === "1" ||
       experience === "2" ||
       experience === "3")
+      (location === "1" ||
+      location === "2" ||
+      location === "3" ||
+      location === "4")
       );
   }
 
@@ -167,12 +171,13 @@ export default function Register() {
             </Form.Select>
             </Form.Group>
             <Form.Group size="lg" controlId="location">
-              <Form.Control
-                type="location"
-                placeholder="Location"
-                value={location}
-                onChange={(l) => setLocation(l.target.value)}
-              />
+            <Form.Select aria-label="Default select example" value={location}
+            onChange={(e) => setLocation(e.target.value)}>
+              <option value="1">Trondheim</option>
+              <option value="2">Oslo</option>
+              <option value="3">Stavanger</option>
+              <option value="4">Bergem</option>
+            </Form.Select>
             </Form.Group>
             <Form.Group size="lg" controlId="password">
               <Form.Control
