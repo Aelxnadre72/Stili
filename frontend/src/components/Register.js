@@ -176,7 +176,7 @@ export default function Register() {
               <option value="1">Trondheim</option>
               <option value="2">Oslo</option>
               <option value="3">Stavanger</option>
-              <option value="4">Bergem</option>
+              <option value="4">Bergen</option>
             </Form.Select>
             </Form.Group>
             <Form.Group size="lg" controlId="password">
