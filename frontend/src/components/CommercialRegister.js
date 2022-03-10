@@ -33,7 +33,7 @@ export default function Register() {
       orgName.length != 0 &&
       location.length != 0 &&
       password.length != 0 &&
-      orgNumber.length === 8 &&
+      orgNumber.length === 9 &&
       !isNaN(orgNumber)
       );
   }
