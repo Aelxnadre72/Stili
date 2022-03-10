@@ -49,4 +49,15 @@ class Event(models.Model):
     eventLocation = models.CharField(max_length=100)
     eventSize = models.IntegerField(blank = False, default=0)
     hours = models.IntegerField()
+
+class CommercialUser(models.Model):
+
+    orgNumber = models.TextField(primary_key=True)
+    orgName = models.CharField(max_length=100, blank = False, unique=True)
+    location = models.TextField(blank = False)
+    password = models.TextField(blank = False)
+    isAdmin = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.orgName
     
