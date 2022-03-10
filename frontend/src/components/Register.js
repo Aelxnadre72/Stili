@@ -4,14 +4,13 @@ import Button from "react-bootstrap/Button";
 import "./Register.css";
 import { Link, useNavigate } from "react-router-dom";
 import Axios from "axios";
-import Dropdown from "react-bootstrap/Dropdown";
 
 export default function Register() {
   const [firstName, setFirstName] = useState("");
   const [surname, setsurname] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [age, setAge] = useState("");
-  const [experience, setExperience] = useState("");
+  const [experience, setExperience] = useState("1");
   const [location, setLocation] = useState("");
   const [password, setPassword] = useState("");
   const [text, setText] = useState("");
@@ -48,6 +47,10 @@ export default function Register() {
       (experience === "1" ||
       experience === "2" ||
       experience === "3")
+      (location === "1" ||
+      location === "2" ||
+      location === "3" ||
+      location === "4")
       );
   }
 
@@ -159,19 +162,21 @@ export default function Register() {
               </Form.Group>
             </Form.Group>
             <Form.Group size="lg" controlId="experience">
-            <Form.Select aria-label="Default select example">
+            <Form.Select aria-label="Default select example" value={experience}
+            onChange={(e) => setExperience(e.target.value)}>
               <option value="1">Easy</option>
               <option value="2">Mediocre</option>
               <option value="3">Veteran</option>
             </Form.Select>
             </Form.Group>
             <Form.Group size="lg" controlId="location">
-              <Form.Control
-                type="location"
-                placeholder="Location"
-                value={location}
-                onChange={(l) => setLocation(l.target.value)}
-              />
+            <Form.Select aria-label="Default select example" value={location}
+            onChange={(e) => setLocation(e.target.value)}>
+              <option value="1">Trondheim</option>
+              <option value="2">Oslo</option>
+              <option value="3">Stavanger</option>
+              <option value="4">Bergen</option>
+            </Form.Select>
             </Form.Group>
             <Form.Group size="lg" controlId="password">
               <Form.Control
