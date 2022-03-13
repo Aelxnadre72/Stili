@@ -34,7 +34,7 @@ export default function Register() {
       location.length != 0 &&
       password.length != 0 &&
       orgNumber.length === 9 &&
-      !isNaN(orgNumber)
+      !isNaN(orgNumber) &&
       (location === "1" ||
       location === "2" ||
       location === "3" ||
