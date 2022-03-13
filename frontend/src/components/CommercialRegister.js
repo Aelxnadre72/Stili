@@ -8,7 +8,7 @@ import Axios from "axios";
 export default function Register() {
   const [orgName, setOrgName] = useState("");
   const [orgNumber, setOrgNumber] = useState("");
-  const [location, setLocation] = useState("");
+  const [location, setLocation] = useState("1");
   const [password, setPassword] = useState("");
   const [text, setText] = useState("");
   const [formUser, setFormUser] = useState({

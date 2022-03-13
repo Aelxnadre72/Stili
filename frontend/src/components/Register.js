@@ -10,8 +10,8 @@ export default function Register() {
   const [surname, setsurname] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [age, setAge] = useState("");
-  const [experience, setExperience] = useState("");
-  const [location, setLocation] = useState("");
+  const [experience, setExperience] = useState("1");
+  const [location, setLocation] = useState("1");
   const [password, setPassword] = useState("");
   const [text, setText] = useState("");
   const [formUser, setFormUser] = useState({
