@@ -105,7 +105,7 @@ export default function Register() {
         <div className="Register">
           <h5>Register</h5>
           <div className="information">
-            <p>Already have an account? <Link to="/commercialLogin">Click here</Link> to log in</p>
+            <p>Already have an account? <Link to="/commercialogin">Click here</Link> to log in</p>
             <p>Not a commecial organization? Click to <Link to="/">log in</Link> or <Link to="/register">register</Link>.</p>
           </div>
           <Form>
