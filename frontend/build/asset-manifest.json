@@ -1,16 +1,30 @@
 {
   "files": {
-    "main.css": "/static/css/main.d8abcebc.css",
-    "main.js": "/static/js/main.5dceef0b.js",
+<<<<<<< HEAD
+    "main.css": "/static/css/main.00d7e88b.css",
+    "main.js": "/static/js/main.e5c5fcd5.js",
+=======
+    "main.css": "/static/css/main.ffcb639b.css",
+    "main.js": "/static/js/main.88f79bd2.js",
+>>>>>>> 6545b9f8d7822c5883f35b2366e2d26f19ec3d2d
     "static/media/Campusrunden.jpg": "/static/media/Campusrunden.647359810e7c4b83f55a.jpg",
     "static/media/Mountain-Hiking.jpg": "/static/media/Mountain-Hiking.3b3b1b749aa8846205ea.jpg",
     "static/media/logout.png": "/static/media/logout.973c2d8b03e5c88e4723.png",
     "index.html": "/index.html",
-    "main.d8abcebc.css.map": "/static/css/main.d8abcebc.css.map",
-    "main.5dceef0b.js.map": "/static/js/main.5dceef0b.js.map"
+<<<<<<< HEAD
+    "main.00d7e88b.css.map": "/static/css/main.00d7e88b.css.map",
+    "main.e5c5fcd5.js.map": "/static/js/main.e5c5fcd5.js.map"
   },
   "entrypoints": [
-    "static/css/main.d8abcebc.css",
-    "static/js/main.5dceef0b.js"
+    "static/css/main.00d7e88b.css",
+    "static/js/main.e5c5fcd5.js"
+=======
+    "main.ffcb639b.css.map": "/static/css/main.ffcb639b.css.map",
+    "main.88f79bd2.js.map": "/static/js/main.88f79bd2.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.ffcb639b.css",
+    "static/js/main.88f79bd2.js"
+>>>>>>> 6545b9f8d7822c5883f35b2366e2d26f19ec3d2d
   ]
 }

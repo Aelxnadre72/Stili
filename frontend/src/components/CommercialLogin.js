@@ -6,7 +6,7 @@ import "./Login.css";
 import { Link, useNavigate } from "react-router-dom";
 
 export default function Login() {
-  const [phoneNumber, setPhoneNumber] = useState("");
+  const [orgNumber, setOrgNumber] = useState("");
   const [password, setPassword] = useState("");
   const [text, setText] = useState("");
   let navigate = useNavigate();
@@ -18,24 +18,24 @@ export default function Login() {
   })
 
   function validate() {
-    return (phoneNumber.length === 8 && !isNaN(phoneNumber));
+    return (orgNumber.length === 9 && !isNaN(orgNumber));
   }
 
   function validateUser() {
     getUser().then(response => {
-      const currentUser = response.find(o => o.phoneNumber === phoneNumber);
+      const currentUser = response.find(o => o.orgNumber === orgNumber);
       if (typeof currentUser === "undefined") {
-        changeText("The phone number is not connected to an account.")
+        changeText("The organization number is not connected to an account.")
         return;
       }
       else {
         if(currentUser.password === password) {
           changeText("Logged in succesfully.");
-          localStorage.setItem("id", currentUser.phoneNumber);
+          localStorage.setItem("id", currentUser.orgNumber);
           navigate('/home');
         }
         else {
-          changeText("Incorrect phone number or password.")
+          changeText("Incorrect organization number or password.")
         }
       }
     });
@@ -45,7 +45,7 @@ export default function Login() {
     try {
     const response = await Axios({
       method: "GET",
-      url:"/users/",
+      url:"/commercialUsers/",
       responseType:"json"
       })
     return response.data;
@@ -71,17 +71,17 @@ export default function Login() {
       <div className="Login">
         <h5>Login</h5>
         <div className="information">
-          <p>Don't have an account? <Link to="/register">Click here</Link> to sign up!</p>
-          <p>Are you a commecial organization? Click to <Link to="/commercialogin">log in</Link> or <Link to="/commercialRegister">register</Link>.</p>
+          <p>Don't have an account? <Link to="/commercialRegister">Click here</Link> to sign up!</p>
+          <p>Not a commecial organization? Click to <Link to="/">log in</Link> or to <Link to="/register">register.</Link></p>
         </div>
-          <Form>
-            <Form.Group size="lg" controlId="phoneNumber">
+        <Form>
+            <Form.Group size="lg" controlId="orgNumber">
               <Form.Control
                 autoFocus
-                type="phoneNumber"
-                placeholder="Phone Number"
-                value={phoneNumber}
-                onChange={(n) => setPhoneNumber(n.target.value)} />
+                type="orgNumber"
+                placeholder="Organization Number"
+                value={orgNumber}
+                onChange={(n) => setOrgNumber(n.target.value)} />
             </Form.Group>
             <Form.Group size="lg" controlId="password">
               <Form.Control
@@ -97,7 +97,7 @@ export default function Login() {
               className="Button"
               onClick={validate()
                 ? () => {validateUser();}
-                : () => {changeText("The phone number has to consist of 8 numbers.")}
+                : () => {changeText("The orginazation number has to consist of 9 numbers.")}
               }
             >
               Login

@@ -1,9 +1,9 @@
 from django.shortcuts import render
-from .serializer import EventSerializer, UserSerializer
+from .serializer import EventSerializer, UserSerializer, CommercialUserSerializer
 from rest_framework import viewsets, status, permissions
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
-from .models import User, Event
+from .models import User, Event, CommercialUser
 
 # Create your views here.
 class UserView(viewsets.ModelViewSet):
@@ -17,6 +17,12 @@ class EventView(viewsets.ModelViewSet):
 
     def get_serializer_class(self):
         return EventSerializer
+
+class CommercialUserView(viewsets.ModelViewSet):
+    queryset = CommercialUser.objects.all()
+
+    def get_serializer_class(self):
+        return CommercialUserSerializer
 
 def front(request):
     context = {}
@@ -37,6 +43,23 @@ def user(request):
             return Response(status=status.HTTP_201_CREATED)
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['GET', 'POST'])
+@permission_classes((permissions.AllowAny,))
+def commercialUser(request):
+    if request.method == 'GET':
+        commercialUser = CommercialUser.objects.all()
+        serializer = CommercialUserSerializer(commercialUser, many=True)
+        return Response(serializer.data)
+
+    elif request.method == 'POST':
+        serializer = CommercialUserSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(status=status.HTTP_201_CREATED)
+
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 
 @api_view(['GET', 'POST'])
 @permission_classes((permissions.AllowAny,))
