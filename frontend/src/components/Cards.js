@@ -4,6 +4,8 @@ import "./Cards.css";
 import campus from "./Campusrunden.jpg";
 import Axios from "axios";
 import TextField from "@mui/material/TextField";
+import Button from "@mui/material/Button";
+import { Link } from "react-router-dom";
 
 export default function Cards() {
   const [data, setData] = useState([]);
@@ -43,7 +45,9 @@ export default function Cards() {
           size="small"
           label="Search"
           onChange={(e) => setQ(e.target.value)}
-        /></div>
+          />
+          <Link to="/registerEvent"><Button id="button" variant="contained" size="small" color="success">Create Event</Button></Link>
+        </div>
           <div className="card_wrapper">
             <ul className="card_items">
               {data
