@@ -71,7 +71,7 @@ export default function Login() {
       <div className="Login">
         <h5>Login</h5>
         <div className="information">
-          <p>Don't have an account? <Link to="/register">Click here</Link> to sign up!</p>
+          <p>Don't have an account? <Link to="/commercialRegister">Click here</Link> to sign up!</p>
           <p>Not a commecial organization? Click to <Link to="/login">log in</Link> or to <Link to="/register">register</Link></p>
         </div>
         <Form>
