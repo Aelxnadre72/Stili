@@ -54,8 +54,27 @@ export default function ProfileInfo(props) {
                     </>
                )
           }
+
      }
-     else{
+     else if (props.commercialUser != null) {
+          return(
+               <>
+               <TopNavbar />
+               <Navbar />
+               <div className="ProfilePage">
+                    <Image className="ProfilePic" src={picture}>
+                    </Image>
+                    <h3>Textbox example <b>without editing rights</b></h3>
+                    <div className="example-text-box">
+                    <p>{props.commercialUser.orgName}</p>
+                    <p>{props.commercialUser.orgNumber}</p>
+                    <p>{props.commercialUser.location}</p>
+                    </div>
+               </div>
+               </>
+          )
+     }
+     else {
           return(<p>Loading..</p>);
      }
 }

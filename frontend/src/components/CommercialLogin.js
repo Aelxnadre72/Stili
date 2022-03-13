@@ -22,7 +22,7 @@ export default function Login() {
   }
 
   function validateUser() {
-    getUser().then(response => {
+    getCommercialUser().then(response => {
       const currentUser = response.find(o => o.orgNumber === orgNumber);
       if (typeof currentUser === "undefined") {
         changeText("The organization number is not connected to an account.")
@@ -41,7 +41,7 @@ export default function Login() {
     });
   }
 
-  async function getUser() {
+  async function getCommercialUser() {
     try {
     const response = await Axios({
       method: "GET",
