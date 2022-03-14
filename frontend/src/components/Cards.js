@@ -113,26 +113,26 @@ export default function Cards() {
                 <TextField
                   autoFocus
                   margin="normal"
-                  id="name"
                   label="Name"
-                  type="name"
+                  type="text"
                   fullWidth
                   variant="standard"
                   onChange={(n) => setEventName(n.target.value)}
                 />
                 <TextField
                   margin="normal"
+                  sx={{mr: 7}}
                   id="date"
                   type="date"
                   variant="standard"
                   onChange={(d) => setEventDate(d.target.value)}
                 />
                 <TextField
-                  id="location"
                   select
                   size="small"
                   label="Location"
                   margin="normal"
+                  sx={{mr: 7}}
                   value={location}
                   onChange={(l) => setLocation(l.target.value)}
                   SelectProps={{
@@ -146,7 +146,6 @@ export default function Cards() {
                   ))}
                 </TextField>
                 <TextField
-                  id="difficulty"
                   select
                   size="small"
                   label="Difficulty"
@@ -165,8 +164,9 @@ export default function Cards() {
                 </TextField>
                 <TextField
                   margin="normal"
-                  id="distance"
+                  sx={{mb: 2, mt: -0.5}}
                   label="Distance"
+                  type="number"
                   fullWidth
                   variant="standard"
                   onChange={(d) => setEventDistance(d.target.value)}
@@ -174,18 +174,19 @@ export default function Cards() {
                 
                 <TextField
                   margin="normal"
-                  id="description"
                   label="Description"
                   style={{ width: 552 }}
                   multiline
+                  type="text"
                   maxRows={4}
                   variant="outlined"
                   onChange={(d) => setEventDescription(d.target.value)}
                 />
                 <TextField
                   margin="normal"
-                  id="size"
+                  sx={{mt: -0.5}}
                   label="Size"
+                  type="number"
                   fullWidth
                   variant="standard"
                 />
