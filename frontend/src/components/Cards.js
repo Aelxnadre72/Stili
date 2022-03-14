@@ -19,25 +19,38 @@ export default function Cards() {
   const [eventDescription, setEventDescription] = useState("");
   const [eventSize, setEventSize] = useState("");
   const [eventDistance, setEventDistance] = useState("");
-  const [difficulty, setDifficulty] = useState("Easy");
-  const [location, setLocation] = useState("Trondheim");
+  const [eventArea, setEventArea] = useState("Kollen");
+  const [eventDifficulty, setEventDifficulty] = useState("Easy");
+  const [eventLocation, setEventLocation] = useState("Trondheim");
+  const [formEvent, setFormEvent] = useState({
+    eventID: "",
+    eventName: "",
+    eventDate: "",
+    eventDifficulty: "",
+    eventDescription: "",
+    eventLocation: "",
+    eventDistance: "",
+    eventArea: "",
+    organizer_id: "",
+    eventSize: "",
+  });
 
   const locations = [
     {
-      value: "Trondheim",
+      value: "1",
       label: "Trondheim",
     },
     {
-      value: "Oslo",
+      value: "2",
       label: "Oslo",
     },
     {
-      value: "Bergen",
-      label: "Bergen",
+      value: "3",
+      label: "Stavanger",
     },
     {
-      value: "Stavanger",
-      label: "Stavanger",
+      value: "4",
+      label: "Bergen",
     },
   ];
 
@@ -64,6 +77,11 @@ export default function Cards() {
     setOpen(false);
   };
 
+  const handleSubmit = () => {
+    setOpen(false);
+    createEvent();
+  };
+
   useEffect(() => {
     Axios({
       method: "GET",
@@ -85,6 +103,37 @@ export default function Cards() {
       });
   });
 
+  function createEvent() {
+        Axios({
+          method: "POST",
+          url: "/events/",
+          data: {
+            eventID: "4",
+            eventName: eventName,
+            eventDate: eventDate,
+            eventDifficulty: eventDifficulty,
+            eventDescription: eventDescription,
+            eventLocation: eventLocation,
+            eventDistance: eventDistance,
+            eventArea: "Kollen",
+            organizer_id: null,
+            eventSize: eventSize,
+          },
+    });
+
+  setFormEvent({
+    eventID: "",
+    eventName: "",
+    eventDate: "",
+    eventDifficulty: "",
+    eventDescription: "",
+    eventLocation: "",
+    eventDistance: "",
+    eventArea: "",
+    organizer_id: "",
+    eventSize: "",
+  });
+}
   return (
     <div className="all">
       <div className="search-box"></div>
@@ -133,8 +182,8 @@ export default function Cards() {
                   label="Location"
                   margin="normal"
                   sx={{mr: 7}}
-                  value={location}
-                  onChange={(l) => setLocation(l.target.value)}
+                  value={eventLocation}
+                  onChange={(l) => setEventLocation(l.target.value)}
                   SelectProps={{
                     native: true,
                   }}
@@ -150,8 +199,8 @@ export default function Cards() {
                   size="small"
                   label="Difficulty"
                   margin="normal"
-                  value={difficulty}
-                  onChange={(e) => setDifficulty(e.target.value)}
+                  value={eventDifficulty}
+                  onChange={(e) => setEventDifficulty(e.target.value)}
                   SelectProps={{
                     native: true,
                   }}
@@ -189,11 +238,12 @@ export default function Cards() {
                   type="number"
                   fullWidth
                   variant="standard"
+                  onChange={(s) => setEventSize(s.target.value)}
                 />
               </DialogContent>
               <DialogActions>
                 <Button onClick={handleClose}>Cancel</Button>
-                <Button onClick={handleClose}>Submit</Button>
+                <Button onClick={handleSubmit}>Submit</Button>
               </DialogActions>
             </Dialog>
           </div>
