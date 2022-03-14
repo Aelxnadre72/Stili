@@ -216,3 +216,11 @@
     margin-bottom: 2rem;
   }
 }
+
+.trippel {
+  display: flex;
+}
+
+.DialogContent #date {
+  width: 500;
+}

@@ -14,7 +14,12 @@ export default function Cards() {
   const [data, setData] = useState([]);
   const [q, setQ] = useState("");
   const [open, setOpen] = useState(false);
-  const [experience, setExperience] = useState("Easy");
+  const [eventName, setEventName] = useState("");
+  const [eventDate, setEventDate] = useState("");
+  const [eventDescription, setEventDescription] = useState("");
+  const [eventSize, setEventSize] = useState("");
+  const [eventDistance, setEventDistance] = useState("");
+  const [difficulty, setDifficulty] = useState("Easy");
   const [location, setLocation] = useState("Trondheim");
 
   const locations = [
@@ -36,7 +41,7 @@ export default function Cards() {
     },
   ];
 
-  const experiences = [
+  const difficulties = [
     {
       value: "1",
       label: "Easy",
@@ -113,18 +118,21 @@ export default function Cards() {
                   type="name"
                   fullWidth
                   variant="standard"
+                  onChange={(n) => setEventName(n.target.value)}
                 />
                 <TextField
                   margin="normal"
                   id="date"
                   type="date"
                   variant="standard"
+                  onChange={(d) => setEventDate(d.target.value)}
                 />
                 <TextField
-                  id="outlined-select-location-native"
+                  id="location"
                   select
                   size="small"
                   label="Location"
+                  margin="normal"
                   value={location}
                   onChange={(l) => setLocation(l.target.value)}
                   SelectProps={{
@@ -138,17 +146,18 @@ export default function Cards() {
                   ))}
                 </TextField>
                 <TextField
-                  id="outlined-select-experience-native"
+                  id="difficulty"
                   select
                   size="small"
-                  label="Experience"
-                  value={experience}
-                  onChange={(e) => setExperience(e.target.value)}
+                  label="Difficulty"
+                  margin="normal"
+                  value={difficulty}
+                  onChange={(e) => setDifficulty(e.target.value)}
                   SelectProps={{
                     native: true,
                   }}
                 >
-                  {experiences.map((option) => (
+                  {difficulties.map((option) => (
                     <option key={option.value} value={option.value}>
                       {option.label}
                     </option>
@@ -160,15 +169,18 @@ export default function Cards() {
                   label="Distance"
                   fullWidth
                   variant="standard"
+                  onChange={(d) => setEventDistance(d.target.value)}
                 />
+                
                 <TextField
                   margin="normal"
-                  id="filled-multiline-flexible"
+                  id="description"
                   label="Description"
                   style={{ width: 552 }}
                   multiline
                   maxRows={4}
                   variant="outlined"
+                  onChange={(d) => setEventDescription(d.target.value)}
                 />
                 <TextField
                   margin="normal"
