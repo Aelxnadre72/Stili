@@ -28,7 +28,6 @@ export default function Profile(){
 
     const  fetchUserData = (profileNumber) => {
         getUser().then(response => {
-            console.log(response.find(o => o.phoneNumber === profileNumber))
             setUser(response.find(o => o.phoneNumber === profileNumber));
         });
     }

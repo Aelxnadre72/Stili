@@ -14,15 +14,6 @@ export default function Register() {
   const [location, setLocation] = useState("");
   const [password, setPassword] = useState("");
   const [text, setText] = useState("");
-  const [formUser, setFormUser] = useState({
-    firstName: "",
-    surname: "",
-    phoneNumber: "",
-    age: "",
-    experience: "",
-    location: "",
-    password: "",
-  });
   let navigate = useNavigate();
 
   useEffect(() => {
@@ -80,16 +71,6 @@ export default function Register() {
       else {
         changeText("The phone number is already in use.")
       }
-    });
-
-    setFormUser({
-      firstName: "",
-      surname: "",
-      phoneNumber: "",
-      age: "",
-      experience: "",
-      location: "",
-      password: "",
     });
   }
 
