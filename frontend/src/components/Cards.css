@@ -4,10 +4,9 @@
 }
 
 .cards {
-  padding: 0;
-  margin-left: 12%;
-  width: 88%;
+  padding: 4rem;
   position: relative;
+  left: 8%;
   background-color: white;
 }
 
@@ -22,16 +21,23 @@
   background: transparent;
   flex-flow: column;
   align-items: center;
-  width: 100%;
+  width: 50%;
   margin: 0 auto;
 }
 
 .search {
   position: relative;
-  left: -27.1vw;
+  left: 6vw;
+  display: flex;
+  width: 80vw !important;
 }
 
-.search #outlined-basic{
+.search #button {
+  width: 10vw;
+  margin-left: 47vw;
+}
+
+.search #outlined-basic {
   width: 12vw;
 }
 
@@ -42,9 +48,8 @@
 }
 
 .card_items {
- margin: 0;
- padding: 0;
- z-index: 1;
+  margin: 0 auto;
+  z-index: 1;
 }
 
 .card {
@@ -193,7 +198,6 @@
   line-height: 24px;
   background: transparent;
 }
-
 
 @media only screen and (min-width: 1200px) {
   .content__blog__container {
