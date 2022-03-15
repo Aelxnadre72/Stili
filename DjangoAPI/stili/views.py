@@ -52,7 +52,9 @@ def event(request):
             serializer.save()
             return Response(status=status.HTTP_201_CREATED)
 
+        print(serializer.errors)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        
 
 @api_view(['DELETE'])
 def event_delete(request, pk):

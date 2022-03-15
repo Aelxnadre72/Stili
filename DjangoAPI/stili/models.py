@@ -39,14 +39,13 @@ class Event(models.Model):
         ('4', 'Bergen')
     )
     
-    eventID = models.CharField(max_length=1, primary_key=True)
+    eventID = models.TextField(primary_key=True)
     eventName = models.CharField(max_length=100, blank = False)
     eventDate = models.DateTimeField()
     eventDifficulty = models.CharField(max_length=1, choices=DIFFICULTY)
     eventDescription = models.TextField()
     eventLocation = models.CharField(max_length=100)
     eventDistance = models.IntegerField()
-    eventArea = models.CharField(max_length=1, choices=AREA, default='1', blank=False)
-    organizer_id = models.ForeignKey(User, blank=True, null=True, on_delete=models.CASCADE)
+    organizer = models.ForeignKey(User, blank=True, null=True, on_delete=models.CASCADE)
     eventSize = models.IntegerField(blank = False, default=0)
     

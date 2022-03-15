@@ -46,7 +46,7 @@ export default function Register() {
       !isNaN(age) &&
       (experience === "1" ||
       experience === "2" ||
-      experience === "3")
+      experience === "3") &&
       (location === "1" ||
       location === "2" ||
       location === "3" ||

@@ -12,6 +12,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 
 export default function Cards() {
   const [data, setData] = useState([]);
+  let length = 0;
   const [q, setQ] = useState("");
   const [open, setOpen] = useState(false);
   const [eventName, setEventName] = useState("");
@@ -19,21 +20,8 @@ export default function Cards() {
   const [eventDescription, setEventDescription] = useState("");
   const [eventSize, setEventSize] = useState("");
   const [eventDistance, setEventDistance] = useState("");
-  const [eventArea, setEventArea] = useState("Kollen");
-  const [eventDifficulty, setEventDifficulty] = useState("Easy");
-  const [eventLocation, setEventLocation] = useState("Trondheim");
-  const [formEvent, setFormEvent] = useState({
-    eventID: "",
-    eventName: "",
-    eventDate: "",
-    eventDifficulty: "",
-    eventDescription: "",
-    eventLocation: "",
-    eventDistance: "",
-    eventArea: "",
-    organizer_id: "",
-    eventSize: "",
-  });
+  const [eventDifficulty, setEventDifficulty] = useState("1");
+  const [eventLocation, setEventLocation] = useState("1");
 
   const locations = [
     {
@@ -80,6 +68,7 @@ export default function Cards() {
   const handleSubmit = () => {
     setOpen(false);
     createEvent();
+    window.location.reload(true);
   };
 
   useEffect(() => {
@@ -90,6 +79,11 @@ export default function Cards() {
     })
       .then((response) => {
         const events = response.data;
+        length = events.length;
+        if (events.length === 0) {
+          return;
+        }
+
         if (data.length === 0) {
           setData(events);
         }
@@ -104,36 +98,23 @@ export default function Cards() {
   });
 
   function createEvent() {
-        Axios({
-          method: "POST",
-          url: "/events/",
-          data: {
-            eventID: "4",
-            eventName: eventName,
-            eventDate: eventDate,
-            eventDifficulty: eventDifficulty,
-            eventDescription: eventDescription,
-            eventLocation: eventLocation,
-            eventDistance: eventDistance,
-            eventArea: "Kollen",
-            organizer_id: null,
-            eventSize: eventSize,
-          },
+    Axios({
+      method: "POST",
+      url: "/events/",
+      data: {
+        eventID: (length + 1).toString(),
+        eventName: eventName,
+        eventDate: eventDate,
+        eventDifficulty: eventDifficulty,
+        eventDescription: eventDescription,
+        eventLocation: eventLocation,
+        eventDistance: eventDistance,
+        organizer: null,
+        eventSize: eventSize,
+      },
     });
+  }
 
-  setFormEvent({
-    eventID: "",
-    eventName: "",
-    eventDate: "",
-    eventDifficulty: "",
-    eventDescription: "",
-    eventLocation: "",
-    eventDistance: "",
-    eventArea: "",
-    organizer_id: "",
-    eventSize: "",
-  });
-}
   return (
     <div className="all">
       <div className="search-box"></div>
@@ -170,7 +151,7 @@ export default function Cards() {
                 />
                 <TextField
                   margin="normal"
-                  sx={{mr: 7}}
+                  sx={{ mr: 7 }}
                   id="date"
                   type="date"
                   variant="standard"
@@ -181,7 +162,7 @@ export default function Cards() {
                   size="small"
                   label="Location"
                   margin="normal"
-                  sx={{mr: 7}}
+                  sx={{ mr: 7 }}
                   value={eventLocation}
                   onChange={(l) => setEventLocation(l.target.value)}
                   SelectProps={{
@@ -213,14 +194,14 @@ export default function Cards() {
                 </TextField>
                 <TextField
                   margin="normal"
-                  sx={{mb: 2, mt: -0.5}}
+                  sx={{ mb: 2, mt: -0.5 }}
                   label="Distance"
                   type="number"
                   fullWidth
                   variant="standard"
                   onChange={(d) => setEventDistance(d.target.value)}
                 />
-                
+
                 <TextField
                   margin="normal"
                   label="Description"
@@ -233,7 +214,7 @@ export default function Cards() {
                 />
                 <TextField
                   margin="normal"
-                  sx={{mt: -0.5}}
+                  sx={{ mt: -0.5 }}
                   label="Size"
                   type="number"
                   fullWidth
