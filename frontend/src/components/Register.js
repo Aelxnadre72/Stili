@@ -11,7 +11,7 @@ export default function Register() {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [age, setAge] = useState("");
   const [experience, setExperience] = useState("1");
-  const [location, setLocation] = useState("");
+  const [location, setLocation] = useState("1");
   const [password, setPassword] = useState("");
   const [text, setText] = useState("");
   let navigate = useNavigate();
@@ -37,7 +37,7 @@ export default function Register() {
       !isNaN(age) &&
       (experience === "1" ||
       experience === "2" ||
-      experience === "3")
+      experience === "3") &&
       (location === "1" ||
       location === "2" ||
       location === "3" ||
