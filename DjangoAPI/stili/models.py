@@ -61,3 +61,10 @@ class CommercialUser(models.Model):
     def __str__(self):
         return self.orgName
     
+class EventParticipation(models.Model):
+
+    participationID = models.CharField(max_length=1, primary_key=True)
+    eventID = models.CharField(max_length=1)
+    phoneNumber = models.TextField(max_length=100, blank = False, unique=True)
+    firstName = models.CharField(max_length=100, blank = False)
+    surName = models.CharField(max_length=100, blank = False)

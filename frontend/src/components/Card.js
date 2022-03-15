@@ -1,7 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Button from "react-bootstrap/Button";
+
+
 
 export default function Card(props) {
+  function saveParticipantToDB(){
+
+  }
   return (
     <div className={props.name}>
       <li className="card">
@@ -12,6 +18,14 @@ export default function Card(props) {
           <div className="card_info">
             <h5 className="card_text">{props.text}</h5>
             <h3 className="card_text">{props.size}</h3>
+            <Button
+              block
+              size="lg"
+              type="button"
+              className="Button"
+            >
+              Join
+            </Button>
           </div>
         </Link>
       </li>
