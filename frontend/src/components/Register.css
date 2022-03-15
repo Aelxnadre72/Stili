@@ -55,7 +55,7 @@
       font-size: 22px;
     }
 
-    .Register #firstName, #surname, #phoneNumber, #password, #age, #experience, #location, #password {
+    .Register #firstName, #surname, #phoneNumber, #password, #age, #experience, #location, #password, #orgNumber, #orgName {
       margin-top: 1.5vw;
       display:flex;
       border: none;
@@ -112,10 +112,14 @@
     }
 
     p {
-      margin-top: 5vw;
+      margin-top: 0.5vw;
       font-size: 14px; 
       color: #B0B3B9;
       text-align: center;
+    }
+
+    .information {
+      margin-top: 6vw;
     }
       /*
         Hardkodet marginer for å få til funksjonalitet

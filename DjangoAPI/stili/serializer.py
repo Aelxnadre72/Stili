@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import User, Event
+from .models import User, Event, CommercialUser
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
@@ -11,3 +11,9 @@ class EventSerializer(serializers.ModelSerializer):
     class Meta:
         model = Event
         fields = ['eventID', 'eventName', 'eventDate', 'eventDifficulty', 'eventDescription', 'eventLocation', 'eventDistance', 'organizer', 'eventSize']
+
+
+class CommercialUserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CommercialUser
+        fields = ['orgNumber', 'orgName', 'location', 'password', 'isAdmin']
