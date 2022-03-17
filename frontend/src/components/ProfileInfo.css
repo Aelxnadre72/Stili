@@ -22,3 +22,11 @@
         height: auto;
         color: black;
     }
+
+    .editButton{
+        margin: 1vh;
+    }
+
+    .errormsg{
+        margin: 1vh;
+    }
