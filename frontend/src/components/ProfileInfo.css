@@ -57,3 +57,15 @@
     .errormsg{
         margin: 1vh;
     }
+
+    .ProfilePage #firstName, #surname, #phoneNumber, #password, #age, #experience, #location, #password, #orgNumber, #orgName {
+      margin-top: 1.5vw;
+      display: inline;
+      border: none;
+      border-radius: 0;
+			outline: none;
+			border-bottom: 2px solid #B0B3B9;
+      width: 60%;
+      }
+
+  

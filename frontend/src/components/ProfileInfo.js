@@ -8,7 +8,7 @@ import Navbar from "./Navbar";
 import TopNavbar from "./TopNavbar";
 import Axios from "axios";
 import "./ProfileInfo.css";
-import location from './location-icon.png';
+import locationIcon from './location-icon.png';
 import phone from './phone.png';
 import experience from './experience.png';
 import age from './age.png';
@@ -150,6 +150,7 @@ export default function ProfileInfo(props) {
                               <div className="example-text-box">
                               <Form>
                               <Form.Group size="lg" controlId="firstName">
+                              <span width="20%">Firstname: </span>
                               <Form.Control
                                    autoFocus
                                    type="firstName"
@@ -159,6 +160,7 @@ export default function ProfileInfo(props) {
                               />
                               </Form.Group>
                               <Form.Group size="lg" controlId="surname">
+                              <span width="20%">Surname: </span>
                               <Form.Control
                                    type="surname"
                                    placeholder={props.user.surname}
@@ -167,6 +169,7 @@ export default function ProfileInfo(props) {
                               />
                               </Form.Group>
                               <Form.Group size="lg" controlId="age">
+                                   <span width="20%">Age: </span>
                                    <Form.Control
                                    type="age"
                                    placeholder={props.user.age}
@@ -175,6 +178,7 @@ export default function ProfileInfo(props) {
                                    />
                               </Form.Group>
                               <Form.Group size="lg" controlId="experience">
+                              <span width="20%">Experience: </span>
                               <Form.Select aria-label="Default select example" value={exp()}
                               onChange={(e) => setExperience(e.target.value)}>
                               <option value="1">Easy</option>
@@ -182,9 +186,9 @@ export default function ProfileInfo(props) {
                               <option value="3">Veteran</option>
                               </Form.Select>
                               </Form.Group>
-                              <Form.Group size="lg" controlId="location">
-                              <img src={location} alt="Location" class="location"></img>
-                              <Form.Select aria-label="Default select example" value={loca()}
+                              <Form.Group float="left" display="inline" size="lg" controlId="location">
+                              <span width="20%">Location: </span>
+                              <Form.Select aria-label="Default select example" value={loca()} width="70%"
                               onChange={(e) => setLocation(e.target.value)}>
                               <option value="1">Trondheim</option>
                               <option value="2">Oslo</option>
@@ -220,7 +224,7 @@ export default function ProfileInfo(props) {
 
                     <div class="flex-container">
                          <div>
-                              <img src={location} alt="Location" class="location"></img>
+                              <img src={locationIcon} alt="Location" class="location"></img>
                               <p>Location:</p>
                               <br></br>
                               {props.user.location}
