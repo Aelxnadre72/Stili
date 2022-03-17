@@ -35,7 +35,8 @@ export default function Register() {
       phoneNumber.length === 8 &&
       !isNaN(phoneNumber) &&
       age.length > 0 &&
-      age.length < 4 &&
+      parseInt(age) < 120 &&
+      age != "0" &&
       !isNaN(age) &&
       (experience === "1" ||
       experience === "2" ||

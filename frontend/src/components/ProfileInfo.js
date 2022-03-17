@@ -18,6 +18,8 @@ export default function ProfileInfo(props) {
      const [text, setText] = useState("");
 
      function validate() {
+          console.log(age);
+          console.log(age.length);
           return (
                firstName.length < 101 &&
                surname.length < 101 &&
@@ -26,8 +28,10 @@ export default function ProfileInfo(props) {
                surname.length !== 0 &&
                location.length !== 0 &&
                !isNaN(age) &&
-               age.length > 0 &&
-               age.length < 4 &&
+               age != "" &&
+               age != "undefined" &&
+               parseInt(age) > 0 &&
+               parseInt(age) < 120 &&
                (experience === "1" ||
                experience === "2" ||
                experience === "3") &&
