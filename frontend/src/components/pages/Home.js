@@ -1,8 +1,9 @@
-import React, { useEffect } from "react";
+import React from "react";
 import "../../App.css";
 import Navbar from "../Navbar";
 import Cards from "../Cards";
 import TopNavbar from "../TopNavbar";
+import "./Home.css";
 
 export default function Home() {
   return (

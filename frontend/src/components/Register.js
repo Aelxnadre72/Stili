@@ -14,15 +14,6 @@ export default function Register() {
   const [location, setLocation] = useState("1");
   const [password, setPassword] = useState("");
   const [text, setText] = useState("");
-  const [formUser, setFormUser] = useState({
-    firstName: "",
-    surname: "",
-    phoneNumber: "",
-    age: "",
-    experience: "",
-    location: "",
-    password: "",
-  });
   let navigate = useNavigate();
 
   useEffect(() => {
@@ -43,6 +34,9 @@ export default function Register() {
       password.length != 0 &&
       phoneNumber.length === 8 &&
       !isNaN(phoneNumber) &&
+      age.length > 0 &&
+      parseInt(age) < 120 &&
+      age != "0" &&
       !isNaN(age) &&
       (experience === "1" ||
       experience === "2" ||
@@ -80,16 +74,6 @@ export default function Register() {
       else {
         changeText("The phone number is already in use.")
       }
-    });
-
-    setFormUser({
-      firstName: "",
-      surname: "",
-      phoneNumber: "",
-      age: "",
-      experience: "",
-      location: "",
-      password: "",
     });
   }
 
@@ -138,7 +122,6 @@ export default function Register() {
             </Form.Group>
             <Form.Group size="lg" controlId="surname">
               <Form.Control
-                autoFocus
                 type="surname"
                 placeholder="Surname"
                 value={surname}
@@ -147,7 +130,6 @@ export default function Register() {
             </Form.Group>
             <Form.Group size="lg" controlId="phoneNumber">
               <Form.Control
-                autoFocus
                 type="phoneNumber"
                 placeholder="Phone Number"
                 value={phoneNumber}
@@ -155,7 +137,6 @@ export default function Register() {
               />
               <Form.Group size="lg" controlId="age">
                 <Form.Control
-                  autoFocus
                   type="age"
                   placeholder="Age"
                   value={age}
@@ -190,7 +171,6 @@ export default function Register() {
             </Form.Group>
             <p className="errormsg">{text}</p>
             <Button
-              block
               size="lg"
               type="button"
               className="Button"

@@ -49,8 +49,11 @@
       width: 4vw;
       height: auto;
     }
-    
    
+    .editButton{
+        margin: 1vh;
+    }
 
-
-   
+    .errormsg{
+        margin: 1vh;
+    }

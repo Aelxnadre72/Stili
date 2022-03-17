@@ -5,18 +5,26 @@ from django.utils.translation import gettext as _
 
 # Create your models here.
 class User(models.Model):
+    
+    EXPERIENCE = (
+        ('1', _('Beginner')),
+        ('2', _('Mediocre')),
+        ('3', _('Veteran'))
+    )
 
-    class Experience(models.IntegerChoices):
-        BEGINNER = '1', _('Beginner')
-        MEDIOCRE = '2', _('Mediocre')
-        VETERAN = '3', _('Veteran')
+    LOCATION = (
+        ('1', _('Trondheim')),
+        ('2', _('Oslo')),
+        ('3', _('Stavanger')),
+        ('4', _('Bergen'))
+    )
 
     firstName = models.CharField(max_length=100, blank = False)
     surname = models.CharField(max_length=100, blank = False)
     phoneNumber = models.TextField(primary_key=True)
     age = models.IntegerField(blank = False)
-    experience = models.IntegerField(choices=Experience.choices, blank = False)
-    location = models.TextField(blank = False)
+    experience = models.CharField(choices=EXPERIENCE, blank = False, max_length=100)
+    location = models.CharField(choices=LOCATION, blank = False, max_length=100)
     password = models.TextField(blank = False)
     isAdmin = models.BooleanField(default=False)
 
@@ -25,12 +33,11 @@ class User(models.Model):
 
 class Event(models.Model):
 
-    organizer = models.ForeignKey(User, blank=True, null=True, on_delete=models.CASCADE)
 
     DIFFICULTY = (
-        ('1', 'Lett'),
-        ('2', 'Middels'),
-        ('3', 'Vankselig')
+        ('1', 'Easy'),
+        ('2', 'Mediocre'),
+        ('3', 'Veteran')
     )
 
     AREA = (
@@ -40,15 +47,15 @@ class Event(models.Model):
         ('4', 'Bergen')
     )
     
-    eventID = models.CharField(max_length=1, primary_key=True)
+    eventID = models.TextField(primary_key=True)
     eventName = models.CharField(max_length=100, blank = False)
     eventDate = models.DateTimeField()
     eventDifficulty = models.CharField(max_length=1, choices=DIFFICULTY)
     eventDescription = models.TextField()
-    eventArea = models.CharField(max_length=1, choices=AREA, default='1', blank=False)
     eventLocation = models.CharField(max_length=100)
+    eventDistance = models.IntegerField()
+    organizer = models.ForeignKey(User, blank=True, null=True, on_delete=models.CASCADE)
     eventSize = models.IntegerField(blank = False, default=0)
-    hours = models.IntegerField()
 
 class CommercialUser(models.Model):
 
