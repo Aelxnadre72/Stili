@@ -28,8 +28,8 @@ export default function ProfileInfo(props) {
                surname.length !== 0 &&
                location.length !== 0 &&
                !isNaN(age) &&
-               age != "" &&
                age != "undefined" &&
+               age != "" &&
                parseInt(age) > 0 &&
                parseInt(age) < 120 &&
                (experience === "1" ||
