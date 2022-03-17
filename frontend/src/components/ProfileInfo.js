@@ -4,6 +4,10 @@ import picture from "../../src/PicPlaceholder.png";
 import Navbar from "./Navbar";
 import TopNavbar from "./TopNavbar";
 import "./ProfileInfo.css";
+import location from './location-icon.png';
+import phone from './phone.png';
+import experience from './experience.png';
+import age from './age.png';
 
 export default function ProfileInfo(props) {
 
@@ -14,18 +18,34 @@ export default function ProfileInfo(props) {
                          <>
                          <TopNavbar />
                          <Navbar />
-                         <div className="ProfilePage">
-                              <Image className="ProfilePic" src={picture}>
-                              </Image>
-                              <h3><b>MyProfile</b></h3>
-                              <div className="example-text-box">
-                              <p>Firstname: {props.user.firstName}</p>
-                              <p>Surname: {props.user.surname}</p>
-                              <p>Age: {props.user.age}</p>
-                              <p>Experience level: {props.user.experience}</p>
-                              <p>Location: {props.user.location}</p>
-                              <p>Phonenumber: {props.user.phoneNumber}</p>
-                              <p>{props.user.isAdmin}</p>
+                         <div className="about">
+                              <h1>{props.user.firstName} {props.user.surname}</h1>
+
+                              <div class="flex-container">
+                                   <div>
+                                        <img src={location} alt="Location" class="location"></img>
+                                        <p>Location:</p>
+                                        <br></br>
+                                        {props.user.location}
+                                   </div>
+                                   <div>
+                                        <img src={phone} alt="Phone" class="phone"></img>
+                                        <p>Phone:</p>
+                                        <br></br>
+                                        <p>{props.user.phoneNumber}</p>
+                                   </div>
+                                   <div>
+                                        <img src={experience} alt="Experience" class="experience"></img>
+                                        Experience:
+                                        <br></br>
+                                        {props.user.experience}
+                                   </div>
+                                   <div>
+                                        <img src={age} alt="Age" class="age"></img>
+                                        Age:
+                                        <br></br>
+                                        {props.user.age}
+                                   </div> 
                               </div>
                          </div>
                          </>
@@ -77,4 +97,5 @@ export default function ProfileInfo(props) {
      else {
           return(<p>Loading..</p>);
      }
+
 }
