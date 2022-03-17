@@ -26,6 +26,9 @@ export default function ProfileInfo(props) {
                surname.length !== 0 &&
                location.length !== 0 &&
                !isNaN(age) &&
+               (age.length == 1 ||
+               age.length == 2 ||
+               age.length == 3) &&
                (experience === "1" ||
                experience === "2" ||
                experience === "3") &&
