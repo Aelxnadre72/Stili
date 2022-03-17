@@ -240,19 +240,19 @@ export default function Cards() {
                     return val;
                   }
                 })
-                .map((a, key) => {
+                .map((a) => {
                   return (
-                    <div key={key}>
-                      <Card
+                      <li><Card
                         name="card-body"
                         wrapper={"card_picture_wrapper-" + a.eventDifficulty}
                         src={campus}
                         text={a.eventName}
-                        label={a.eventDifficulty}
+                        label={difficulties[a.eventDifficulty-1].label}
                         path=""
+                        description={a.eventDescription}
+                        distance={a.eventDistance + "km"}
                         size={"0/" + a.eventSize}
-                      />
-                    </div>
+                      /></li>
                   );
                 })}
             </ul>

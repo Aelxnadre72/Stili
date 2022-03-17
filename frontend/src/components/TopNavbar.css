@@ -1,7 +1,7 @@
 
 .top-navbar {
     height: 6vw;
-    position: fixed;
+    position: sticky;
     margin: 0;
     margin-left: 80%;
     width: 20%;
@@ -41,9 +41,6 @@
   .stili-topnav a {
     color: inherit;
     text-decoration: inherit;
-  }
-
-  .search {
-    width: 30%;
+    position: auto;
   }
   

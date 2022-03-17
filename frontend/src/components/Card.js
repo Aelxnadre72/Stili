@@ -10,8 +10,10 @@ export default function Card(props) {
             <img src={props.src} alt="test" className="card_image"></img>
           </figure>
           <div className="card_info">
-            <h5 className="card_text">{props.text}</h5>
-            <h3 className="card_text">{props.size}</h3>
+            <p className="card_title">{props.text}</p>
+            <p className="card_description">{props.description}</p>
+            <p className="card_description">{props.distance}</p>
+            <p className="card_size">{props.size}</p>
           </div>
         </Link>
       </li>
