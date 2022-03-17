@@ -119,7 +119,6 @@ export default function Register() {
             </Form.Group>
             <Form.Group size="lg" controlId="surname">
               <Form.Control
-                autoFocus
                 type="surname"
                 placeholder="Surname"
                 value={surname}
@@ -128,7 +127,6 @@ export default function Register() {
             </Form.Group>
             <Form.Group size="lg" controlId="phoneNumber">
               <Form.Control
-                autoFocus
                 type="phoneNumber"
                 placeholder="Phone Number"
                 value={phoneNumber}
@@ -136,7 +134,6 @@ export default function Register() {
               />
               <Form.Group size="lg" controlId="age">
                 <Form.Control
-                  autoFocus
                   type="age"
                   placeholder="Age"
                   value={age}

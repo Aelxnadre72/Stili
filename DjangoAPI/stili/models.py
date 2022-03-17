@@ -5,18 +5,26 @@ from django.utils.translation import gettext as _
 
 # Create your models here.
 class User(models.Model):
+    
+    EXPERIENCE = (
+        ('1', _('Beginner')),
+        ('2', _('Mediocre')),
+        ('3', _('Veteran'))
+    )
 
-    class Experience(models.IntegerChoices):
-        BEGINNER = '1', _('Beginner')
-        MEDIOCRE = '2', _('Mediocre')
-        VETERAN = '3', _('Veteran')
+    LOCATION = (
+        ('1', _('Trondheim')),
+        ('2', _('Oslo')),
+        ('3', _('Stavanger')),
+        ('4', _('Bergen'))
+    )
 
     firstName = models.CharField(max_length=100, blank = False)
     surname = models.CharField(max_length=100, blank = False)
     phoneNumber = models.TextField(primary_key=True)
     age = models.IntegerField(blank = False)
-    experience = models.IntegerField(choices=Experience.choices, blank = False)
-    location = models.TextField(blank = False)
+    experience = models.CharField(choices=EXPERIENCE, blank = False, max_length=100)
+    location = models.CharField(choices=LOCATION, blank = False, max_length=100)
     password = models.TextField(blank = False)
     isAdmin = models.BooleanField(default=False)
 
