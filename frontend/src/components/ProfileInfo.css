@@ -1,15 +1,16 @@
     .ProfilePage {
-        margin: 0 10vw 0 20vw;
+        margin: -12vh 10vw 0 20vw;
         width: 60vw;
         height: auto;	
         overflow: visible;
         position: relative;
         top: 10vw;
 }
-    .ProfilePic{
+    .profilePic{
         position: relative;
         left: 0;
         top: 0;
+        width: 7vw;
         border-radius: 50%;
     }
 
@@ -67,5 +68,7 @@
 			border-bottom: 2px solid #B0B3B9;
       width: 60%;
       }
+
+      
 
   

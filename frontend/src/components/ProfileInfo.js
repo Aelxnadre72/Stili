@@ -12,6 +12,7 @@ import locationIcon from './location-icon.png';
 import phone from './phone.png';
 import experience from './experience.png';
 import age from './age.png';
+import profile from './profile2.png';
 
 export default function ProfileInfo(props) {
      const [firstName, setFirstName] = useState("undefined");
@@ -89,7 +90,7 @@ export default function ProfileInfo(props) {
      function fir() {          
           if(firstName == "undefined") {
                setFirstName(props.user.firstName);
-               return props.user.location;
+               return props.user.firstName;
           }
           else {
                return firstName;
@@ -144,9 +145,8 @@ export default function ProfileInfo(props) {
                          <TopNavbar />
                          <Navbar /> 
                          <div className="ProfilePage">
-                              <Image className="ProfilePic" src={picture}>
-                              </Image>
-                              <h3><b>MyProfile</b></h3>
+                              <img src={profile} alt="Age" class="profilePic"></img>
+                              <h3><b>{props.user.firstName} {props.user.surname}</b></h3>
                               <div className="example-text-box">
                               <Form>
                               <Form.Group size="lg" controlId="firstName">
