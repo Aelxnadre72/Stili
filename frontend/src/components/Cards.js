@@ -58,7 +58,7 @@ export default function Cards() {
   ];
 
   useEffect(() => {
-    getEvents().then(r => {
+    getEvents().then((r) => {
       const d = r;
       const dl = d.length;
       if (dl === 0) {
@@ -66,7 +66,6 @@ export default function Cards() {
       }
       setL(dl);
       setData(d);
-      console.log(dl);
     });
   }, []);
 
@@ -100,7 +99,6 @@ export default function Cards() {
   }
 
   function createEvent() {
-    console.log((l+1).toString());
     Axios({
       method: "POST",
       url: "/events/",
