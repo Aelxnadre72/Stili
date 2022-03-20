@@ -7,6 +7,9 @@ import Navbar from "./Navbar";
 import TopNavbar from "./TopNavbar";
 import Axios from "axios";
 import "./ProfileInfo.css";
+import locationIcon from "./location-icon.png";
+import phone from "./phone.png";
+import profile from "./profile2.png";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import Tooltip from "@mui/material/Tooltip";
 
@@ -99,7 +102,7 @@ export default function ProfileInfo(props) {
   function fir() {
     if (firstName == "undefined") {
       setFirstName(props.user.firstName);
-      return props.user.location;
+      return props.user.firstName;
     } else {
       return firstName;
     }
@@ -150,11 +153,12 @@ export default function ProfileInfo(props) {
             <TopNavbar />
             <Navbar />
             <div className="ProfilePage">
-              <Image className="ProfilePic" src={picture}></Image>
+              <img src={profile} className="profilePic"></img>
               {adminExist}
               <div className="example-text-box">
                 <Form>
                   <Form.Group size="lg" controlId="firstName">
+                    <span width="20%">Firstname: </span>
                     <Form.Control
                       autoFocus
                       type="firstName"
@@ -164,6 +168,7 @@ export default function ProfileInfo(props) {
                     />
                   </Form.Group>
                   <Form.Group size="lg" controlId="surname">
+                    <span width="20%">Surname: </span>
                     <Form.Control
                       type="surname"
                       placeholder={props.user.surname}
@@ -172,6 +177,7 @@ export default function ProfileInfo(props) {
                     />
                   </Form.Group>
                   <Form.Group size="lg" controlId="age">
+                    <span width="20%">Age: </span>
                     <Form.Control
                       type="age"
                       placeholder={props.user.age}
@@ -180,6 +186,7 @@ export default function ProfileInfo(props) {
                     />
                   </Form.Group>
                   <Form.Group size="lg" controlId="experience">
+                    <span width="20%">Experience: </span>
                     <Form.Select
                       aria-label="Default select example"
                       value={exp()}
@@ -190,10 +197,17 @@ export default function ProfileInfo(props) {
                       <option value="3">Veteran</option>
                     </Form.Select>
                   </Form.Group>
-                  <Form.Group size="lg" controlId="location">
+                  <Form.Group
+                    float="left"
+                    display="inline"
+                    size="lg"
+                    controlId="location"
+                  >
+                    <span width="20%">Location: </span>
                     <Form.Select
                       aria-label="Default select example"
                       value={loca()}
+                      width="70%"
                       onChange={(e) => setLocation(e.target.value)}
                     >
                       <option value="1">Trondheim</option>
@@ -228,19 +242,36 @@ export default function ProfileInfo(props) {
         <>
           <TopNavbar />
           <Navbar />
-          <div className="ProfilePage">
-            <Image className="ProfilePic" src={picture}></Image>
-            <h3>
-              <b>MyProfile</b>
-            </h3>
-            <div className="example-text-box">
-              <p>Firstname: {props.user.firstName}</p>
-              <p>Surname: {props.user.surname}</p>
-              <p>Age: {props.user.age}</p>
-              <p>Experience level: {props.user.experience}</p>
-              <p>Location: {props.user.location}</p>
-              <p>Phonenumber: {props.user.phoneNumber}</p>
-              <p>{props.user.isAdmin}</p>
+          <div className="about">
+            <h1>
+              {props.user.firstName} {props.user.surname}
+            </h1>
+
+            <div class="flex-container">
+              <div>
+                <img src={locationIcon} alt="Location" class="location"></img>
+                <p>Location:</p>
+                <br></br>
+                {props.user.location}
+              </div>
+              <div>
+                <img src={phone} alt="Phone" class="phone"></img>
+                <p>Phone:</p>
+                <br></br>
+                <p>{props.user.phoneNumber}</p>
+              </div>
+              <div>
+                <img src={experience} alt="Experience" class="experience"></img>
+                Experience:
+                <br></br>
+                {props.user.experience}
+              </div>
+              <div>
+                <img src={age} alt="Age" class="age"></img>
+                Age:
+                <br></br>
+                {props.user.age}
+              </div>
             </div>
           </div>
         </>
