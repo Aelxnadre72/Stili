@@ -53,6 +53,7 @@
    
     .editButton{
         margin: 1vh;
+        margin-top: 4vh;
     }
 
     .errormsg{
