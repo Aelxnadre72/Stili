@@ -21,6 +21,7 @@ export default function ProfileInfo(props) {
   const [location, setLocation] = useState("");
   const [text, setText] = useState("");
   const isAdmin = props.isAdmin;
+  const test = "Age      ";
 
   const adminExist = isAdmin ? (
     <div style={{ display: "flex", justifyContent: "center" }}>
@@ -158,7 +159,7 @@ export default function ProfileInfo(props) {
               <div className="example-text-box">
                 <Form>
                   <Form.Group size="lg" controlId="firstName">
-                    <span width="20%">Firstname: </span>
+                    <span width="20%" style={{marginRight: "1.1vw"}}>Firstname:   </span>
                     <Form.Control
                       autoFocus
                       type="firstName"
@@ -168,7 +169,7 @@ export default function ProfileInfo(props) {
                     />
                   </Form.Group>
                   <Form.Group size="lg" controlId="surname">
-                    <span width="20%">Surname: </span>
+                    <span width="20%" style={{marginRight: "1.7vw"}}>Surname:     </span>
                     <Form.Control
                       type="surname"
                       placeholder={props.user.surname}
@@ -177,7 +178,7 @@ export default function ProfileInfo(props) {
                     />
                   </Form.Group>
                   <Form.Group size="lg" controlId="age">
-                    <span width="20%">Age: </span>
+                    <span width="20%" style={{marginRight: "4.3vw"}}>Age: </span>
                     <Form.Control
                       type="age"
                       placeholder={props.user.age}
@@ -186,7 +187,7 @@ export default function ProfileInfo(props) {
                     />
                   </Form.Group>
                   <Form.Group size="lg" controlId="experience">
-                    <span width="20%">Experience: </span>
+                    <span width="20%" style={{marginRight: "0.8vw"}}>Experience: </span>
                     <Form.Select
                       aria-label="Default select example"
                       value={exp()}
@@ -203,7 +204,7 @@ export default function ProfileInfo(props) {
                     size="lg"
                     controlId="location"
                   >
-                    <span width="20%">Location: </span>
+                    <span width="20%" style={{marginRight: "2.1vw"}}>Location:   </span>
                     <Form.Select
                       aria-label="Default select example"
                       value={loca()}
