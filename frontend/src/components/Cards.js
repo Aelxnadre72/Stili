@@ -12,7 +12,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 
 export default function Cards() {
   const [data, setData] = useState([]);
-  let length = 0;
+  const [l, setL] = useState(0);
   const [q, setQ] = useState("");
   const [open, setOpen] = useState(false);
   const [eventName, setEventName] = useState("");
@@ -57,6 +57,19 @@ export default function Cards() {
     },
   ];
 
+  useEffect(() => {
+    getEvents().then(r => {
+      const d = r;
+      const dl = d.length;
+      if (dl === 0) {
+        return;
+      }
+      setL(dl);
+      setData(d);
+      console.log(dl);
+    });
+  }, []);
+
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -71,38 +84,28 @@ export default function Cards() {
     window.location.reload(true);
   };
 
-  useEffect(() => {
-    Axios({
-      method: "GET",
-      url: "/events/",
-      responseType: "json",
-    })
-      .then((response) => {
-        const events = response.data;
-        length = events.length;
-        if (events.length === 0) {
-          return;
-        }
-
-        if (data.length === 0) {
-          setData(events);
-        }
-      })
-      .catch((error) => {
-        if (error.response) {
-          console.log(error.response);
-          console.log(error.response.status);
-          console.log(error.response.headers);
-        }
+  async function getEvents() {
+    try {
+      const response = await Axios({
+        method: "GET",
+        url: "/events/",
+        responseType: "json",
       });
-  });
+      return response.data;
+    } catch (error) {
+      console.log(error.response);
+      console.log(error.response.status);
+      console.log(error.response.headers);
+    }
+  }
 
   function createEvent() {
+    console.log((l+1).toString());
     Axios({
       method: "POST",
       url: "/events/",
       data: {
-        eventID: (length + 1).toString(),
+        eventID: (l + 1).toString(),
         eventName: eventName,
         eventDate: eventDate,
         eventDifficulty: eventDifficulty,
@@ -242,17 +245,19 @@ export default function Cards() {
                 })
                 .map((a) => {
                   return (
-                      <li><Card
+                    <li>
+                      <Card
                         name="card-body"
                         wrapper={"card_picture_wrapper-" + a.eventDifficulty}
                         src={campus}
                         text={a.eventName}
-                        label={difficulties[a.eventDifficulty-1].label}
+                        label={difficulties[a.eventDifficulty - 1].label}
                         path=""
                         description={a.eventDescription}
                         distance={a.eventDistance + "km"}
                         size={"0/" + a.eventSize}
-                      /></li>
+                      />
+                    </li>
                   );
                 })}
             </ul>
