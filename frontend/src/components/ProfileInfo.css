@@ -54,6 +54,7 @@
     .editButton{
         margin: 1vh;
         margin-top: 4vh;
+        background-color: #fa6352;
     }
 
     .errormsg{
