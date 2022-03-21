@@ -8,7 +8,7 @@ export default function Profile(){
   const [user, setUser] = useState(null);
   const [commercialUser, setCommercialUser] = useState(null);
   let navigate = useNavigate();
-  let loc = useLocation()
+  let loc = useLocation();
   const [canEdit, setCanEdit] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
 

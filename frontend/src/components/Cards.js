@@ -245,6 +245,7 @@ export default function Cards() {
                   return (
                     <li>
                       <Card
+                        eventID={a.eventID}
                         name="card-body"
                         wrapper={"card_picture_wrapper-" + a.eventDifficulty}
                         src={campus}
