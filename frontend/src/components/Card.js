@@ -54,6 +54,20 @@ export default function Card(props) {
     },
   ];
 
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const handleSubmit = () => {
+    setOpen(false);
+    editEvent();
+    window.location.reload(true);
+  };
+  
   const adminExist = isAdmin === "true" ? (
     <div>
     <Button
@@ -158,20 +172,6 @@ export default function Card(props) {
   ) : (
     null
   );
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-
-  const handleSubmit = () => {
-    setOpen(false);
-    editEvent();
-    window.location.reload(true);
-  };
 
   function editEvent() {
     Axios({
