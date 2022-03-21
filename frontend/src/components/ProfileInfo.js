@@ -20,9 +20,9 @@ export default function ProfileInfo(props) {
   const [experience, setExperience] = useState("");
   const [location, setLocation] = useState("");
   const [text, setText] = useState("");
-  const isAdmin = props.isAdmin;
+  const isAdmin = localStorage.getItem("admin");
 
-  const adminExist = isAdmin ? (
+  const adminExist = isAdmin === "true" ? (
     <div style={{ display: "flex", justifyContent: "center" }}>
       <h3>
         <b>{firstName}</b>

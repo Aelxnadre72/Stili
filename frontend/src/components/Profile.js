@@ -8,9 +8,8 @@ export default function Profile(){
   const [user, setUser] = useState(null);
   const [commercialUser, setCommercialUser] = useState(null);
   let navigate = useNavigate();
-  let loc = useLocation()
+  let loc = useLocation();
   const [canEdit, setCanEdit] = useState(false);
-  const [isAdmin, setIsAdmin] = useState(false);
 
     useEffect(() => {
         if (localStorage.getItem("id") == null) { // can not see profiles if not logged in
@@ -37,7 +36,6 @@ export default function Profile(){
     const  fetchUserData = (profileNumber) => {
         getUser().then(response => {
             setUser(response.find(o => o.phoneNumber === profileNumber));
-            setIsAdmin(response.find(o => o.phoneNumber === profileNumber).isAdmin);
         });
     }
 
@@ -80,6 +78,6 @@ export default function Profile(){
       }
 
     return(
-        <ProfileInfo canEdit = {canEdit} user = {user} commercialUser = {commercialUser} isAdmin={isAdmin}/>
+        <ProfileInfo canEdit = {canEdit} user = {user} commercialUser = {commercialUser}/>
     );
 }
