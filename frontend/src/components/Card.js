@@ -18,6 +18,7 @@ export default function Card(props) {
   const [eventDistance, setEventDistance] = useState("");
   const [eventDifficulty, setEventDifficulty] = useState("1");
   const [eventLocation, setEventLocation] = useState("1");
+  const isAdmin = localStorage.getItem("admin");
 
   const locations = [
     {
@@ -53,57 +54,9 @@ export default function Card(props) {
     },
   ];
 
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-
-  const handleSubmit = () => {
-    setOpen(false);
-    editEvent();
-    window.location.reload(true);
-  };
-
-  function editEvent() {
-    Axios({
-      method: "PUT",
-      url: "/events/" + props.eventID + "/",
-      data: {
-        eventID: props.eventID,
-        eventName: eventName,
-        eventDate: eventDate,
-        eventDifficulty: eventDifficulty,
-        eventDescription: eventDescription,
-        eventLocation: eventLocation,
-        eventDistance: eventDistance,
-        organizer: null,
-        eventSize: eventSize,
-      },
-    }).then((response) => {
-      console.log(response);
-    })
-  };
-
-  return (
-    <div className={props.name}>
-      <li className="card">
-        <Link
-          className="card_link"
-          style={{ textDecoration: "none" }}
-          to={props.path}
-        >
-          <figure className={props.wrapper} data-category={props.label}>
-            <img src={props.src} alt="test" className="card_image"></img>
-          </figure>
-          <div className="card_info">
-            <p className="card_title">{props.text}</p>
-            <p className="card_description">{props.description}</p>
-            <p className="card_description">{props.distance}</p>
-            <p className="card_size">{props.size}</p>
-            <Button
+  const adminExist = isAdmin === "true" ? (
+    <div>
+    <Button
               id="button"
               variant="contained"
               size="small"
@@ -201,7 +154,62 @@ export default function Card(props) {
                 <Button onClick={handleClose}>Cancel</Button>
                 <Button onClick={handleSubmit}>Submit</Button>
               </DialogActions>
-            </Dialog>
+            </Dialog></div>
+  ) : (
+    null
+  );
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const handleSubmit = () => {
+    setOpen(false);
+    editEvent();
+    window.location.reload(true);
+  };
+
+  function editEvent() {
+    Axios({
+      method: "PUT",
+      url: "/events/" + props.eventID + "/",
+      data: {
+        eventID: props.eventID,
+        eventName: eventName,
+        eventDate: eventDate,
+        eventDifficulty: eventDifficulty,
+        eventDescription: eventDescription,
+        eventLocation: eventLocation,
+        eventDistance: eventDistance,
+        organizer: null,
+        eventSize: eventSize,
+      },
+    }).then((response) => {
+      console.log(response);
+    })
+  };
+
+  return (
+    <div className={props.name}>
+      <li className="card">
+        <Link
+          className="card_link"
+          style={{ textDecoration: "none" }}
+          to={props.path}
+        >
+          <figure className={props.wrapper} data-category={props.label}>
+            <img src={props.src} alt="test" className="card_image"></img>
+          </figure>
+          <div className="card_info">
+            <p className="card_title">{props.text}</p>
+            <p className="card_description">{props.description}</p>
+            <p className="card_description">{props.distance}</p>
+            <p className="card_size">{props.size}</p>
+            {adminExist}
           </div>
         </Link>
       </li>
