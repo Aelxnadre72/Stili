@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./Navbar.css";
-import avatar from './img_avatar.png';
+import mountain from './mountain-icon.webp';
 import logout from './logout.png';
 
 export default function Navbar(props) {
@@ -21,7 +21,7 @@ export default function Navbar(props) {
           <nav className="navbar">
             <ul
             >
-              <img src={avatar} alt="Avatar" class="avatar"></img>
+              <img src={mountain} alt="Mountain" class="mountain"></img>
               <li className="navbar-item">
                 <Link to="/profile"
                   state={localStorage.getItem("id")} // profilenumber for my own profile, otherwise a phone number from database connected to the profilepic that is clicked on
@@ -31,7 +31,7 @@ export default function Navbar(props) {
               </li>
               <li className="navbar-item">
                 <Link
-                  to="/salads"
+                  to="/home"
                   className="navbar-links"
                 >
                   Explore
@@ -43,14 +43,6 @@ export default function Navbar(props) {
                   className="navbar-links"
                 >
                   My trips
-                </Link>
-              </li>
-              <li className="navbar-item">
-                <Link
-                  to="/about"
-                  className="navbar-links"
-                >
-                  Settings
                 </Link>
               </li>
               <li className="navbar-item">
