@@ -1,9 +1,9 @@
 from django.shortcuts import render
-from .serializer import EventSerializer, UserSerializer, CommercialUserSerializer, EventParticipationSerializer
+from .serializer import EventSerializer, UserSerializer, CommercialUserSerializer
 from rest_framework import viewsets, status, permissions
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
-from .models import User, Event, CommercialUser, EventParticipation
+from .models import User, Event, CommercialUser
 
 # Create your views here.
 class UserView(viewsets.ModelViewSet):
@@ -23,12 +23,6 @@ class CommercialUserView(viewsets.ModelViewSet):
 
     def get_serializer_class(self):
         return CommercialUserSerializer
-        
-class EventParticipationView(viewsets.ModelViewSet):
-    queryset = EventParticipation.objects.all()
-
-    def get_serializer_class(self):
-        return EventParticipationSerializer
 
 def front(request):
     context = {}
@@ -93,19 +87,3 @@ def event_delete(request, pk):
     if request.method == 'DELETE':
         event.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
-
-@api_view(['GET', 'POST'])
-@permission_classes((permissions.AllowAny,))
-def eventParticipation(request):
-    if request.method == 'GET':
-        eventParticipation = EventParticipation.objects.all()
-        serializer = EventParticipationSerializer(eventParticipation, many=True)
-        return Response(serializer.data)
-
-    elif request.method == 'POST':
-        serializer = EventParticipationSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(status=status.HTTP_201_CREATED)
-
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

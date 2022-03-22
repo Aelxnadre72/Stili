@@ -1,13 +1,58 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
+import { useState, useEffect } from "react";
+import Axios from 'axios';
 
 
 
 export default function Card(props) {
-  function saveParticipantToDB(){
 
+
+async function getParticipationID() {
+  try {
+    const response = await Axios({
+        method: "GET",
+        url: "/eventParticipation/",
+        responseType: "json",
+      })
+      return response.data;
+    }
+    catch(error){
+      console.log(error.response);
+      console.log(error.response.status);
+      console.log(error.response.headers);
+    }
   }
+
+  function sow2() {
+    const participant = getParticipationID()
+    setParticipationID(participant.length + 1)
+  }
+
+function postToEventParticipationDB() {
+      Axios({
+        method: "POST",
+        url: "/eventParticipation/",
+        data: {
+          participationID: participationID,
+          eventID: eventID,
+          phoneNumber: phoneNumber,
+          firstName: firstName,
+          surName: surName,
+        },
+      })
+      .then((response) => {
+        console.log(response);
+      });
+}
+
+function Clicked() {
+  sow()
+  sow2()
+  postToEventParticipationDB()
+}
+
   return (
     <div className={props.name}>
       <li className="card">
@@ -23,6 +68,7 @@ export default function Card(props) {
               size="lg"
               type="button"
               className="Button"
+              onClick= {Clicked}
             >
               Join
             </Button>

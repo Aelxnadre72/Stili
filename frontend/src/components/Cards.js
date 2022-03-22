@@ -67,6 +67,7 @@ export default function Cards() {
                         label={a.eventDifficulty}
                         path=""
                         size={"0/" + a.eventSize}
+                        id = {a.eventID}
                       />
                     </div>
                   );

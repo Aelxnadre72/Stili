@@ -49,6 +49,7 @@ class Event(models.Model):
     eventLocation = models.CharField(max_length=100)
     eventSize = models.IntegerField(blank = False, default=0)
     hours = models.IntegerField()
+    eventParticipants = models.TextField(default="")
 
 class CommercialUser(models.Model):
 
@@ -61,10 +62,3 @@ class CommercialUser(models.Model):
     def __str__(self):
         return self.orgName
     
-class EventParticipation(models.Model):
-
-    participationID = models.CharField(max_length=1, primary_key=True)
-    eventID = models.CharField(max_length=1)
-    phoneNumber = models.TextField(max_length=100, blank = False, unique=True)
-    firstName = models.CharField(max_length=100, blank = False)
-    surName = models.CharField(max_length=100, blank = False)
