@@ -2,34 +2,35 @@ import React, { useState, useEffect } from "react";
 import Axios from 'axios';
 import { useNavigate, useLocation } from "react-router-dom";
 import ProfileInfo from "./ProfileInfo";
+import "./Profile.css";
 
 export default function Profile(){
   const [user, setUser] = useState(null);
   const [commercialUser, setCommercialUser] = useState(null);
   let navigate = useNavigate();
-  let loc = useLocation()
+  let loc = useLocation();
   const [canEdit, setCanEdit] = useState(false);
 
     useEffect(() => {
-        if (localStorage.getItem("id") == null || loc.state === null) { // can not see profiles if not logged in or from link
+        if (localStorage.getItem("id") == null) { // can not see profiles if not logged in
             navigate('/Home');
             }
-            if (localStorage.getItem("id").length == 9) {
-              const profileNumber = localStorage.getItem("id");
-              fetchCommericalData(profileNumber);
 
-            } else {
-              const profileID = loc.state; // the <link> from the previous page has to send the phonenumber to this page, sends 1 if it is the "my profile" link in Navbar.js
-              var profileNumber = "";
-              if (profileID === "1") {
-                  profileNumber = localStorage.getItem("id");
-                  setCanEdit(true);
-              }
-              else {
-                  profileNumber = profileID;
-              }
-              fetchUserData(profileNumber);
-            }
+        const profileID = loc.state; // the <link> from the previous page has to send the phonenumber to this page
+        
+        if (profileID == null) {
+          setCanEdit(true);
+          fetchUserData(localStorage.getItem("id"));
+        }
+        else if (profileID.length === 9) {
+          fetchCommericalData(profileID);
+        } 
+        else if (profileID.length === 8) {
+          if (profileID === localStorage.getItem("id")) {
+              setCanEdit(true);
+          }
+          fetchUserData(profileID);
+        }
     }, []);
 
     const  fetchUserData = (profileNumber) => {

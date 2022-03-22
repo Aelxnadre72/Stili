@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
 from stili import views
-from stili.views import front, user, event, event_delete, commercialUser
+from stili.views import front, user, update_User, event, event_update, event_delete, commercialUser
 
 router = routers.DefaultRouter()
 router.register(r'users', views.UserView, 'users')
@@ -32,7 +32,9 @@ urlpatterns = [
     path('home/', front, name="home"),
     path('profile/', front, name="profile"),
     path('users/', user, name="user"),
+    path("users/<int:phoneNumber>/", update_User, name="updateUser"),
     path('events/', event, name="event"),
+    path('events/<int:eventID>/', event_update, name='eventUpdate'),
     path('events/<int:pk>/', event_delete, name='delete'),
     path('commercialRegister/', front, name="commercialRegister"),
     path('commercialogin/', front, name="commercialogin"),

@@ -11,12 +11,6 @@ export default function Register() {
   const [location, setLocation] = useState("1");
   const [password, setPassword] = useState("");
   const [text, setText] = useState("");
-  const [formUser, setFormUser] = useState({
-    orgName: "",
-    orgNumber: "",
-    location: "",
-    password: "",
-  });
   let navigate = useNavigate();
 
   useEffect(() => {
@@ -30,9 +24,9 @@ export default function Register() {
       orgName.length < 101 &&
       location.length < 101 &&
       password.length < 101 &&
-      orgName.length != 0 &&
-      location.length != 0 &&
-      password.length != 0 &&
+      orgName.length !== 0 &&
+      location.length !== 0 &&
+      password.length !== 0 &&
       orgNumber.length === 9 &&
       !isNaN(orgNumber) &&
       (location === "1" ||
@@ -65,13 +59,6 @@ export default function Register() {
       else {
         changeText("The organization number is already in use.")
       }
-    });
-
-    setFormUser({
-      orgName: "",
-      orgNumber: "",
-      location: "",
-      password: "",
     });
   }
 
@@ -120,7 +107,6 @@ export default function Register() {
             </Form.Group>
             <Form.Group size="lg" controlId="orgNumber">
               <Form.Control
-                autoFocus
                 type="orgNumber"
                 placeholder="Organization Number"
                 value={orgNumber}

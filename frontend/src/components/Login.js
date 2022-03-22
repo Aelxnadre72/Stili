@@ -32,6 +32,7 @@ export default function Login() {
         if(currentUser.password === password) {
           changeText("Logged in succesfully.");
           localStorage.setItem("id", currentUser.phoneNumber);
+          localStorage.setItem("admin", currentUser.isAdmin)
           navigate('/home');
         }
         else {
