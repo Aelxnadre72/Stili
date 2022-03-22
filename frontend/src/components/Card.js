@@ -67,111 +67,111 @@ export default function Card(props) {
     editEvent();
     window.location.reload(true);
   };
-  
-  const adminExist = isAdmin === "true" ? (
-    <div>
-    <Button
-              id="button"
-              variant="contained"
-              size="small"
-              color="success"
-              onClick={handleClickOpen}
-            >
-              Edit event
-            </Button>
-            <Dialog open={open} onClose={handleClose}>
-              <DialogTitle>Event</DialogTitle>
-              <DialogContent>
-                <TextField
-                  autoFocus
-                  margin="normal"
-                  label="Name"
-                  type="text"
-                  fullWidth
-                  variant="standard"
-                  onChange={(n) => setEventName(n.target.value)}
-                />
-                <TextField
-                  margin="normal"
-                  sx={{ mr: 7 }}
-                  id="date"
-                  type="date"
-                  variant="standard"
-                  onChange={(d) => setEventDate(d.target.value)}
-                />
-                <TextField
-                  select
-                  size="small"
-                  label="Location"
-                  margin="normal"
-                  sx={{ mr: 7 }}
-                  value={eventLocation}
-                  onChange={(l) => setEventLocation(l.target.value)}
-                  SelectProps={{
-                    native: true,
-                  }}
-                >
-                  {locations.map((option) => (
-                    <option key={option.value} value={option.value}>
-                      {option.label}
-                    </option>
-                  ))}
-                </TextField>
-                <TextField
-                  select
-                  size="small"
-                  label="Difficulty"
-                  margin="normal"
-                  value={eventDifficulty}
-                  onChange={(e) => setEventDifficulty(e.target.value)}
-                  SelectProps={{
-                    native: true,
-                  }}
-                >
-                  {difficulties.map((option) => (
-                    <option key={option.value} value={option.value}>
-                      {option.label}
-                    </option>
-                  ))}
-                </TextField>
-                <TextField
-                  margin="normal"
-                  sx={{ mb: 2, mt: -0.5 }}
-                  label="Distance"
-                  type="number"
-                  fullWidth
-                  variant="standard"
-                  onChange={(d) => setEventDistance(d.target.value)}
-                />
 
-                <TextField
-                  margin="normal"
-                  label="Description"
-                  style={{ width: 552 }}
-                  multiline
-                  type="text"
-                  maxRows={4}
-                  variant="outlined"
-                  onChange={(d) => setEventDescription(d.target.value)}
-                />
-                <TextField
-                  margin="normal"
-                  sx={{ mt: -0.5 }}
-                  label="Size"
-                  type="number"
-                  fullWidth
-                  variant="standard"
-                  onChange={(s) => setEventSize(s.target.value)}
-                />
-              </DialogContent>
-              <DialogActions>
-                <Button onClick={handleClose}>Cancel</Button>
-                <Button onClick={handleSubmit}>Submit</Button>
-              </DialogActions>
-            </Dialog></div>
-  ) : (
-    null
-  );
+  const adminExist =
+    isAdmin === "true" ? (
+      <div>
+        <Button
+          id="button"
+          variant="contained"
+          size="small"
+          color="success"
+          onClick={handleClickOpen}
+        >
+          Edit event
+        </Button>
+        <Dialog open={open} onClose={handleClose}>
+          <DialogTitle>Event</DialogTitle>
+          <DialogContent>
+            <TextField
+              autoFocus
+              margin="normal"
+              label="Name"
+              type="text"
+              fullWidth
+              variant="standard"
+              onChange={(n) => setEventName(n.target.value)}
+            />
+            <TextField
+              margin="normal"
+              sx={{ mr: 7 }}
+              id="date"
+              type="date"
+              variant="standard"
+              onChange={(d) => setEventDate(d.target.value)}
+            />
+            <TextField
+              select
+              size="small"
+              label="Location"
+              margin="normal"
+              sx={{ mr: 7 }}
+              value={eventLocation}
+              onChange={(l) => setEventLocation(l.target.value)}
+              SelectProps={{
+                native: true,
+              }}
+            >
+              {locations.map((option) => (
+                <option key={option.value} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
+            </TextField>
+            <TextField
+              select
+              size="small"
+              label="Difficulty"
+              margin="normal"
+              value={eventDifficulty}
+              onChange={(e) => setEventDifficulty(e.target.value)}
+              SelectProps={{
+                native: true,
+              }}
+            >
+              {difficulties.map((option) => (
+                <option key={option.value} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
+            </TextField>
+            <TextField
+              margin="normal"
+              sx={{ mb: 2, mt: -0.5 }}
+              label="Distance"
+              type="number"
+              fullWidth
+              variant="standard"
+              onChange={(d) => setEventDistance(d.target.value)}
+            />
+
+            <TextField
+              margin="normal"
+              label="Description"
+              style={{ width: 552 }}
+              multiline
+              type="text"
+              maxRows={4}
+              variant="outlined"
+              onChange={(d) => setEventDescription(d.target.value)}
+            />
+            <TextField
+              margin="normal"
+              sx={{ mt: -0.5 }}
+              label="Size"
+              type="number"
+              fullWidth
+              variant="standard"
+              onChange={(s) => setEventSize(s.target.value)}
+            />
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleClose}>Cancel</Button>
+            <Button onClick={handleSubmit}>Submit</Button>
+          </DialogActions>
+        </Dialog>
+      </div>
+    ) : null;
 
   function editEvent() {
     Axios({
@@ -190,8 +190,8 @@ export default function Card(props) {
       },
     }).then((response) => {
       console.log(response);
-    })
-  };
+    });
+  }
 
   return (
     <div className={props.name}>
@@ -206,6 +206,7 @@ export default function Card(props) {
           </figure>
           <div className="card_info">
             <p className="card_title">{props.text}</p>
+            <p className="card_description">{props.location}</p>
             <p className="card_description">{props.description}</p>
             <p className="card_description">{props.distance}</p>
             <p className="card_size">{props.size}</p>

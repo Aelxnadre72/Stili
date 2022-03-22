@@ -250,6 +250,7 @@ export default function Cards() {
                         wrapper={"card_picture_wrapper-" + a.eventDifficulty}
                         src={campus}
                         text={a.eventName}
+                        location={locations[a.eventLocation - 1].label}
                         label={difficulties[a.eventDifficulty - 1].label}
                         path=""
                         description={a.eventDescription}
