@@ -18,6 +18,7 @@ export default function Card(props) {
   const [eventDistance, setEventDistance] = useState("");
   const [eventDifficulty, setEventDifficulty] = useState("1");
   const [eventLocation, setEventLocation] = useState("1");
+  const [eventParticipants, setEventParticipants] = useState("");
   const isAdmin = localStorage.getItem("admin");
 
   const locations = [
@@ -187,17 +188,39 @@ export default function Card(props) {
         eventDistance: eventDistance,
         organizer: null,
         eventSize: eventSize,
+        eventParticipants: eventParticipants
       },
     }).then((response) => {
       console.log(response);
     })
   };
 
-  async function getParticipationID() {
+  function joinEvent() {
+    Axios({
+      method: "PUT",
+      url: "/events/" + props.eventID + "/",
+      data: {
+        eventID: props.eventID,
+        eventName: props.eventName,
+        eventDate: props.eventDate,
+        eventDifficulty: props.eventDifficulty,
+        eventDescription: props.eventDescription,
+        eventLocation: props.eventLocation,
+        eventDistance: props.eventDistance,
+        organizer: null,
+        eventSize: props.eventSize,
+        eventParticipants: eventParticipants
+      },
+    }).then((response) => {
+      console.log(response);
+    })
+  };
+
+  async function getEvent() {
     try {
       const response = await Axios({
           method: "GET",
-          url: "/eventParticipation/",
+          url: "/events/",
           responseType: "json",
         })
         return response.data;
@@ -209,32 +232,35 @@ export default function Card(props) {
       }
     }
   
-    function sow2() {
-      const participant = getParticipationID()
-      setParticipationID(participant.length + 1)
-    }
-  
-  function postToEventParticipationDB() {
-        Axios({
-          method: "POST",
-          url: "/eventParticipation/",
-          data: {
-            participationID: participationID,
-            eventID: eventID,
-            phoneNumber: phoneNumber,
-            firstName: firstName,
-            surName: surName,
-          },
-        })
-        .then((response) => {
-          console.log(response);
-        });
-  }
-  
   function Clicked() {
-    sow()
-    sow2()
-    postToEventParticipationDB()
+    getEvent().then(response => {
+      const event = response[props.eventID-1];
+      const length = event.eventParticipants.length === 0;
+      var participants = "";
+      if (length) {
+        participants = event.eventParticipants;
+      }
+      else {
+        participants = "," + event.eventParticipants;
+      }
+      Axios({
+        method: "PUT",
+        url: "/events/" + props.eventID + "/",
+        data: {
+          eventID: event.eventID,
+          eventName: event.eventName,
+          eventDate: event.eventDate,
+          eventDifficulty: event.eventDifficulty,
+          eventDescription: event.eventDescription,
+          eventLocation: event.eventLocation,
+          eventDistance: event.eventDistance,
+          organizer: null,
+          eventSize: event.eventSize,
+          eventParticipants: participants + localStorage.getItem("id")
+        },
+      }).then((response) => {
+      })
+    });
   }
 
   return (
