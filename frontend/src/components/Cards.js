@@ -257,8 +257,7 @@ export default function Cards() {
                         path=""
                         description={a.eventDescription}
                         distance={a.eventDistance + "km"}
-                        size={"0/" + a.eventSize}
-                        id = {a.eventID}
+                        size={a.eventSize}
                       />
                     </li>
                   );
