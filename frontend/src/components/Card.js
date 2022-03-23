@@ -68,6 +68,10 @@ export default function Card(props) {
         setData(response);
       });
     }
+
+    if (eventParticipants === "" && data !== null) {
+      setEventParticipants(data[props.eventID - 1].eventParticipants);
+    }
   }
 
   const handleClickOpen = () => {
@@ -79,7 +83,6 @@ export default function Card(props) {
     setEventDescription(data[props.eventID - 1].eventDescription);
     setEventSize(data[props.eventID - 1].eventSize);
     setOrganizer(data[props.eventID - 1].organizer);
-    setEventParticipants(data[props.eventID - 1].eventParticipants);
     setOpen(true);
   };
 
@@ -148,6 +151,7 @@ export default function Card(props) {
     }).then((response) => {
       console.log(response);
     });
+    window.location.reload(true);
   }
 
   const adminExist =
