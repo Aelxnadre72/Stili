@@ -100,6 +100,11 @@ export default function Cards() {
   }
 
   function createEvent() {
+    var number = "";
+    var length = pNumber.length;
+    if (length === 8) {
+      number = pNumber;
+    }
     Axios({
       method: "POST",
       url: "/events/",
@@ -113,7 +118,7 @@ export default function Cards() {
         eventSize: eventSize,
         eventDistance: eventDistance,
         organizer: pNumber,
-        eventParticipants: pNumber,
+        eventParticipants: number,
       },
     });
   }

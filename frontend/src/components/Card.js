@@ -167,15 +167,7 @@ export default function Card(props) {
           >
             Edit event
           </Button>
-          <Button
-            id="jbutton"
-            variant="contained"
-            size="small"
-            color="success"
-            onClick={joinEvent}
-          >
-            Join
-          </Button>
+          {checkButton}
         </div>
         <Dialog open={open} onClose={handleClose}>
           <DialogTitle>Event</DialogTitle>
@@ -276,7 +268,7 @@ export default function Card(props) {
     ) : null;
 
   const checkButton =
-    isAdmin === "true" ? null : (
+    isAdmin === "true" || eventParticipants.includes(phoneNumber) || phoneNumber.length === 9 ? null : (
       <div>
         <Button
           id="jbutton"
