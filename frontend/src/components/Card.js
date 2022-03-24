@@ -69,20 +69,20 @@ export default function Card(props) {
       });
     }
 
-    if (eventParticipants === "" && data !== null) {
+    if (data !== null) {
+      setEventName(data[props.eventID - 1].eventName);
+      setEventDate(data[props.eventID - 1].eventDate);
+      setEventDifficulty(data[props.eventID - 1].eventDifficulty);
+      setEventLocation(data[props.eventID - 1].eventLocation);
+      setEventDistance(data[props.eventID - 1].eventDistance);
+      setEventDescription(data[props.eventID - 1].eventDescription);
+      setEventSize(data[props.eventID - 1].eventSize);
+      setOrganizer(data[props.eventID - 1].organizer);
       setEventParticipants(data[props.eventID - 1].eventParticipants);
     }
   }
 
   const handleClickOpen = () => {
-    setEventName(data[props.eventID - 1].eventName);
-    setEventDate(data[props.eventID - 1].eventDate);
-    setEventDifficulty(data[props.eventID - 1].eventDifficulty);
-    setEventLocation(data[props.eventID - 1].eventLocation);
-    setEventDistance(data[props.eventID - 1].eventDistance);
-    setEventDescription(data[props.eventID - 1].eventDescription);
-    setEventSize(data[props.eventID - 1].eventSize);
-    setOrganizer(data[props.eventID - 1].organizer);
     setOpen(true);
   };
 
@@ -129,7 +129,7 @@ export default function Card(props) {
   }
 
   function joinEvent() {
-    var numbers = data[props.eventID - 1].eventParticipants;
+    var numbers = eventParticipants;
     if (!numbers.includes(phoneNumber)) {
       numbers = numbers + "," + phoneNumber;
     }
@@ -138,14 +138,14 @@ export default function Card(props) {
       url: "/events/" + props.eventID + "/",
       data: {
         eventID: props.eventID,
-        eventName: data[props.eventID - 1].eventName,
-        eventDate: data[props.eventID - 1].eventDate,
-        eventDifficulty: data[props.eventID - 1].eventDifficulty,
-        eventDescription: data[props.eventID - 1].eventDescription,
-        eventLocation: data[props.eventID - 1].eventLocation,
-        eventSize: data[props.eventID - 1].eventSize,
-        eventDistance: data[props.eventID - 1].eventDistance,
-        organizer: data[props.eventID - 1].organizer,
+        eventName: eventName,
+        eventDate: eventDate,
+        eventDifficulty: eventDifficulty,
+        eventDescription: eventDescription,
+        eventLocation: eventLocation,
+        eventSize: eventSize,
+        eventDistance: eventDistance,
+        organizer: organizer,
         eventParticipants: numbers,
       },
     }).then((response) => {
