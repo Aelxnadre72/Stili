@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Cards.css";
 import Axios from "axios";
 import { Link } from "react-router-dom";
@@ -11,14 +11,18 @@ import DialogTitle from "@mui/material/DialogTitle";
 
 export default function Card(props) {
   const [open, setOpen] = useState(false);
+  const [data, setData] = useState(null);
   const [eventName, setEventName] = useState("");
   const [eventDate, setEventDate] = useState("");
   const [eventDescription, setEventDescription] = useState("");
   const [eventSize, setEventSize] = useState("");
   const [eventDistance, setEventDistance] = useState("");
   const [eventDifficulty, setEventDifficulty] = useState("1");
+  const [organizer, setOrganizer] = useState("");
   const [eventLocation, setEventLocation] = useState("1");
+  const [eventParticipants, setEventParticipants] = useState("");
   const isAdmin = localStorage.getItem("admin");
+  const phoneNumber = localStorage.getItem("id");
 
   const locations = [
     {
@@ -54,6 +58,30 @@ export default function Card(props) {
     },
   ];
 
+  useEffect(() => {
+    download();
+  }, [data]);
+
+  function download() {
+    if (data === null) {
+      getEvent().then((response) => {
+        setData(response);
+      });
+    }
+
+    if (data !== null) {
+      setEventName(data[props.eventID - 1].eventName);
+      setEventDate(data[props.eventID - 1].eventDate);
+      setEventDifficulty(data[props.eventID - 1].eventDifficulty);
+      setEventLocation(data[props.eventID - 1].eventLocation);
+      setEventDistance(data[props.eventID - 1].eventDistance);
+      setEventDescription(data[props.eventID - 1].eventDescription);
+      setEventSize(data[props.eventID - 1].eventSize);
+      setOrganizer(data[props.eventID - 1].organizer);
+      setEventParticipants(data[props.eventID - 1].eventParticipants);
+    }
+  }
+
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -68,18 +96,87 @@ export default function Card(props) {
     window.location.reload(true);
   };
 
+  async function getEvent() {
+    try {
+      const response = await Axios({
+        method: "GET",
+        url: "/events/",
+        responseType: "json",
+      });
+      return response.data;
+    } catch (error) {}
+  }
+
+  function editEvent() {
+    Axios({
+      method: "PUT",
+      url: "/events/" + props.eventID + "/",
+      data: {
+        eventID: props.eventID,
+        eventName: eventName,
+        eventDate: eventDate,
+        eventDifficulty: eventDifficulty,
+        eventDescription: eventDescription,
+        eventLocation: eventLocation,
+        eventSize: eventSize,
+        eventDistance: eventDistance,
+        organizer: organizer,
+        eventParticipants: eventParticipants,
+      },
+    }).then((response) => {
+      console.log(response);
+    });
+  }
+
+  function joinEvent() {
+    var numbers = eventParticipants;
+    if (!numbers.includes(phoneNumber)) {
+      numbers = numbers + "," + phoneNumber;
+    }
+    Axios({
+      method: "PUT",
+      url: "/events/" + props.eventID + "/",
+      data: {
+        eventID: props.eventID,
+        eventName: eventName,
+        eventDate: eventDate,
+        eventDifficulty: eventDifficulty,
+        eventDescription: eventDescription,
+        eventLocation: eventLocation,
+        eventSize: eventSize,
+        eventDistance: eventDistance,
+        organizer: organizer,
+        eventParticipants: numbers,
+      },
+    }).then((response) => {
+      console.log(response);
+    });
+    window.location.reload(true);
+  }
+
   const adminExist =
     isAdmin === "true" ? (
       <div>
-        <Button
-          id="button"
-          variant="contained"
-          size="small"
-          color="success"
-          onClick={handleClickOpen}
-        >
-          Edit event
-        </Button>
+        <div style={{ display: "flex", justifyContent: "space-between" }}>
+          <Button
+            id="button"
+            variant="contained"
+            size="small"
+            color="info"
+            onClick={handleClickOpen}
+          >
+            Edit event
+          </Button>
+          <Button
+            id="jbutton"
+            variant="contained"
+            size="small"
+            color="success"
+            onClick={joinEvent}
+          >
+            Join
+          </Button>
+        </div>
         <Dialog open={open} onClose={handleClose}>
           <DialogTitle>Event</DialogTitle>
           <DialogContent>
@@ -90,6 +187,7 @@ export default function Card(props) {
               type="text"
               fullWidth
               variant="standard"
+              value={eventName}
               onChange={(n) => setEventName(n.target.value)}
             />
             <TextField
@@ -98,6 +196,7 @@ export default function Card(props) {
               id="date"
               type="date"
               variant="standard"
+              value={eventDate.slice(0, 10)}
               onChange={(d) => setEventDate(d.target.value)}
             />
             <TextField
@@ -142,6 +241,7 @@ export default function Card(props) {
               type="number"
               fullWidth
               variant="standard"
+              value={eventDistance}
               onChange={(d) => setEventDistance(d.target.value)}
             />
 
@@ -153,6 +253,7 @@ export default function Card(props) {
               type="text"
               maxRows={4}
               variant="outlined"
+              value={eventDescription}
               onChange={(d) => setEventDescription(d.target.value)}
             />
             <TextField
@@ -162,6 +263,7 @@ export default function Card(props) {
               type="number"
               fullWidth
               variant="standard"
+              value={eventSize}
               onChange={(s) => setEventSize(s.target.value)}
             />
           </DialogContent>
@@ -173,25 +275,20 @@ export default function Card(props) {
       </div>
     ) : null;
 
-  function editEvent() {
-    Axios({
-      method: "PUT",
-      url: "/events/" + props.eventID + "/",
-      data: {
-        eventID: props.eventID,
-        eventName: eventName,
-        eventDate: eventDate,
-        eventDifficulty: eventDifficulty,
-        eventDescription: eventDescription,
-        eventLocation: eventLocation,
-        eventDistance: eventDistance,
-        organizer: null,
-        eventSize: eventSize,
-      },
-    }).then((response) => {
-      console.log(response);
-    });
-  }
+  const checkButton =
+    isAdmin === "true" ? null : (
+      <div>
+        <Button
+          id="jbutton"
+          variant="contained"
+          size="small"
+          color="success"
+          onClick={joinEvent}
+        >
+          Join
+        </Button>
+      </div>
+    );
 
   return (
     <div className={props.name}>
@@ -209,8 +306,13 @@ export default function Card(props) {
             <p className="card_description">{props.location}</p>
             <p className="card_description">{props.description}</p>
             <p className="card_description">{props.distance}</p>
-            <p className="card_size">{props.size}</p>
+            <p className="card_size">
+              {eventParticipants.split(",").length + "/" + props.size}
+            </p>
             {adminExist}
+            <div style={{ display: "flex", justifyContent: "flex-end" }}>
+              {checkButton}
+            </div>
           </div>
         </Link>
       </li>

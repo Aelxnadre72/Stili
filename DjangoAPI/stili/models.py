@@ -56,6 +56,7 @@ class Event(models.Model):
     eventDistance = models.IntegerField()
     organizer = models.ForeignKey(User, blank=True, null=True, on_delete=models.CASCADE)
     eventSize = models.IntegerField(blank = False, default=0)
+    eventParticipants = models.TextField(default="")
 
 class CommercialUser(models.Model):
 

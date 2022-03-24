@@ -22,6 +22,7 @@ export default function Cards() {
   const [eventDistance, setEventDistance] = useState("");
   const [eventDifficulty, setEventDifficulty] = useState("1");
   const [eventLocation, setEventLocation] = useState("1");
+  const pNumber = localStorage.getItem("id");
 
   const locations = [
     {
@@ -109,9 +110,10 @@ export default function Cards() {
         eventDifficulty: eventDifficulty,
         eventDescription: eventDescription,
         eventLocation: eventLocation,
-        eventDistance: eventDistance,
-        organizer: null,
         eventSize: eventSize,
+        eventDistance: eventDistance,
+        organizer: pNumber,
+        eventParticipants: pNumber,
       },
     });
   }
@@ -255,7 +257,7 @@ export default function Cards() {
                         path=""
                         description={a.eventDescription}
                         distance={a.eventDistance + "km"}
-                        size={"0/" + a.eventSize}
+                        size={a.eventSize}
                       />
                     </li>
                   );
