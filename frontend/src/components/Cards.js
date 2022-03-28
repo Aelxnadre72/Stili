@@ -15,8 +15,8 @@ import DialogTitle from "@mui/material/DialogTitle";
 
 export default function Cards(props) {
   const [data, setData] = useState([]);
-  const [l, setL] = useState(0);
-  const [q, setQ] = useState("");
+  const [highestID, setHighestID] = useState(0);
+  const [search, setSearch] = useState("");
   const [open, setOpen] = useState(false);
   const [eventName, setEventName] = useState("");
   const [eventDate, setEventDate] = useState("");
@@ -63,14 +63,14 @@ export default function Cards(props) {
   ];
 
   useEffect(() => {
-    getEvents().then((r) => {
-      const d = r;
-      const dl = d.length;
-      if (dl === 0) {
+    getEvents().then((response) => {
+      const eventData = response;
+      const highestEventID = Number(eventData[eventData.length - 1].eventID);
+      if (highestEventID === 0) {
         return;
       }
-      setL(dl);
-      setData(d);
+      setHighestID(highestEventID);
+      setData(eventData);
     });
   }, []);
 
@@ -146,7 +146,7 @@ export default function Cards(props) {
       method: "POST",
       url: "/events/",
       data: {
-        eventID: (l + 1).toString(),
+        eventID: (highestID + 1).toString(),
         eventName: eventName,
         eventDate: eventDate,
         eventDifficulty: eventDifficulty,
@@ -190,7 +190,7 @@ export default function Cards(props) {
               variant="outlined"
               size="small"
               label="Search"
-              onChange={(e) => setQ(e.target.value)}
+              onChange={(e) => setSearch(e.target.value)}
             />
             {createEventButton}
             <Dialog open={open} onClose={handleClose}>
@@ -300,32 +300,34 @@ export default function Cards(props) {
                     }
 
                     if (
-                      (q === "" && 
+                      (search === "" && 
                         (val.eventParticipants.includes(props.userID) ||
                         org === props.userID ||
                         corg === props.userID)) ||
-                      (q.length > 0 && val.eventName.toLowerCase().includes(q.toLowerCase()) &&
+                      (search.length > 0 && val.eventName.toLowerCase().includes(search.toLowerCase()) &&
                         (val.eventParticipants.includes(props.userID) ||
                         org === props.userID ||
                         corg === props.userID) 
                         )
                     ) {
+                      console.log(val);
                       return val;
                     }
                   }
                   else {
                     if (
-                      q === "" ||
-                      (q.length > 0 &&
-                        val.eventName.toLowerCase().includes(q.toLowerCase()))
+                      search === "" ||
+                      (search.length > 0 &&
+                        val.eventName.toLowerCase().includes(search.toLowerCase()))
                     ) {
+                      console.log(val);
                       return val;
                     }
                   }
                 })
                 .map((a) => {
                   return (
-                    <li>
+                    <li key={a.eventID}>
                       <Card
                         eventID={a.eventID}
                         name="card-body"
@@ -338,6 +340,7 @@ export default function Cards(props) {
                         description={a.eventDescription}
                         distance={a.eventDistance + " km"}
                         size={a.eventSize}
+                        participants={a.eventParticipants}
                       />
                     </li>
                   );

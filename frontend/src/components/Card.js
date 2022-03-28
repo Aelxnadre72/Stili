@@ -24,6 +24,7 @@ export default function Card(props) {
   const [commercialOrganizer, setCommercialOrganizer] = useState("");
   const isAdmin = localStorage.getItem("admin");
   const phoneNumber = localStorage.getItem("id");
+  const data1 = null;
 
   const locations = [
     {
@@ -64,27 +65,31 @@ export default function Card(props) {
   }, [data]);
 
   function download() {
-    if (data === null) {
+    if(data === null) {
       getEvent().then((response) => {
         setData(response);
       });
     }
 
     if (data !== null) {
-      if(data[props.eventID - 1].organizer_id !== null) {
-        setOrganizer_id(data[props.eventID - 1].organizer_id);
+      var eventData = data.filter((ev) => {
+        return ev.eventID === props.eventID;
+      })[0];
+
+      if(eventData.organizer_id !== null) {
+        setOrganizer_id(eventData.organizer_id);
       }
-      if(data[props.eventID - 1].commercialOrganizer !== null) {
-        setCommercialOrganizer(data[props.eventID - 1].commercialOrganizer);
+      if(eventData.commercialOrganizer !== null) {
+        setCommercialOrganizer(eventData.commercialOrganizer);
       }
-      setEventName(data[props.eventID - 1].eventName);
-      setEventDate(data[props.eventID - 1].eventDate);
-      setEventDifficulty(data[props.eventID - 1].eventDifficulty);
-      setEventLocation(data[props.eventID - 1].eventLocation);
-      setEventDistance(data[props.eventID - 1].eventDistance);
-      setEventDescription(data[props.eventID - 1].eventDescription);
-      setEventSize(data[props.eventID - 1].eventSize);
-      setEventParticipants(data[props.eventID - 1].eventParticipants);
+      setEventName(eventData.eventName);
+      setEventDate(eventData.eventDate);
+      setEventDifficulty(eventData.eventDifficulty);
+      setEventLocation(eventData.eventLocation);
+      setEventDistance(eventData.eventDistance);
+      setEventDescription(eventData.eventDescription);
+      setEventSize(eventData.eventSize);
+      setEventParticipants(eventData.eventParticipants);
     }
   }
 
@@ -122,7 +127,7 @@ export default function Card(props) {
     }).then((response) => {
       console.log(response);
     });
-
+    setData(null);
     window.location.reload(true);
   };
 
@@ -220,10 +225,12 @@ export default function Card(props) {
     window.location.reload(true);
   }
 
-  const leaveButton =
-  isAdmin !== "true" && eventParticipants.includes(phoneNumber) && 
+  function leaveButton() {
+  console.log("leave");
+  if(isAdmin !== "true" && eventParticipants.includes(phoneNumber) && 
   organizer_id !== phoneNumber && commercialOrganizer !== phoneNumber &&
-  phoneNumber.length !== 9 ? (
+  phoneNumber.length !== 9) {
+    return(
     <div>
       <Button
         id="jbutton"
@@ -235,29 +242,40 @@ export default function Card(props) {
         Leave
       </Button>
     </div>
-  ) : null;
+  )}
+  else {
+    return null;
+  }
+  }
 
-  const joinButton =
-  isAdmin !== "true" && !eventParticipants.includes(phoneNumber) && 
-  organizer_id !== phoneNumber && commercialOrganizer !== phoneNumber && 
-  phoneNumber.length !== 9 ? (
-    <div>
-      <Button
-        id="jbutton"
-        variant="contained"
-        size="small"
-        color="success"
-        onClick={joinEvent}
-      >
-        Join
-      </Button>
-    </div>
-  ) : null;
-
-  const adminExist =
-    isAdmin === "true" || 
+  function joinButton() {
+    console.log("join");
+    if(isAdmin !== "true" && !eventParticipants.includes(phoneNumber) && 
+    organizer_id !== phoneNumber && commercialOrganizer !== phoneNumber && 
+    phoneNumber.length !== 9) {
+      return(
+      <div>
+        <Button
+          id="jbutton"
+          variant="contained"
+          size="small"
+          color="success"
+          onClick={joinEvent}
+        >
+          Join
+        </Button>
+      </div>
+    )}
+    else{
+      return null;
+    }
+  }
+  function adminExist() {
+    console.log("admin");
+    if(isAdmin === "true" || 
     commercialOrganizer === phoneNumber ||
-    organizer_id === phoneNumber ? (
+    organizer_id === phoneNumber) {
+      return(
       <div>
         <div style={{ display: "flex", justifyContent: "center" }}>
           <Button
@@ -367,8 +385,12 @@ export default function Card(props) {
           </DialogActions>
         </Dialog>
       </div>
-    ) : null;
-  
+    )}
+    else {
+      return null;
+    }
+    }
+
   function participants() {
     if(eventParticipants.length === 0) {
       return "Participants: 0/" + props.size;
@@ -397,10 +419,10 @@ export default function Card(props) {
             <p className="card_size">
               {participants()}
             </p>
-            {adminExist}
+            {adminExist()}
             <div style={{ display: "flex", justifyContent: "center" }}>
-              {joinButton}
-              {leaveButton}
+              {joinButton()}
+              {leaveButton()}
             </div>
           </div>
         </Link>
