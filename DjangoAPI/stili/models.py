@@ -1,3 +1,4 @@
+from asyncio.windows_events import NULL
 from random import choices
 from tkinter import CASCADE
 from django.db import models
@@ -31,6 +32,17 @@ class User(models.Model):
     def __str__(self):
         return self.firstName
 
+class CommercialUser(models.Model):
+
+    orgNumber = models.TextField(primary_key=True)
+    orgName = models.CharField(max_length=100, blank = False, unique=True)
+    location = models.TextField(blank = False)
+    password = models.TextField(blank = False)
+    isAdmin = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.orgName
+
 class Event(models.Model):
 
 
@@ -54,17 +66,8 @@ class Event(models.Model):
     eventDescription = models.TextField()
     eventLocation = models.CharField(max_length=100)
     eventDistance = models.IntegerField()
-    organizer = models.ForeignKey(User, blank=True, null=True, on_delete=models.CASCADE)
+    organizer_id = models.ForeignKey(User, blank=True, null=True, on_delete=models.CASCADE)
     eventSize = models.IntegerField(blank = False, default=0)
-
-class CommercialUser(models.Model):
-
-    orgNumber = models.TextField(primary_key=True)
-    orgName = models.CharField(max_length=100, blank = False, unique=True)
-    location = models.TextField(blank = False)
-    password = models.TextField(blank = False)
-    isAdmin = models.BooleanField(default=False)
-
-    def __str__(self):
-        return self.orgName
+    eventParticipants = models.TextField(blank = True, default="")
+    commercialOrganizer = models.ForeignKey(CommercialUser, blank = True, null=True, on_delete=models.CASCADE)
     

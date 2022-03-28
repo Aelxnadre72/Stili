@@ -10,7 +10,7 @@ export default function Home() {
     <div>
       <TopNavbar/>
       <Navbar fade="fade-in" duration="1000" offset="200" />
-      <Cards/>
+      <Cards userID = ""/>
     </div>
   );
 }

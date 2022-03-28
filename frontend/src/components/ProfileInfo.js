@@ -48,20 +48,15 @@ export default function ProfileInfo(props) {
       surname.length !== 0 &&
       location.length !== 0 &&
       !isNaN(age) &&
-      age != "undefined" &&
-      age != "" &&
+      age !== "undefined" &&
+      age !== "" &&
       parseInt(age) > 0 &&
       parseInt(age) < 120 &&
       (experience === "1" || experience === "2" || experience === "3") &&
       (location === "1" ||
         location === "2" ||
         location === "3" ||
-        location === "4") &&
-      (firstName !== props.user.firstName ||
-        surname !== props.user.surname ||
-        age !== props.user.age ||
-        experience !== props.user.experience ||
-        location !== props.user.location)
+        location === "4")
     );
   }
 
@@ -87,20 +82,20 @@ export default function ProfileInfo(props) {
   const changeText = (textinput) => setText(textinput);
 
   var locationMap = {
-    Trondheim: "1",
-    Oslo: "2",
-    Stavanger: "3",
-    Bergen: "4",
+    "1": "Trondheim",
+    "2": "Oslo",
+    "3": "Stavanger",
+    "4": "Bergen"
   };
 
   var experienceMap = {
-    Easy: "1",
-    Mediocre: "2",
-    Veteran: "3",
+    "1": "Easy",
+    "2": "Mediocre",
+    "3": "Veteran"
   };
 
   function fir() {
-    if (firstName == "undefined") {
+    if (firstName === "undefined") {
       setFirstName(props.user.firstName);
       return props.user.firstName;
     } else {
@@ -109,7 +104,7 @@ export default function ProfileInfo(props) {
   }
 
   function sur() {
-    if (surname == "undefined") {
+    if (surname === "undefined") {
       setsurname(props.user.surname);
       return props.user.surname;
     } else {
@@ -118,7 +113,7 @@ export default function ProfileInfo(props) {
   }
 
   function ag() {
-    if (age == "undefined") {
+    if (age === "undefined") {
       setAge(props.user.age);
       return props.user.age;
     } else {
@@ -127,7 +122,7 @@ export default function ProfileInfo(props) {
   }
 
   function exp() {
-    if (experience == "") {
+    if (experience === "") {
       setExperience(props.user.experience);
       return props.user.experience;
     } else {
@@ -136,7 +131,7 @@ export default function ProfileInfo(props) {
   }
 
   function loca() {
-    if (location == "") {
+    if (location === "") {
       setLocation(props.user.location);
       return props.user.location;
     } else {
@@ -153,7 +148,7 @@ export default function ProfileInfo(props) {
             <TopNavbar />
             <Navbar />
             <div className="ProfilePage">
-              <img src={profile} className="profilePic"></img>
+              <img src={profile} className="profilePic" alt=""></img>
               {adminExist}
               <div className="example-text-box">
                 <Form>
@@ -274,7 +269,7 @@ export default function ProfileInfo(props) {
                 <img src={experience} alt="Experience" class="experience"></img>
                 Experience:
                 <br></br>
-                {props.user.experience}
+                {experienceMap[props.user.experience]}
               </div>
               <div>
                 <img src={age} alt="Age" class="age"></img>
@@ -288,6 +283,10 @@ export default function ProfileInfo(props) {
       );
     }
   } else if (props.commercialUser != null) {
+    console.log(props.commercialUser.location);
+    console.log(typeof(props.commercialUser.location));
+    console.log(locationMap["1"]);
+    console.log(locationMap[props.commercialUser.location]);
     return (
       <>
         <TopNavbar />

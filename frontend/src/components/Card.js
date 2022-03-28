@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Cards.css";
 import Axios from "axios";
 import { Link } from "react-router-dom";
@@ -11,14 +11,19 @@ import DialogTitle from "@mui/material/DialogTitle";
 
 export default function Card(props) {
   const [open, setOpen] = useState(false);
+  const [data, setData] = useState(null);
   const [eventName, setEventName] = useState("");
   const [eventDate, setEventDate] = useState("");
   const [eventDescription, setEventDescription] = useState("");
   const [eventSize, setEventSize] = useState("");
   const [eventDistance, setEventDistance] = useState("");
   const [eventDifficulty, setEventDifficulty] = useState("1");
+  const [organizer_id, setOrganizer_id] = useState("");
   const [eventLocation, setEventLocation] = useState("1");
+  const [eventParticipants, setEventParticipants] = useState("");
+  const [commercialOrganizer, setCommercialOrganizer] = useState("");
   const isAdmin = localStorage.getItem("admin");
+  const phoneNumber = localStorage.getItem("id");
 
   const locations = [
     {
@@ -54,6 +59,35 @@ export default function Card(props) {
     },
   ];
 
+  useEffect(() => {
+    download();
+  }, [data]);
+
+  function download() {
+    if (data === null) {
+      getEvent().then((response) => {
+        setData(response);
+      });
+    }
+
+    if (data !== null) {
+      if(data[props.eventID - 1].organizer_id !== null) {
+        setOrganizer_id(data[props.eventID - 1].organizer_id);
+      }
+      if(data[props.eventID - 1].commercialOrganizer !== null) {
+        setCommercialOrganizer(data[props.eventID - 1].commercialOrganizer);
+      }
+      setEventName(data[props.eventID - 1].eventName);
+      setEventDate(data[props.eventID - 1].eventDate);
+      setEventDifficulty(data[props.eventID - 1].eventDifficulty);
+      setEventLocation(data[props.eventID - 1].eventLocation);
+      setEventDistance(data[props.eventID - 1].eventDistance);
+      setEventDescription(data[props.eventID - 1].eventDescription);
+      setEventSize(data[props.eventID - 1].eventSize);
+      setEventParticipants(data[props.eventID - 1].eventParticipants);
+    }
+  }
+
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -67,111 +101,41 @@ export default function Card(props) {
     editEvent();
     window.location.reload(true);
   };
-  
-  const adminExist = isAdmin === "true" ? (
-    <div>
-    <Button
-              id="button"
-              variant="contained"
-              size="small"
-              color="success"
-              onClick={handleClickOpen}
-            >
-              Edit event
-            </Button>
-            <Dialog open={open} onClose={handleClose}>
-              <DialogTitle>Event</DialogTitle>
-              <DialogContent>
-                <TextField
-                  autoFocus
-                  margin="normal"
-                  label="Name"
-                  type="text"
-                  fullWidth
-                  variant="standard"
-                  onChange={(n) => setEventName(n.target.value)}
-                />
-                <TextField
-                  margin="normal"
-                  sx={{ mr: 7 }}
-                  id="date"
-                  type="date"
-                  variant="standard"
-                  onChange={(d) => setEventDate(d.target.value)}
-                />
-                <TextField
-                  select
-                  size="small"
-                  label="Location"
-                  margin="normal"
-                  sx={{ mr: 7 }}
-                  value={eventLocation}
-                  onChange={(l) => setEventLocation(l.target.value)}
-                  SelectProps={{
-                    native: true,
-                  }}
-                >
-                  {locations.map((option) => (
-                    <option key={option.value} value={option.value}>
-                      {option.label}
-                    </option>
-                  ))}
-                </TextField>
-                <TextField
-                  select
-                  size="small"
-                  label="Difficulty"
-                  margin="normal"
-                  value={eventDifficulty}
-                  onChange={(e) => setEventDifficulty(e.target.value)}
-                  SelectProps={{
-                    native: true,
-                  }}
-                >
-                  {difficulties.map((option) => (
-                    <option key={option.value} value={option.value}>
-                      {option.label}
-                    </option>
-                  ))}
-                </TextField>
-                <TextField
-                  margin="normal"
-                  sx={{ mb: 2, mt: -0.5 }}
-                  label="Distance"
-                  type="number"
-                  fullWidth
-                  variant="standard"
-                  onChange={(d) => setEventDistance(d.target.value)}
-                />
 
-                <TextField
-                  margin="normal"
-                  label="Description"
-                  style={{ width: 552 }}
-                  multiline
-                  type="text"
-                  maxRows={4}
-                  variant="outlined"
-                  onChange={(d) => setEventDescription(d.target.value)}
-                />
-                <TextField
-                  margin="normal"
-                  sx={{ mt: -0.5 }}
-                  label="Size"
-                  type="number"
-                  fullWidth
-                  variant="standard"
-                  onChange={(s) => setEventSize(s.target.value)}
-                />
-              </DialogContent>
-              <DialogActions>
-                <Button onClick={handleClose}>Cancel</Button>
-                <Button onClick={handleSubmit}>Submit</Button>
-              </DialogActions>
-            </Dialog></div>
-  ) : (
-    null
-  );
+  const handleDelete = () => {
+    Axios({
+      method: "DELETE",
+      url: "/events/" + props.eventID + "/",
+      data: {
+        eventID: props.eventID,
+        eventName: eventName,
+        eventDate: eventDate,
+        eventDifficulty: eventDifficulty,
+        eventDescription: eventDescription,
+        eventLocation: eventLocation,
+        eventSize: eventSize,
+        eventDistance: eventDistance,
+        organizer_id: organizer_id,
+        eventParticipants: eventParticipants,
+        commercialOrganizer: commercialOrganizer
+      },
+    }).then((response) => {
+      console.log(response);
+    });
+
+    window.location.reload(true);
+  };
+
+  async function getEvent() {
+    try {
+      const response = await Axios({
+        method: "GET",
+        url: "/events/",
+        responseType: "json",
+      });
+      return response.data;
+    } catch (error) {}
+  }
 
   function editEvent() {
     Axios({
@@ -184,15 +148,236 @@ export default function Card(props) {
         eventDifficulty: eventDifficulty,
         eventDescription: eventDescription,
         eventLocation: eventLocation,
-        eventDistance: eventDistance,
-        organizer: null,
         eventSize: eventSize,
+        eventDistance: eventDistance,
+        organizer_id: organizer_id,
+        eventParticipants: eventParticipants,
+        commercialOrganizer: commercialOrganizer
       },
     }).then((response) => {
       console.log(response);
-    })
-  };
+    });
+  }
 
+  function joinEvent() {
+    var numbers = eventParticipants;
+    if (numbers.length > 0) {
+      numbers = numbers + "," + phoneNumber;
+    }
+    else {
+      numbers = phoneNumber;
+    }
+    Axios({
+      method: "PUT",
+      url: "/events/" + props.eventID + "/",
+      data: {
+        eventID: props.eventID,
+        eventName: eventName,
+        eventDate: eventDate,
+        eventDifficulty: eventDifficulty,
+        eventDescription: eventDescription,
+        eventLocation: eventLocation,
+        eventDistance: eventDistance,
+        organizer_id: organizer_id,
+        eventSize: eventSize,
+        eventParticipants: numbers,
+        commercialOrganizer: commercialOrganizer
+      },
+    }).then((response) => {
+      console.log(response);
+    });
+    window.location.reload(true);
+  }
+
+  function leaveEvent() {
+    var numbers = eventParticipants;
+    if (numbers.includes(phoneNumber) && eventParticipants.length === 8) {
+      numbers = "";
+    }
+    else {
+      var leaveNumber = "," + phoneNumber;
+      numbers = numbers.replace(leaveNumber,"");
+    }
+    Axios({
+      method: "PUT",
+      url: "/events/" + props.eventID + "/",
+      data: {
+        eventID: props.eventID,
+        eventName: eventName,
+        eventDate: eventDate,
+        eventDifficulty: eventDifficulty,
+        eventDescription: eventDescription,
+        eventLocation: eventLocation,
+        eventSize: eventSize,
+        eventDistance: eventDistance,
+        organizer_id: organizer_id,
+        eventParticipants: numbers,
+        commercialOrganizer: commercialOrganizer
+      },
+    }).then((response) => {
+      console.log(response);
+    });
+    window.location.reload(true);
+  }
+
+  const leaveButton =
+  isAdmin !== "true" && eventParticipants.includes(phoneNumber) && 
+  organizer_id !== phoneNumber && commercialOrganizer !== phoneNumber &&
+  phoneNumber.length !== 9 ? (
+    <div>
+      <Button
+        id="jbutton"
+        variant="contained"
+        size="small"
+        color="error"
+        onClick={leaveEvent}
+      >
+        Leave
+      </Button>
+    </div>
+  ) : null;
+
+  const joinButton =
+  isAdmin !== "true" && !eventParticipants.includes(phoneNumber) && 
+  organizer_id !== phoneNumber && commercialOrganizer !== phoneNumber && 
+  phoneNumber.length !== 9 ? (
+    <div>
+      <Button
+        id="jbutton"
+        variant="contained"
+        size="small"
+        color="success"
+        onClick={joinEvent}
+      >
+        Join
+      </Button>
+    </div>
+  ) : null;
+
+  const adminExist =
+    isAdmin === "true" || 
+    commercialOrganizer === phoneNumber ||
+    organizer_id === phoneNumber ? (
+      <div>
+        <div style={{ display: "flex", justifyContent: "center" }}>
+          <Button
+            id="button"
+            variant="contained"
+            size="small"
+            color="info"
+            onClick={handleClickOpen}
+          >
+            Edit event
+          </Button>
+        </div>
+        <Dialog open={open} onClose={handleClose}>
+          <DialogTitle>Event</DialogTitle>
+          <DialogContent>
+            <TextField
+              autoFocus
+              margin="normal"
+              label="Name"
+              type="text"
+              fullWidth
+              variant="standard"
+              value={eventName}
+              onChange={(n) => setEventName(n.target.value)}
+            />
+            <TextField
+              margin="normal"
+              sx={{ mr: 7 }}
+              id="date"
+              type="date"
+              variant="standard"
+              value={eventDate.slice(0, 10)}
+              onChange={(d) => setEventDate(d.target.value)}
+            />
+            <TextField
+              select
+              size="small"
+              label="Location"
+              margin="normal"
+              sx={{ mr: 7 }}
+              value={eventLocation}
+              onChange={(l) => setEventLocation(l.target.value)}
+              SelectProps={{
+                native: true,
+              }}
+            >
+              {locations.map((option) => (
+                <option key={option.value} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
+            </TextField>
+            <TextField
+              select
+              size="small"
+              label="Difficulty"
+              margin="normal"
+              value={eventDifficulty}
+              onChange={(e) => setEventDifficulty(e.target.value)}
+              SelectProps={{
+                native: true,
+              }}
+            >
+              {difficulties.map((option) => (
+                <option key={option.value} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
+            </TextField>
+            <TextField
+              margin="normal"
+              sx={{ mb: 2, mt: -0.5 }}
+              label="Distance in kilometres"
+              type="number"
+              fullWidth
+              variant="standard"
+              value={eventDistance}
+              onChange={(d) => setEventDistance(d.target.value)}
+            />
+
+            <TextField
+              margin="normal"
+              label="Description and required equipment"
+              style={{ width: 552 }}
+              multiline
+              type="text"
+              maxRows={4}
+              variant="outlined"
+              value={eventDescription}
+              onChange={(d) => setEventDescription(d.target.value)}
+            />
+            <TextField
+              margin="normal"
+              sx={{ mt: -0.5 }}
+              label="Group size (excl. organizer)"
+              type="number"
+              fullWidth
+              variant="standard"
+              value={eventSize}
+              onChange={(s) => setEventSize(s.target.value)}
+            />
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleDelete}>Delete</Button>
+            <Button onClick={handleClose}>Cancel</Button>
+            <Button onClick={handleSubmit}>Submit</Button>
+          </DialogActions>
+        </Dialog>
+      </div>
+    ) : null;
+  
+  function participants() {
+    if(eventParticipants.length === 0) {
+      return "Participants: 0/" + props.size;
+    }
+    else {
+      return "Participants: " + eventParticipants.split(",").length + "/" + props.size
+    }
+  }
+  
   return (
     <div className={props.name}>
       <li className="card">
@@ -206,10 +391,17 @@ export default function Card(props) {
           </figure>
           <div className="card_info">
             <p className="card_title">{props.text}</p>
+            <p className="card_description">Location: {props.location}</p>
             <p className="card_description">{props.description}</p>
-            <p className="card_description">{props.distance}</p>
-            <p className="card_size">{props.size}</p>
+            <p className="card_description">Distance: {props.distance}</p>
+            <p className="card_size">
+              {participants()}
+            </p>
             {adminExist}
+            <div style={{ display: "flex", justifyContent: "center" }}>
+              {joinButton}
+              {leaveButton}
+            </div>
           </div>
         </Link>
       </li>

@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react";
 import Card from "./Card";
 import "./Cards.css";
-import campus from "./Campusrunden.jpg";
+import oslo from "./images/oslo.jpg";
+import trondheim from "./images/trondheim.jpg";
+import bergen from "./images/bergen.jpg";
+import stavanger from "./images/stavanger.jpg";
 import Axios from "axios";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
@@ -10,7 +13,7 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 
-export default function Cards() {
+export default function Cards(props) {
   const [data, setData] = useState([]);
   const [l, setL] = useState(0);
   const [q, setQ] = useState("");
@@ -22,6 +25,8 @@ export default function Cards() {
   const [eventDistance, setEventDistance] = useState("");
   const [eventDifficulty, setEventDifficulty] = useState("1");
   const [eventLocation, setEventLocation] = useState("1");
+  const [text, setText] = useState("");
+  const pNumber = localStorage.getItem("id");
 
   const locations = [
     {
@@ -78,9 +83,15 @@ export default function Cards() {
   };
 
   const handleSubmit = () => {
-    setOpen(false);
-    createEvent();
-    window.location.reload(true);
+    createEvent().then(result => {
+      if(result) {
+        setOpen(false);
+      window.location.reload(true);
+      }
+      else {
+        changeText("Make sure all the fields are filled in correctly.");
+      }
+    });
   };
 
   async function getEvents() {
@@ -98,8 +109,40 @@ export default function Cards() {
     }
   }
 
-  function createEvent() {
-    Axios({
+  function locationImage(loca) {
+    switch(loca) {
+      case "Trondheim":
+        return trondheim;
+      case "Oslo":
+        return oslo;
+      case "Stavanger":
+        return stavanger;
+      case "Bergen":
+        return bergen;
+      default:
+        return trondheim;
+    }
+  }
+
+  async function createEvent() {
+    var ppNumber = pNumber;
+    var pppNumber = "";
+    var length = pNumber.length;
+
+    if (length === 9) {
+      ppNumber = "";
+      pppNumber = pNumber;
+    }
+
+    if(eventName === "" || 
+    eventDate === "" ||
+    eventDescription === "" ||
+    eventSize === "" ||
+    eventDistance === "") {
+      return false;
+    }
+
+    await Axios({
       method: "POST",
       url: "/events/",
       data: {
@@ -110,11 +153,31 @@ export default function Cards() {
         eventDescription: eventDescription,
         eventLocation: eventLocation,
         eventDistance: eventDistance,
-        organizer: null,
+        organizer_id: ppNumber,
         eventSize: eventSize,
+        eventParticipants: "",
+        commercialOrganizer: pppNumber
       },
+    }).catch((error) => {
+        console.log(error);
     });
+    return true;
   }
+
+  const changeText = (textinput) => setText(textinput);
+
+  const createEventButton =
+  props.userID !== "" ? null : (
+    <Button
+      id="button"
+      variant="contained"
+      size="small"
+      color="success"
+      onClick={handleClickOpen}
+    >
+      Create Event
+    </Button>
+  );
 
   return (
     <div className="all">
@@ -129,15 +192,7 @@ export default function Cards() {
               label="Search"
               onChange={(e) => setQ(e.target.value)}
             />
-            <Button
-              id="button"
-              variant="contained"
-              size="small"
-              color="success"
-              onClick={handleClickOpen}
-            >
-              Create Event
-            </Button>
+            {createEventButton}
             <Dialog open={open} onClose={handleClose}>
               <DialogTitle>Event</DialogTitle>
               <DialogContent>
@@ -196,7 +251,7 @@ export default function Cards() {
                 <TextField
                   margin="normal"
                   sx={{ mb: 2, mt: -0.5 }}
-                  label="Distance"
+                  label="Distance in kilometres"
                   type="number"
                   fullWidth
                   variant="standard"
@@ -205,7 +260,7 @@ export default function Cards() {
 
                 <TextField
                   margin="normal"
-                  label="Description"
+                  label="Description and required equipment"
                   style={{ width: 552 }}
                   multiline
                   type="text"
@@ -216,7 +271,7 @@ export default function Cards() {
                 <TextField
                   margin="normal"
                   sx={{ mt: -0.5 }}
-                  label="Size"
+                  label="Group size (excl. organizer)"
                   type="number"
                   fullWidth
                   variant="standard"
@@ -224,6 +279,7 @@ export default function Cards() {
                 />
               </DialogContent>
               <DialogActions>
+                <p className="errormsg">{text}</p>
                 <Button onClick={handleClose}>Cancel</Button>
                 <Button onClick={handleSubmit}>Submit</Button>
               </DialogActions>
@@ -233,12 +289,38 @@ export default function Cards() {
             <ul className="card_items">
               {data
                 .filter((val) => {
-                  if (
-                    q === "" ||
-                    (q.length > 0 &&
-                      val.eventName.toLowerCase().includes(q.toLowerCase()))
-                  ) {
-                    return val;
+                  if(props.userID !== "") {
+                    var org = "";
+                    var corg = "";
+                    if(val.organizer_id !== null) {
+                      org = val.organizer_id;
+                    }
+                    if (val.commercialOrganizer !== null){
+                      corg = val.commercialOrganizer;
+                    }
+
+                    if (
+                      (q === "" && 
+                        (val.eventParticipants.includes(props.userID) ||
+                        org === props.userID ||
+                        corg === props.userID)) ||
+                      (q.length > 0 && val.eventName.toLowerCase().includes(q.toLowerCase()) &&
+                        (val.eventParticipants.includes(props.userID) ||
+                        org === props.userID ||
+                        corg === props.userID) 
+                        )
+                    ) {
+                      return val;
+                    }
+                  }
+                  else {
+                    if (
+                      q === "" ||
+                      (q.length > 0 &&
+                        val.eventName.toLowerCase().includes(q.toLowerCase()))
+                    ) {
+                      return val;
+                    }
                   }
                 })
                 .map((a) => {
@@ -248,13 +330,14 @@ export default function Cards() {
                         eventID={a.eventID}
                         name="card-body"
                         wrapper={"card_picture_wrapper-" + a.eventDifficulty}
-                        src={campus}
+                        src={locationImage(locations[a.eventLocation - 1].label)}
                         text={a.eventName}
+                        location={locations[a.eventLocation - 1].label}
                         label={difficulties[a.eventDifficulty - 1].label}
                         path=""
                         description={a.eventDescription}
-                        distance={a.eventDistance + "km"}
-                        size={"0/" + a.eventSize}
+                        distance={a.eventDistance + " km"}
+                        size={a.eventSize}
                       />
                     </li>
                   );
