@@ -226,7 +226,6 @@ export default function Card(props) {
   }
 
   function leaveButton() {
-  console.log("leave");
   if(isAdmin !== "true" && eventParticipants.includes(phoneNumber) && 
   organizer_id !== phoneNumber && commercialOrganizer !== phoneNumber &&
   phoneNumber.length !== 9) {
@@ -249,8 +248,8 @@ export default function Card(props) {
   }
 
   function joinButton() {
-    console.log("join");
     if(isAdmin !== "true" && !eventParticipants.includes(phoneNumber) && 
+    (eventParticipants.split(",").length !== props.size || eventParticipants.length === 0) &&
     organizer_id !== phoneNumber && commercialOrganizer !== phoneNumber && 
     phoneNumber.length !== 9) {
       return(
@@ -271,7 +270,6 @@ export default function Card(props) {
     }
   }
   function adminExist() {
-    console.log("admin");
     if(isAdmin === "true" || 
     commercialOrganizer === phoneNumber ||
     organizer_id === phoneNumber) {
