@@ -4,8 +4,8 @@ import location from './location-icon.png';
 import phone from './phone.png';
 import mail from './mail-icon.webp';
 import "./ContactUs.css";
-import Navbar from "../Navbar";
-import TopNavbar from "../TopNavbar";
+import Navbar from "./Navbar";
+import TopNavbar from "./TopNavbar";
 
 export default function ContactUs() { 
     return(
@@ -16,22 +16,22 @@ export default function ContactUs() {
             <div class="flex-container">
                 <div>
                     <img src={location} alt="Address" class="address"></img>
-                    <p>Address:</p>
                     <br></br>
+                    <h6>Address:</h6>
                     <p>Høgskoleringen 1</p>
                     <p>7491 Trondheim</p>
 
                 </div>
                 <div>
                     <img src={phone} alt="Phone" class="phone"></img>
-                    <p>Phone:</p>
                     <br></br>
+                    <h6>Phone:</h6>
                     <p>97653787</p>
                 </div>
                 <div>
                     <img src={mail} alt="Mail" class="mail"></img>
-                    Mail:
                     <br></br>
+                    <h6>Mail:</h6>
                     <p>stili@example.com</p>
                 </div>
             </div>
