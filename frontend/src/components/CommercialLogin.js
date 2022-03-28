@@ -78,6 +78,7 @@ export default function Login() {
             <Form.Group size="lg" controlId="orgNumber">
               <Form.Control
                 autoFocus
+                style={{width: "20vw"}}
                 type="orgNumber"
                 placeholder="Organization Number"
                 value={orgNumber}
@@ -86,6 +87,7 @@ export default function Login() {
             <Form.Group size="lg" controlId="password">
               <Form.Control
                 type="password"
+                style={{width: "20vw"}}
                 placeholder="Password"
                 value={password}
                 onChange={(p) => setPassword(p.target.value)} />

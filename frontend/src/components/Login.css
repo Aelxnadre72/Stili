@@ -58,13 +58,13 @@
       font-size: 22px;
     }
     
-    .phoneNumber {
+    #phoneNumber {
       margin-bottom: 10px;
       display:flex;
       width: 20vw;
     }
 
-    .password {
+    #password {
       margin-top: 10px;
       display: flex;
       width: 20vw;
@@ -94,8 +94,8 @@
       overflow: hidden;
     }
 
-    h1{
-      font-size: 10vmax;
+    .left h1{
+      font-size: 10vw;
       line-height: 1;
       font-weight: 900;
       margin-top: 30vh;

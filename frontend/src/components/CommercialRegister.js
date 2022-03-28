@@ -100,6 +100,7 @@ export default function Register() {
               <Form.Control
                 autoFocus
                 type="orgName"
+                style={{width: "20vw"}}
                 placeholder="Organization Name"
                 value={orgName}
                 onChange={(n) => setOrgName(n.target.value)}
@@ -108,13 +109,14 @@ export default function Register() {
             <Form.Group size="lg" controlId="orgNumber">
               <Form.Control
                 type="orgNumber"
+                style={{width: "20vw"}}
                 placeholder="Organization Number"
                 value={orgNumber}
                 onChange={(p) => setOrgNumber(p.target.value)}
               />
             </Form.Group>
             <Form.Group size="lg" controlId="location">
-            <Form.Select aria-label="Default select example"  value={location}
+            <Form.Select aria-label="Default select example" style={{width: "20vw"}} value={location}
             onChange={(l) => setLocation(l.target.value)}>
               <option value="1">Trondheim</option>
               <option value="2">Oslo</option>
@@ -125,6 +127,7 @@ export default function Register() {
             <Form.Group size="lg" controlId="password">
               <Form.Control
                 type="password"
+                style={{width: "20vw"}}
                 placeholder="Password"
                 value={password}
                 onChange={(p) => setPassword(p.target.value)}

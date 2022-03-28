@@ -80,6 +80,7 @@ export default function Login() {
               <Form.Control
                 autoFocus
                 type="phoneNumber"
+                style={{width: "20vw"}}
                 placeholder="Phone Number"
                 value={phoneNumber}
                 onChange={(n) => setPhoneNumber(n.target.value)} />
@@ -87,6 +88,7 @@ export default function Login() {
             <Form.Group size="lg" controlId="password">
               <Form.Control
                 type="password"
+                style={{width: "20vw"}}
                 placeholder="Password"
                 value={password}
                 onChange={(p) => setPassword(p.target.value)} />

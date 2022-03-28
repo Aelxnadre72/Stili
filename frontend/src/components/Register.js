@@ -115,6 +115,7 @@ export default function Register() {
               <Form.Control
                 autoFocus
                 type="firstName"
+                style={{width: "20vw"}}
                 placeholder="First name"
                 value={firstName}
                 onChange={(n) => setFirstName(n.target.value)}
@@ -123,6 +124,7 @@ export default function Register() {
             <Form.Group size="lg" controlId="surname">
               <Form.Control
                 type="surname"
+                style={{width: "20vw"}}
                 placeholder="Surname"
                 value={surname}
                 onChange={(n) => setsurname(n.target.value)}
@@ -131,6 +133,7 @@ export default function Register() {
             <Form.Group size="lg" controlId="phoneNumber">
               <Form.Control
                 type="phoneNumber"
+                style={{width: "20vw"}}
                 placeholder="Phone Number"
                 value={phoneNumber}
                 onChange={(p) => setPhoneNumber(p.target.value)}
@@ -138,6 +141,7 @@ export default function Register() {
               <Form.Group size="lg" controlId="age">
                 <Form.Control
                   type="age"
+                  style={{width: "20vw"}}
                   placeholder="Age"
                   value={age}
                   onChange={(a) => setAge(a.target.value)}
@@ -145,7 +149,7 @@ export default function Register() {
               </Form.Group>
             </Form.Group>
             <Form.Group size="lg" controlId="experience">
-            <Form.Select aria-label="Default select example" value={experience}
+            <Form.Select aria-label="Default select example" style={{width: "20vw"}} value={experience}
             onChange={(e) => setExperience(e.target.value)}>
               <option value="1">Easy</option>
               <option value="2">Mediocre</option>
@@ -153,7 +157,7 @@ export default function Register() {
             </Form.Select>
             </Form.Group>
             <Form.Group size="lg" controlId="location">
-            <Form.Select aria-label="Default select example" value={location}
+            <Form.Select aria-label="Default select example" style={{width: "20vw"}} value={location}
             onChange={(e) => setLocation(e.target.value)}>
               <option value="1">Trondheim</option>
               <option value="2">Oslo</option>
@@ -164,6 +168,7 @@ export default function Register() {
             <Form.Group size="lg" controlId="password">
               <Form.Control
                 type="password"
+                style={{width: "20vw"}}
                 placeholder="Password"
                 value={password}
                 onChange={(p) => setPassword(p.target.value)}
