@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import location from './location-icon.png';
 import phone from './phone.png';
-import mail from './mail-icon.webp';
+import mail from './mail-icon.png';
 import "./ContactUs.css";
 import Navbar from "./Navbar";
 import TopNavbar from "./TopNavbar";
