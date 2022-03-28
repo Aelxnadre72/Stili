@@ -7,6 +7,7 @@ import Home from "./components/pages/Home";
 import Profile from "./components/Profile";
 import CommercialRegister from "./components/CommercialRegister";
 import CommercialLogin from "./components/CommercialLogin";
+import ContactUs from './components/ContactUs';
 
 export default function App() {
   return (
@@ -19,6 +20,7 @@ export default function App() {
           <Route path="/profile" element={<Profile/>} />
           <Route path="/commercialRegister" element={<CommercialRegister/>} />
           <Route path="/commercialogin" element={<CommercialLogin/>} />
+          <Route path="/contact" element={<ContactUs/>} />
         </Routes>
       </Router>
     </div>

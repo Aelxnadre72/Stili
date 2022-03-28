@@ -1,0 +1,24 @@
+.flex-container {
+    display: flex;
+    background-color: transparent;
+    justify-content: space-between;
+    width: 55%;
+    height: 30vh;
+    margin-left: 25%;
+    margin-top: 5vh;
+  }
+  
+  .flex-container > div {
+    background-color: #ffffff;
+    width: 10vw;
+    font-size: 30px;
+  }
+  h1 {
+    font-size: 3vw;
+  }
+
+  .flex-container img {
+    vertical-align: middle;
+    width: 4vw;
+    height: auto;
+  }
