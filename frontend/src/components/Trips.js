@@ -1,11 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "../App.css";
 import Navbar from "./Navbar";
 import Cards from "./Cards";
 import TopNavbar from "./TopNavbar";
+import { useNavigate } from "react-router-dom";
 import "./pages/Home.css";
 
 export default function Trips() {
+  let navigate = useNavigate();
+
+  useEffect(() => {
+    if (localStorage.getItem("id") === null) {
+      navigate('/');
+    }
+  })
+
   return (
     <div>
       <TopNavbar/>

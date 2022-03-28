@@ -6,7 +6,6 @@ import Register from "./components/Register";
 import Home from "./components/pages/Home";
 import Profile from "./components/Profile";
 import CommercialRegister from "./components/CommercialRegister";
-import CommercialLogin from "./components/CommercialLogin";
 import ContactUs from './components/ContactUs';
 import Trips from "./components/Trips";
 
@@ -20,7 +19,6 @@ export default function App() {
           <Route path="/home" element={<Home/>} />
           <Route path="/profile" element={<Profile/>} />
           <Route path="/commercialRegister" element={<CommercialRegister/>} />
-          <Route path="/commercialogin" element={<CommercialLogin/>} />
           <Route path="/contact" element={<ContactUs/>} />
           <Route path="/trips" element={<Trips/>} />
         </Routes>
