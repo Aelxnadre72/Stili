@@ -23,13 +23,6 @@ export default function Navbar(props) {
             >
               <img src={mountain} alt="Mountain" class="mountain"></img>
               <li className="navbar-item">
-                <Link to="/profile"
-                  state={localStorage.getItem("id")} // profilenumber for my own profile, otherwise a phone number from database connected to the profilepic that is clicked on
-                  className="navbar-links">
-                  My profile
-                </Link>
-              </li>
-              <li className="navbar-item">
                 <Link
                   to="/home"
                   className="navbar-links"
@@ -38,8 +31,15 @@ export default function Navbar(props) {
                 </Link>
               </li>
               <li className="navbar-item">
+                <Link to="/profile"
+                  state={localStorage.getItem("id")} // profilenumber for my own profile, otherwise a phone number from database connected to the profilepic that is clicked on
+                  className="navbar-links">
+                  My profile
+                </Link>
+              </li>
+              <li className="navbar-item">
                 <Link
-                  to="/recipes"
+                  to="/trips"
                   className="navbar-links"
                 >
                   My trips

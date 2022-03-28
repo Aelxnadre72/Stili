@@ -17,7 +17,7 @@ export default function Register() {
   let navigate = useNavigate();
 
   useEffect(() => {
-    if (localStorage.getItem("id") != null) {
+    if (localStorage.getItem("id") !== null) {
       navigate('/home');
     }
   })
@@ -28,15 +28,15 @@ export default function Register() {
       surname.length < 101 &&
       location.length < 101 &&
       password.length < 101 &&
-      firstName.length != 0 &&
-      surname.length != 0 &&
-      location.length != 0 &&
-      password.length != 0 &&
+      firstName.length !== 0 &&
+      surname.length !== 0 &&
+      location.length !== 0 &&
+      password.length !== 0 &&
       phoneNumber.length === 8 &&
       !isNaN(phoneNumber) &&
       age.length > 0 &&
       parseInt(age) < 120 &&
-      age != "0" &&
+      age !== "0" &&
       !isNaN(age) &&
       (experience === "1" ||
       experience === "2" ||

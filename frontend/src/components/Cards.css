@@ -4,10 +4,9 @@
 }
 
 .cards {
-  padding: 4rem;
+  padding: 0rem 4rem 4rem 15vw;
   position: relative;
   left: 0;
-  padding-left: 15vw;
   background-color: white;
 }
 
@@ -18,7 +17,7 @@
 
 .card_container {
   display: flex;
-  padding-top: 60px;
+  padding-top: 1rem;
   background: transparent;
   flex-flow: column;
   align-items: center;

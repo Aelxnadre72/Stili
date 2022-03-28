@@ -94,7 +94,7 @@ def event(request):
         print(serializer.errors)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         
-@api_view(['PUT'])
+@api_view(['PUT', 'DELETE'])
 @permission_classes((permissions.AllowAny,))
 def event_update(request, eventID):
     try:
@@ -109,14 +109,7 @@ def event_update(request, eventID):
             return Response(status=status.HTTP_204_NO_CONTENT)
         print(serializer.errors)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-@api_view(['DELETE'])
-def event_delete(request, pk):
-    try:
-        event = Event.objects.get(pk=pk)
-    except Event.DoesNotExist:
-        return Response(status=status.HTTP_404_NOT_FOUND)
     
-    if request.method == 'DELETE':
+    elif request.method == 'DELETE':
         event.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)

@@ -18,9 +18,10 @@ export default function Card(props) {
   const [eventSize, setEventSize] = useState("");
   const [eventDistance, setEventDistance] = useState("");
   const [eventDifficulty, setEventDifficulty] = useState("1");
-  const [organizer, setOrganizer] = useState("");
+  const [organizer_id, setOrganizer_id] = useState("");
   const [eventLocation, setEventLocation] = useState("1");
   const [eventParticipants, setEventParticipants] = useState("");
+  const [commercialOrganizer, setCommercialOrganizer] = useState("");
   const isAdmin = localStorage.getItem("admin");
   const phoneNumber = localStorage.getItem("id");
 
@@ -70,6 +71,12 @@ export default function Card(props) {
     }
 
     if (data !== null) {
+      if(data[props.eventID - 1].organizer_id !== null) {
+        setOrganizer_id(data[props.eventID - 1].organizer_id);
+      }
+      if(data[props.eventID - 1].commercialOrganizer !== null) {
+        setCommercialOrganizer(data[props.eventID - 1].commercialOrganizer);
+      }
       setEventName(data[props.eventID - 1].eventName);
       setEventDate(data[props.eventID - 1].eventDate);
       setEventDifficulty(data[props.eventID - 1].eventDifficulty);
@@ -77,7 +84,6 @@ export default function Card(props) {
       setEventDistance(data[props.eventID - 1].eventDistance);
       setEventDescription(data[props.eventID - 1].eventDescription);
       setEventSize(data[props.eventID - 1].eventSize);
-      setOrganizer(data[props.eventID - 1].organizer);
       setEventParticipants(data[props.eventID - 1].eventParticipants);
     }
   }
@@ -93,6 +99,30 @@ export default function Card(props) {
   const handleSubmit = () => {
     setOpen(false);
     editEvent();
+    window.location.reload(true);
+  };
+
+  const handleDelete = () => {
+    Axios({
+      method: "DELETE",
+      url: "/events/" + props.eventID + "/",
+      data: {
+        eventID: props.eventID,
+        eventName: eventName,
+        eventDate: eventDate,
+        eventDifficulty: eventDifficulty,
+        eventDescription: eventDescription,
+        eventLocation: eventLocation,
+        eventSize: eventSize,
+        eventDistance: eventDistance,
+        organizer_id: organizer_id,
+        eventParticipants: eventParticipants,
+        commercialOrganizer: commercialOrganizer
+      },
+    }).then((response) => {
+      console.log(response);
+    });
+
     window.location.reload(true);
   };
 
@@ -120,8 +150,9 @@ export default function Card(props) {
         eventLocation: eventLocation,
         eventSize: eventSize,
         eventDistance: eventDistance,
-        organizer: organizer,
+        organizer_id: organizer_id,
         eventParticipants: eventParticipants,
+        commercialOrganizer: commercialOrganizer
       },
     }).then((response) => {
       console.log(response);
@@ -130,8 +161,42 @@ export default function Card(props) {
 
   function joinEvent() {
     var numbers = eventParticipants;
-    if (!numbers.includes(phoneNumber)) {
+    if (numbers.length > 0) {
       numbers = numbers + "," + phoneNumber;
+    }
+    else {
+      numbers = phoneNumber;
+    }
+    Axios({
+      method: "PUT",
+      url: "/events/" + props.eventID + "/",
+      data: {
+        eventID: props.eventID,
+        eventName: eventName,
+        eventDate: eventDate,
+        eventDifficulty: eventDifficulty,
+        eventDescription: eventDescription,
+        eventLocation: eventLocation,
+        eventDistance: eventDistance,
+        organizer_id: organizer_id,
+        eventSize: eventSize,
+        eventParticipants: numbers,
+        commercialOrganizer: commercialOrganizer
+      },
+    }).then((response) => {
+      console.log(response);
+    });
+    window.location.reload(true);
+  }
+
+  function leaveEvent() {
+    var numbers = eventParticipants;
+    if (numbers.includes(phoneNumber) && eventParticipants.length === 8) {
+      numbers = "";
+    }
+    else {
+      var leaveNumber = "," + phoneNumber;
+      numbers = numbers.replace(leaveNumber,"");
     }
     Axios({
       method: "PUT",
@@ -145,8 +210,9 @@ export default function Card(props) {
         eventLocation: eventLocation,
         eventSize: eventSize,
         eventDistance: eventDistance,
-        organizer: organizer,
+        organizer_id: organizer_id,
         eventParticipants: numbers,
+        commercialOrganizer: commercialOrganizer
       },
     }).then((response) => {
       console.log(response);
@@ -154,10 +220,46 @@ export default function Card(props) {
     window.location.reload(true);
   }
 
+  const leaveButton =
+  isAdmin !== "true" && eventParticipants.includes(phoneNumber) && 
+  organizer_id !== phoneNumber && commercialOrganizer !== phoneNumber &&
+  phoneNumber.length !== 9 ? (
+    <div>
+      <Button
+        id="jbutton"
+        variant="contained"
+        size="small"
+        color="error"
+        onClick={leaveEvent}
+      >
+        Leave
+      </Button>
+    </div>
+  ) : null;
+
+  const joinButton =
+  isAdmin !== "true" && !eventParticipants.includes(phoneNumber) && 
+  organizer_id !== phoneNumber && commercialOrganizer !== phoneNumber && 
+  phoneNumber.length !== 9 ? (
+    <div>
+      <Button
+        id="jbutton"
+        variant="contained"
+        size="small"
+        color="success"
+        onClick={joinEvent}
+      >
+        Join
+      </Button>
+    </div>
+  ) : null;
+
   const adminExist =
-    isAdmin === "true" ? (
+    isAdmin === "true" || 
+    commercialOrganizer === phoneNumber ||
+    organizer_id === phoneNumber ? (
       <div>
-        <div style={{ display: "flex", justifyContent: "space-between" }}>
+        <div style={{ display: "flex", justifyContent: "center" }}>
           <Button
             id="button"
             variant="contained"
@@ -167,7 +269,6 @@ export default function Card(props) {
           >
             Edit event
           </Button>
-          {checkButton}
         </div>
         <Dialog open={open} onClose={handleClose}>
           <DialogTitle>Event</DialogTitle>
@@ -229,7 +330,7 @@ export default function Card(props) {
             <TextField
               margin="normal"
               sx={{ mb: 2, mt: -0.5 }}
-              label="Distance"
+              label="Distance in kilometres"
               type="number"
               fullWidth
               variant="standard"
@@ -239,7 +340,7 @@ export default function Card(props) {
 
             <TextField
               margin="normal"
-              label="Description"
+              label="Description and required equipment"
               style={{ width: 552 }}
               multiline
               type="text"
@@ -251,7 +352,7 @@ export default function Card(props) {
             <TextField
               margin="normal"
               sx={{ mt: -0.5 }}
-              label="Size"
+              label="Group size (excl. organizer)"
               type="number"
               fullWidth
               variant="standard"
@@ -260,28 +361,23 @@ export default function Card(props) {
             />
           </DialogContent>
           <DialogActions>
+            <Button onClick={handleDelete}>Delete</Button>
             <Button onClick={handleClose}>Cancel</Button>
             <Button onClick={handleSubmit}>Submit</Button>
           </DialogActions>
         </Dialog>
       </div>
     ) : null;
-
-  const checkButton =
-    isAdmin === "true" || eventParticipants.includes(phoneNumber) || phoneNumber.length === 9 ? null : (
-      <div>
-        <Button
-          id="jbutton"
-          variant="contained"
-          size="small"
-          color="success"
-          onClick={joinEvent}
-        >
-          Join
-        </Button>
-      </div>
-    );
-
+  
+  function participants() {
+    if(eventParticipants.length === 0) {
+      return "Participants: 0/" + props.size;
+    }
+    else {
+      return "Participants: " + eventParticipants.split(",").length + "/" + props.size
+    }
+  }
+  
   return (
     <div className={props.name}>
       <li className="card">
@@ -295,15 +391,16 @@ export default function Card(props) {
           </figure>
           <div className="card_info">
             <p className="card_title">{props.text}</p>
-            <p className="card_description">{props.location}</p>
+            <p className="card_description">Location: {props.location}</p>
             <p className="card_description">{props.description}</p>
-            <p className="card_description">{props.distance}</p>
+            <p className="card_description">Distance: {props.distance}</p>
             <p className="card_size">
-              {eventParticipants.split(",").length + "/" + props.size}
+              {participants()}
             </p>
             {adminExist}
-            <div style={{ display: "flex", justifyContent: "flex-end" }}>
-              {checkButton}
+            <div style={{ display: "flex", justifyContent: "center" }}>
+              {joinButton}
+              {leaveButton}
             </div>
           </div>
         </Link>
