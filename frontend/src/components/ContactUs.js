@@ -6,7 +6,7 @@ import mail from './mail-icon.png';
 import "./ContactUs.css";
 import Navbar from "./Navbar";
 import TopNavbar from "./TopNavbar";
-import defaultImage from "./images/default_image.PNG";
+import defaultImage from "./images/default_image.png";
 
 export default function ContactUs() {
     var num = Math.floor(Math.random() * 15);

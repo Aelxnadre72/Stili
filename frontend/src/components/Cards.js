@@ -334,6 +334,7 @@ export default function Cards(props) {
                         wrapper={"card_picture_wrapper-" + a.eventDifficulty}
                         src={locationImage(locations[a.eventLocation - 1].label)}
                         text={a.eventName}
+                        date={a.eventDate} //formatere for riktig format
                         location={locations[a.eventLocation - 1].label}
                         label={difficulties[a.eventDifficulty - 1].label}
                         path=""

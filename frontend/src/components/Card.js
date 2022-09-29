@@ -411,6 +411,7 @@ export default function Card(props) {
           </figure>
           <div className="card_info">
             <p className="card_title">{props.text}</p>
+            <p className="card_date">{props.date}</p>
             <p className="card_description">Location: {props.location}</p>
             <p className="card_description">{props.description}</p>
             <p className="card_description">Distance: {props.distance}</p>
